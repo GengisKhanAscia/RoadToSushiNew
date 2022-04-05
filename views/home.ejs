@@ -1,0 +1,284 @@
+
+<!--
+    https://studio.tailorbrands.com/   Logo
+    https://www.remove.bg/             Rimuovi sfondo dalle immagini
+-->
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <!-- Meta tags richiesti -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap & CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/stylesheets/custom.css" rel="stylesheet">
+
+    <!-- Icona pagina del browser-->
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png">
+
+    <!-- Navfoot-->
+    <script defer src="/javascripts/navbarfootbar.js"></script>
+
+    <!-- Javascript opzionale -->
+    <script defer src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
+    <script type="text/javascript" defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" defer src="/javascripts/richiedimodals.js"></script>
+    <script type="text/javascript" defer src="/javascripts/orario_negozio.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+    
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script type="text/javascript" defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    
+     <!--dayjs-->
+     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+    <title>RoadToSushi</title>
+  </head>
+  
+  <body>
+
+      <nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top menu_normale" id="menu_uniforme"></nav>
+    
+      <h3 class="spaziaturaTitolo" id="fond"> <strong> Road To Sushi </strong></h3>
+      <center><p id="titoletto"> <strong>&quot;</strong><cite title="Source Title">Il sushi più buono che c'è!</cite><strong>&quot;</strong> </p></center>
+    
+    <main> 
+    
+           <!-- Vedi sito https://www.html.it/articoli/un-menu-slider-con-immagini-e-css3/ -->
+           <div class="spaziaturaTitolo" id="container">
+            <ul>
+             <li id="pannello-1">
+              <div class="titolo">
+              <h2><a href="#" class="block">CHI SIAMO</a></h2>
+              </div>
+              <div class="contenuto">
+              <p class="testo">RoadToSushi è un ristorante di sushi nato con un formato take-away
+                   per la situazione pandemica che ci circonda
+              </p>
+              </div>
+             </li>
+             <li id="pannello-2">
+              <div class="titolo">
+              <h2><a href="#" class="block">COSA FACCIAMO</a></h2>
+              </div>
+              <div class="contenuto">
+              <p class="testo">Non solo sushi, abbiamo anche piatti caldi di carne e vegetariani</p>
+              </div>
+             </li>
+             <li id="pannello-3">
+              <div class="titolo">
+              <h2><a href="#" class="block">DOVE OPERIAMO</a></h2>
+              </div>
+              <div class="contenuto">
+              <p class="testo">Offriamo il nostro servizio a in centro a Novara(NO)</p>
+              </div>
+             </li>
+             <li id="pannello-4">
+              <div class="titolo">
+              <h2><a href="#" class="block">ORARI ORDINI</a></h2>
+              </div>
+              <div class="contenuto">
+              <p class="testo">Tutti i giorni con orario PRANZO: 12:00-15:00 CENA: 19:00-22:00</p>
+              </div>
+             </li>
+             <li id="pannello-5">
+              <div class="titolo">
+              <h2><a href="#" class="block">PRODOTTI</a></h2>
+              </div>
+              <div class="contenuto">
+              <p class="testo">Utilizziamo solo prodotti sostenibili e di alta qualità per esaudire al meglio le vostre richieste</p>
+              </div>
+             </li>
+            </ul>
+          </div>
+
+           <!-- CAROUSEL -->
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="card-group">
+                  <div class="card">
+                    <a href="#">
+                      <img src="/images/almond.jpg" class="card-img-top" height="300">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Almond</h5>
+                      <p class="card-text">Tartare di salmone, avocado, philadelphia, scaglie di mandorla esterne, salsa teriyaki</p>
+                      <p class="card-text"><small class="text-muted">5€</small></p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <a href="#">
+                      <img src="/images/spicycrunchtuna.jpg" class="card-img-top" height="300">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Spicy Crunch Tuna</h5>
+                      <p class="card-text">Tartare di tonno, philadelphia, avocado, salsa teriyaki, salsa spicy, crunch</p>
+                      <p class="card-text"><small class="text-muted">5€</small></p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <a href="#">
+                      <img src="/images/mexico.jpg" class="card-img-top" height="300">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Mexico</h5>
+                      <p class="card-text">Tartare di salmone, philadelphia, jalapeño, nachos</p>
+                      <p class="card-text"><small class="text-muted">8€</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card-group">
+                  <div class="card">
+                    <a href="#">
+                      <img src="/images/udon.jpg" class="card-img-top" height="300">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Udon</h5>
+                      <p class="card-text">Spaghettoni di grano duro con uova, gamberi, julienne di verdure e polpa di granchio</p>
+                      <p class="card-text"><small class="text-muted">10€</small></p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <a href="#">
+                      <img src="/images/yakitoririce.jpg" class="card-img-top" height="300">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Yakitori Rice</h5>
+                      <p class="card-text">Riso al salto con pollo, uova e julienne di verdure</p>
+                      <p class="card-text"><small class="text-muted">10€</small></p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <a href="#">
+                      <img src="/images/misosoup.jpg" class="card-img-top" height="300">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Miso Soup</h5>
+                      <p class="card-text">Tofu, miso, zenzero, carote, daikon, alghe wakame, acqua</p>
+                      <p class="card-text"><small class="text-muted">8€</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <div class="container">
+            <!-- Covid card -->
+            <div class="card" id="covid-card">
+              <h5 class="card-header" id="covid19">Covid-19</h5>
+              <div class="card-body">
+                <h5 class="card-title">Informazioni relative al comportamento</h5>
+                <p class="card-text"> L'ingresso al locale è consentito solo a chi indossa la mascherina. Si prega di rispettare la distanza di sicurezza ed evitare assembramenti.
+                  Ringraziamo la clientela per la collaborazione.<br>Leggi il
+                  regolamento per saperne di più.</p>
+                <a href="https://www.alimenti-salute.it/sites/default/files/Procedura%20SIAL%20Food%20Delivery%20Ristorazione%20Covid19.pdf" target="_blank" class="btn" id="regolamento">Regolamento</a>
+              </div>
+            </div>
+          </div>
+          
+    
+          <!-- PERCHE' SCEGLIERCI -->
+          <!--
+                <h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title"> Ecco perch&eacute; scegliere noi per mangiare il pesce crudo </cite></h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="card text-center spazio">
+                            <img src="/images/sushiman.png" class="card-img-top padding_img">
+                            <div class="card-body">
+                              <p class="card-text">Abbiamo i migliori sushiman della zona!</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-center spazio">
+                            <img src="/images/intime.png" class="card-img-top padding_img">
+                            <div class="card-body">
+                              <p class="card-text">La nostra puntualit&agrave; &eacute; sempre garantita</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-center spazio">
+                            <img src="/images/bestprices.png" class="card-img-top padding_img">
+                            <div class="card-body">
+                              <p class="card-text">Ottimo rapporto qualit&aacute; - prezzo</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-center spazio">
+                            <img src="/images/sust.png" class="card-img-top padding_img">
+                            <div class="card-body">
+                              <p class="card-text">100% prodotti sostenibili</p>
+                            </div>
+                          </div>
+                    </div>
+                </div><p>&nbsp;</p>
+          -->
+    
+          <!-- LA NOSTRA STORIA -->
+          <!--
+                <h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title"> La nostra storia</cite></h3>
+          <br>
+                <div class="row" id="storia">
+                    <blockquote class="blockquote">
+                        <p class="spazioUguale">
+                          L'azienda <span class="scrittaInRosso"><strong>RoadToSushi</strong></span> viene fondata a Febbraio 2020, poco dopo lo scoppio della pandemia COVID-19 in Italia, da Marco Ascia.
+                          L'idea è quella di dare la possibilità alle persone di poter uscire di casa e passare a ritirare il proprio ordine presso di noi.<br>
+                          Con il passare dei mesi, i clienti sono aumentati vertiginosamente grazie al <strong>rapporto qualità-prezzo</strong> che &eacute; alla base del nostro operato, 
+                          tanto da far incrementare in maniera considerevole la domanda. Cos&iacute; nel Luglio 2020 l'azienda &eacute; passata da avere qualche sushiman e un aiuto cuoco
+                          ad avere una dozzina di chef. Questo ha dato la possibilit&agrave; di tenere aperto il ristorante tutti i giorni e alternare giorni di lavoro e di pausa ai cuochi.
+                          Con dei semplici click si possono prenotare delle box di sushi e venirle a ritirare all'orario indicato durante la prenotazione.<br>
+                        </p>
+                    </blockquote>
+                </div>
+    
+          <h3 class="spaziaturaTitolo" id="fond"> <cite title="Source Title">Il nostro fondatore</cite> </h3>
+          <div clas="row">
+          <div class="col">
+            <div class="card text-center spazio">
+              <img src="/images/marcoascia.jpeg" class="card-img-top padding_img">
+              </div>
+            <center> <label id="fond"><strong>MARCO ASCIA</strong></label></center> 
+          </div>
+        </div>
+    
+      -->
+      </main>
+      
+        <br>
+        <footer class="footer bg-dark text-center text-white" id="foot">
+          </footer> 
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+  </body>
+  <div id="modals_uniformi">
+    <!-- js -->
+  </div>
+</html>

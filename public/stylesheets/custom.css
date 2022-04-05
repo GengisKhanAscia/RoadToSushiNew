@@ -1,0 +1,661 @@
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+A:link {
+    color: white;
+    text-decoration: none; 
+    font-size: 15px 
+}
+
+A:visited { 
+  color: white;
+  text-decoration: none; font-size: 15px 
+}
+
+A:hover { 
+  color: white;
+    text-decoration: none; font-size: 20px 
+}
+
+.spaziaturaTitolo{
+    margin-top: 6em;
+}
+
+#pannello-1 {background: url(../images/img1.jpg);}
+#pannello-2 {background: url(../images/img2.jpg);}
+#pannello-3 {background: url(../images/img3.jpg);}
+#pannello-4 {background: url(../images/img4.jpg);}
+#pannello-5 {background: url(../images/img5.jpg);}
+
+.titolo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0.8);
+    transform: translateX(-100%) rotate(-90deg);
+    transform-origin: right top;
+    width: 300px;
+    height: 48px;
+}
+
+#fond{
+	color: #000;
+    font-size:35px;
+}
+
+p{
+	color: #000;
+}
+
+a.block {
+    display: block;
+}
+
+.row{
+    margin-top: 10px;
+}
+
+#storia{
+	background-color: #212529;
+	color: white;
+	font-size: 20px;
+}
+
+body {
+  color: black;
+  background: url("../images/sfondo.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  height: 100%;
+ 	position: relative;   
+}
+
+@media only screen /* su cel. era tropppo piccolo */
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+	.spaziaturaTitolo{
+		margin-top:8em;
+	}
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+	.spaziaturaTitolo{
+		padding-top:100px;
+	}
+}
+
+/* Chi vince tra i 2 e perche'?*/
+.footer {
+    position: relative;
+    margin-top: 36px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer{
+	margin-top: 40px;
+	position: absolute;
+ 	bottom: 0;
+ 	width: 100%;
+}
+
+.scrittaInRosso{
+	color:rgb(191, 23, 46);
+}
+
+main{
+	text-align: center;
+	width: auto;
+	min-height: 100vh; /* will cover the 100% of viewport */
+ 	overflow: hidden;
+ 	display: block;
+ 	position: relative;
+  color: black;
+}
+
+/* CAROUSEL */
+.card-group {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.card {
+  margin: 1.5rem;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;	/* era 15 */
+  object-fit: cover; /* era cover */
+}
+
+/* NOT USED
+#vuota {
+background-color: rgba(8, 88, 153,0);
+}
+*/
+
+/* --------------------------------------------- */
+/* DA QUI NUOVO */
+
+#immaginenav{
+    position: absolute;
+     left: 1.0em; 
+     top: 1.6em;
+ }
+ 
+ .footersocial{
+     margin:auto;
+ }
+
+ 
+#destra{
+    position: absolute;
+    right: 0;
+}
+
+
+
+   img {border: 0;}
+
+   /* FATTO */
+   #container {
+   width: 892px;
+    height: 300px;
+    overflow: hidden;
+    margin: 150px auto;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+   }
+
+   /* FATTO */
+   #container ul {
+	width: 2000px;
+    margin: 0;
+    padding: 0;
+   }
+
+   /* FATTO */
+   #container li {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+    width: 178.4px;
+    height: 300px;
+    border-left: 1px solid #888;
+    box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+   }
+
+
+   .titolo h2 {
+    width: 300px;
+    height: 48px;
+    margin: 0;
+    padding: 10px 15px;
+    font-size: 24px;
+    color: #fff;
+   }
+
+/* FATTO */
+#container ul:hover li {width: 48px;}
+#container ul li:hover {width: 700px;}
+
+.lt-ie9 .titolo {
+    position: absolute;
+    left: -125px;
+    top: 127px;
+    width: 300px;
+    height: 300px;
+    transform: rotate(-90deg);
+    background: #000;
+   }
+
+   .testo {
+    width: 200px;
+    margin-left: 430px;
+    margin-top: 140px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+   }
+
+   /* -- FINE --*/
+
+
+    .divcentrato{
+        margin-left:auto;
+        margin-right:auto;
+        text-align: center;
+        align-content: center;
+    }
+
+    
+h5.modal-title{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+    color: black;
+}
+
+
+#chiudi_tariffe,.color_btn, .chiudi_btn{
+	background-color: #FBFAF4;
+    color:#212529;
+}
+
+.modals_head{
+	background-color: #FBFAF4;
+}
+
+.black_head{
+    color:#212529;
+}
+
+.h_btm_spec{
+	margin-bottom: 50px;
+    color: black;
+}
+
+.hspace_mc{
+	margin-top:6em;
+}
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+	.card{
+		width: 10rem;
+		height: 15rem;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+}
+
+.spaziosopra{
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.spazio{
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+}
+
+nav{
+   margin-bottom: 40px;
+}
+
+.spazioUguale {
+ padding-top: 50px;
+ padding-right: 50px;
+ padding-bottom: 50px;
+ padding-left: 50px;
+}
+
+p.spazioUguale{
+ margin: 0;
+}
+
+#scritta_init{
+   padding-top: 180px;
+}
+
+.first-p{
+   margin-top: 20px;
+}
+
+.spec{
+   background-color: #BF172E;
+   border-color: #BF172E;
+}
+
+.spec:hover{
+   background-color: #4183D7;
+}
+
+#btn_cerca{
+   background-color: green;
+   color: white;
+}
+
+#btn_cerca:hover{
+   background-color: #FBFAF4;
+   color: #212529;
+   border-color: none;
+}
+
+
+.menu_centrato{
+   font-size: 1.2rem;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+#socials{
+   padding-left: auto;
+   padding-right: auto;
+   text-align: center;
+   align-content: center;
+}
+
+
+#centri_piccoli{
+   display: none;
+}
+
+@media only screen 
+ and (min-device-width: 320px) 
+ and (max-device-width: 480px)
+ and (-webkit-min-device-pixel-ratio: 2) {
+
+   #centri{
+       display: none;
+   }
+
+   #centri_piccoli{
+       display: block;
+       padding-left: 35px;
+       padding-right: 35px;
+   }
+
+   #first_c_s{
+    margin-top: 20px;
+}
+
+.cs{
+    height: 20rem;
+}
+
+}
+
+#primaimg{
+	padding-top:120px;
+}
+
+.hspace_bottom{
+	margin-bottom:6em;
+}
+
+.hspace_mc_btm{
+	margin-bottom:6em;
+}
+
+@media only screen /* su cel. era tropppo piccolo */
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+	.hspace_mc{
+		margin-top:2em;
+	}
+
+}
+
+
+.fspace{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.modals_stile{
+	background-color: #212529;
+	color: #FBFAF4;
+}
+
+
+.divergenti{
+	color: white;
+}
+
+.divergenti_more{
+	color: white;
+	text-decoration: none;
+}
+
+.hcenter{
+	text-align: center;
+}
+
+#h5right{
+	padding-right: 20px;
+}
+
+.padding_img{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#special_hspace{
+	margin-top:9em;
+	margin-bottom:2em;
+}
+
+#special_hspace_btm{
+	margin-bottom:4em;
+}
+
+h3{
+	text-align: center;
+    font-weight:bold;
+    color:#212529;
+}
+
+.dropspace{
+	margin-bottom: 20px;
+}
+
+.h_btm_spec{
+	margin-bottom: 50px;
+}
+
+.al_right{
+	text-align: right;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+	.al_right{
+		text-align: left;
+	}
+
+}
+
+.registrati_btn, .accedi_btn{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-width: 5px;
+}
+
+.registrati_btn:hover, .registrati_btn:checked, .accedi_btn:hover, .accedi_btn:checked {
+    background-color: green;
+    color: white;
+}
+
+.color_btn{
+	background-color: #FBFAF4;
+    font-weight: bold;
+	border: none;
+}
+
+.color_btn:hover, .color_btn_:checked{
+	background-color: green;
+	border: none;
+}
+
+.chiudi_btn{
+	background-color: #FBFAF4;
+    font-weight: bold;
+	border: none;
+}
+
+.chiudi_btn:hover, .chiudi_btn:checked{
+	background-color: green;
+	border: none;
+}
+
+.nodecor, .nodecor:visited{
+	text-decoration: none;
+	color: black;
+	font-style: none;
+}
+
+.nodecor:hover{
+	text-decoration: none;
+	color: #4183D7;
+	font-style: none;
+}
+
+.dropdown-item.active,.dropdown-item:active{color:#fff;text-decoration:none;background-color:#4183D7}
+
+.hspace_minus{
+	margin-top: 15%;
+}
+
+/* DOVE USO */
+.colore_btn_red{
+	background-color: #BF172E;
+}
+
+.divcentrato{
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+	align-content: center;
+}
+
+a.prenota, a.disdici, a.referta, a.disdicidispo{
+	cursor: pointer; 
+}
+
+.spaziogiu{
+	padding-bottom: 35px;
+}
+
+.bas{
+	cursor: pointer;
+}
+
+h5.modal-title{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.errore_msg{
+	color:#BF172E;
+}
+
+.errore_msg_successo{
+	color: green;
+}
+
+/* questo è per le prenotazioni non attive se l'utente non è loggato */
+.inactiveLink {
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.4;
+ }
+ .inactiveLink:hover {
+	text-decoration: overline;
+ }
+
+
+ /*Contatti*/
+
+#registratosino{
+    position: relative;
+    top: 0em;
+    width: 25em;
+}
+
+.corpo{
+    background-color: lightgray;
+}
+
+#immaginenav{
+    position: absolute;
+     left: 1.0em; 
+     top: 1.6em;
+ }
+
+
+#destra{
+    position: absolute;
+    right: 0;
+}
+
+#row200{
+	margin-top: 200px;
+}
+
+#linkcontatti{
+	color: #000;
+}
+
+.citazione{
+	color:white;
+}
+
+#regolamento{
+    background-color: red;
+}
+
+#covid19{
+    color: red;
+}
+
+.card-header{
+    background-color: #212529;
+}
+
+#titoletto{
+    color:#000;
+    font-size:50px;
+}
+
+#prenotazioni{
+    font-weight:bold;
+    color:#212529;
+}
+
+#termcondiz{
+    font-weight:bold;
+}
