@@ -1,13 +1,17 @@
 // Sarebbe server.js
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const homeRouter = require('./routes/home');
+const contattiRouter = require('./routes/contatti');
+const regPersonaleRouter = require('./routes/regPersonale');
+const regClienteRouter = require('./routes/regCliente');
+const loginRouter = require('./routes/login');
+const personaleRouter = require('./routes/personale');
 
 var app = express();
 
@@ -21,8 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));  // Solo per file statici (tutto ciò che c'è dentro public)
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', homeRouter);
+app.use('/contatti', contattiRouter);
+app.use('/regPersonale', regPersonaleRouter);
+app.use('/regCliente', regClienteRouter);
+app.use('/login', loginRouter);
+app.use('/personale', personaleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

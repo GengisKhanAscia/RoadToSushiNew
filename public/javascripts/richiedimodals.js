@@ -9,7 +9,7 @@ const plus = `
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title"> OFFERTE DI FEBBRAIO 2022</h5>
+				<h5 class="modal-title"> OFFERTE DI MAGGIO 2022</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -130,8 +130,8 @@ const plus = `
 			</div>
 
 			<div class="modal-body divcentrato">
-				<a href="regPersonale.html"><button type="button" class="btn btn-primary close color_btn">PERSONALE</button></a>
-				<a href="regCliente.html"><button type="button" class="btn btn-primary close color_btn">CLIENTE</button></a>
+				<a href="/regPersonale"><button type="button" class="btn btn-primary close color_btn">PERSONALE</button></a>
+				<a href="/regCliente"><button type="button" class="btn btn-primary close color_btn">CLIENTE</button></a>
 			</div>
 
 			</div>

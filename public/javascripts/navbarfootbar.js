@@ -8,7 +8,7 @@ const x = `
 <!-- MENU DI NAVIGAZIONE -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top menu_normale" id="menuX">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html">
+      <a class="navbar-brand" href="/">
            <img src="/images/sushiNavbar.png" alt="Logo RoadToSushi" height="100">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@ const x = `
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu_centrato" id="elementi">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="home.html#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item" id="tari">
               <a class="nav-link" href="#tariffario_modal" data-toggle="modal" data-target="#tariffario_modal">Offerte</a>
@@ -26,10 +26,10 @@ const x = `
               <a class="nav-link" href="#orari_modal" data-toggle="modal" data-target="#orari_modal" id="men_orari" onClick="giorno_ora();">Orari</a>
           </li>
           <li class="nav-item" id="cont">
-              <a class="nav-link" href="contatti.html">Contatti</a>
+              <a class="nav-link" href="/contatti">Contatti</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="personale.html#" id="dips" >Personale</a>
+              <a class="nav-link" href="/personale" id="dips" >Personale</a>
           </li>
 
           <!-- COMMENTO -->
@@ -46,7 +46,7 @@ const x = `
 
           <!-- PROVA -->
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="login.html#">Login</a>
+            <a class="nav-link active" aria-current="page" href="/login">Login</a>
           </li>
           
           <script>
@@ -111,7 +111,7 @@ footer.innerHTML += y;
                     <a class="nav-link" href="#reg_modal" data-toggle="modal" data-target="#reg_modal">Registrati</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
     `;
     log.innerHTML += m;

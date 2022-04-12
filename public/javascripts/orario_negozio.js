@@ -16,7 +16,7 @@ function giorno_ora(){
    const ora = moment().hours();
    const minuti = moment().minutes();
    switch(giorno){
-       // Moment.js conta da 0 (Domenica) a 6 (Sabato) [Non ho ancora inserito lo script]
+       // Moment.js conta da 0 (Domenica) a 6 (Sabato)
         case 0:
         case 1:
         case 2:
