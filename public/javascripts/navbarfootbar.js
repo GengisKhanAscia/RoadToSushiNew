@@ -1,6 +1,7 @@
 "use strict";
 
 /*NAVBAR*/
+
 let menu = document.getElementById("menu_uniforme");
 
 const x = `
@@ -68,6 +69,7 @@ const x = `
 
 `;
 menu.innerHTML += x;
+
 
 /*FOOTER*/
 let footer = document.getElementById("foot");

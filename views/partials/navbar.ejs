@@ -1,0 +1,60 @@
+<!-- MENU DI NAVIGAZIONE -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top menu_normale" id="menuX">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+           <img src="/images/sushiNavbar.png" alt="Logo RoadToSushi" height="100">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu_centrato" id="elementi">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item" id="tari">
+              <a class="nav-link" href="#tariffario_modal" data-toggle="modal" data-target="#tariffario_modal">Offerte</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#orari_modal" data-toggle="modal" data-target="#orari_modal" id="men_orari" onClick="giorno_ora();">Orari</a>
+          </li>
+          <li class="nav-item" id="cont">
+              <a class="nav-link" href="/contatti">Contatti</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/personale" id="dips" >Personale</a>
+          </li>
+
+          <!-- COMMENTO -->
+          <li class="nav-item">
+            <a class="nav-link" href="#reg_modal" data-toggle="modal" data-target="#reg_modal">Registrati</a>
+          </li>
+
+          <!-- SCOMMENTO -->
+          <!--
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+          -->
+
+          <!-- PROVA -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/login">Login</a>
+          </li>
+          
+          <script>
+            let log = document.getEle
+          </script>
+          <!-- esempio di voce di menù disabilitata
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+          -->
+        </ul>
+        <form class="d-flex" id="form_cerca" action="personale.html">
+          <input class="form-control me-2" type="search" placeholder="Cerca tra i piatti..." id="cerca_dip" name="cerca_dip" aria-label="Cerca tra i piatti...">
+          <button class="btn btn-outline-success" id="btn_cerca" type="submit">Cerca</button>
+        </form>
+      </div>
+    </div>
+</nav>

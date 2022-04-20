@@ -5,9 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('home', {
     styles: ['/stylesheets/custom.css'], 
-    scripts: ['/javascripts/navbarfootbar.js'       // Navfoot
-             , '/javascripts/orario_negozio.js'     // Orari
-             , '/javascripts/richiedimodals.js']    // Modals  
+    scripts: ['/javascripts/orario_negozio.js'      // Orari
+             ,'/javascripts/richiedimodals.js']     // Modals  
   });
 });
 
