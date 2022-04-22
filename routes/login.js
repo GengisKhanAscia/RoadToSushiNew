@@ -5,7 +5,7 @@ var router = express.Router();
 const passport = require('passport');
 
 /* GET Login page. */
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('login', {
     styles: ['/stylesheets/custom.css'],
     scripts: ['/javascripts/orario_negozio.js'     // Orari
