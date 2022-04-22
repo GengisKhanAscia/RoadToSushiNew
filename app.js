@@ -1,29 +1,114 @@
 // Sarebbe server.js
 
+"use strict";
+
+
+// ----------------------- IMPORT -----------------------
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const moment = require('moment');
 
+// ------------ AUTENTICAZIONE E SESSIONE ---------------
+const passport = require('passport');
+const session = require('express-session')
+const LocalStrategy = require('passport-local').Strategy;
+// const userDao = require('./models/user-dao.js');
+const cookieParser = require('cookie-parser');
+// const userType = require('./entities/constants/user-type.js');
+
+// ----------------------- ROUTES -----------------------
 const homeRouter = require('./routes/home');
 const contattiRouter = require('./routes/contatti');
 const regPersonaleRouter = require('./routes/regPersonale');
 const regClienteRouter = require('./routes/regCliente');
 const loginRouter = require('./routes/login');
 const personaleRouter = require('./routes/personale');
+const clienteRouter = require('./routes/cliente');
+// const formValidazioneRouter = require('./routes/form_validazione');
 
-var app = express();
+// ----------------------- SETUP ------------------------
 
-// view engine setup
+const app = express();
+
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+/*
+// Default variables for views
+app.use((_req, _res, next) => {
+  app.locals.moment = moment;
+  app.locals.title = ''; // title of page
+  app.locals.message = ''; // info message
+  app.locals.errors = []; // error messages
+  app.locals.active = ''; // active navbar link
+  next();
+});
+*/
+
+// ----------------------- MIDDLEWARE ------------------
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));  // Solo per file statici (tutto ciò che c'è dentro public)
+
+// ----------------------- AUTENTICAZIONE --------------
+
+// MANCA DAO
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+}, (email, password, done) => {
+  userDao.findUserByEmailAndPassword(email, password).then(({ user, check }) => {
+      if (!user) {
+          return done(null, false, { message: "Email non valida." });
+      }
+      if (!check) {
+          return done(null, false, { message: "Password non valida." });
+      }
+
+      return done(null, user);
+  });
+}
+));
+
+// ----------------------- UTENTE - SESSIONE -----------
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  userDao.findUserById(id).then(user => {
+      done(null, user);
+  });
+});
+
+// session
+
+app.use(session({
+  cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// passport
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+      return next();
+  } else {
+      res.redirect("/login");
+  }
+};
 
 app.use('/', homeRouter);
 app.use('/contatti', contattiRouter);

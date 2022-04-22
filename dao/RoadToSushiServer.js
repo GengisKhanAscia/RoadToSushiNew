@@ -1,15 +1,15 @@
 "use strict";
 
 // 'require' permette di di importare tutto ciò che viene referenziato da module.exports
-const sqlite = require('sqlite3').verbose();    // DB - verbose() di sqlite3 server ad acquisire le tracce dello stack durante l'accodamento delle query; utile per debug
+// const sqlite = require('sqlite3').verbose();    // DB - verbose() di sqlite3 server ad acquisire le tracce dello stack durante l'accodamento delle query; utile per debug
 const { hash } = require('bcrypt');
 const bcrypt = require('bcrypt');               // CRITTOGRAFIA PASSWORD
 const { reject } = require('bcrypt/promises');
 
 class RoadToSushiServer{
-
+    /*
     constructor(){
-        this.DBSOURCE = '../db.db';
+        this.DBSOURCE = '../database.db';
         this.db = new sqlite.Database(this.DBSOURCE, (err) =>{ // sqlite o sqlite3? Ho scaricato la 3, scarico la 1? [QUALE USO? LUI LE HA ENTRAMBE IN package.json]
             if(err){
                 // Non si riesce ad apire il DB
@@ -21,6 +21,7 @@ class RoadToSushiServer{
             }
         });    
     }
+    */
 
     // Lista di tutti i membri del personale
     getListaPersonale(){
