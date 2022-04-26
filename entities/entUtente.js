@@ -1,22 +1,17 @@
-
 /**
- * @class User rappresenta un utente
+ * @class EntUtente Rappresenta i dati di un utente
  */
- class EntUtente{
+ class EntPersonale extends EntSupUser{
 
     /**
-     * Crea un nuovo utente
-     * @param {number} email Email dell'utente
-     * @param {string} nome  Nome dell'utente
-     * @param {string} cognome Cognome dell'utente
-     * @param {string} telefono Telefono dell'utente
+     * Crea un nuovo membro del personale
+     * @param {string} email Email dell'utente
+     * @param {string} password  Nome dell'utente
+     * @param {number}    tipo_utente Cognome dell'utente
      */
-    constructor (email, nome, cognome, telefono) {
+    constructor (email, password, tipo_utente) {
         this.email = email;
-        this.nome = nome;
-        this.cognome = cognome;
-        this.telefono = telefono;
+        this.password = password;
+        this.tipo_utente = tipo_utente;
     }
 }
-
-module.exports = User;

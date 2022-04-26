@@ -18,72 +18,47 @@
 			<div class="row">
 
                 <!-- COMMENTO DA MODIFICARE  --> 
-				<form encType="multipart/form-data" class="row g-3 needs-validation" action="http://localhost:3002/regcli" method="post" novalidate>
+				<form encType="multipart/form-data" class="row g-3 needs-validation" action="http://localhost:3003/regCliente" method="POST" novalidate>
 				
 					<!-- NOME -->
 					<div class="col-md-4">
-                        <label for="nome" class="form-label">Nome*</label>
-                        <input type="text" class="form-control" id="nome" name="nome" minlength="1" required>
-                        <div class="valid-feedback">
-                            OK
-                        </div>
-                        <div class="invalid-feedback">
-                            Devi fornire un nome valido di almeno un carattere.
-                        </div>
+						<label for="nome" class="form-label">Nome*</label>
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="Inserisci Nome" required>
+						<span class="text-danger" id="validazione-nome"></span>
 					</div>
 
 					<!-- COGNOME -->
 					<div class="col-md-4">
-                        <label for="cognome" class="form-label">Cognome*</label>
-                        <input type="text" class="form-control" id="cognome" name="cognome" minlength="1" required>
-                        <div class="valid-feedback">
-                            OK
-                        </div>
-                        <div class="invalid-feedback">
-                            Devi fornire un cognome valido di almeno un carattere.
-                        </div>
+						<label for="cognome" class="form-label">Cognome*</label>
+						<input type="text" class="form-control" id="cognome" name="cognome" placeholder="Inserisci Cognome" required>
+						<span class="text-danger" id="validazione-cognome"></span>
 					</div>
 
 					<!-- EMAIL -->
 					<div class="col-md-4">
 						<label for="email" class="form-label">Email*</label>
-						<input type="email" id="email" name="email" class="form-control" required>
-						<div class="valid-feedback">
-						    OK
-						</div>
-						<div class="invalid-feedback">
-						    Devi fornire un indirizzo e-mail valido.
-						</div>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Inserisci Email" required>
+						<span class="text-danger" id="validazione-email"></span>
 					</div>
 
 					<!-- PASSWORD -->
 					<div class="col-md-4">
-						<label for="pass" class="form-label">Password*</label>
-						<input type="password" id="pass" name="pass" class="form-control" minlength="4" required>
-						<div class="valid-feedback">
-                            OK
-						</div>
-						<div class="invalid-feedback">
-						    Devi fornire una password di almeno 4 caratteri.
-						</div>
+						<label for="password" class="form-label">Password*</label>
+						<input type="text" class="form-control" id="password" name="password" placeholder="Inserisci Password" required>
+						<span class="text-danger" id="validazione-password"></span>
 					</div>
 
 					<!-- TELEFONO -->
 					<div class="col-md-4">
-						<label for="tel" class="form-label">Telefono</label>
-						<input type="tel" id="tel" name="tel" class="form-control" pattern = "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$">
-                        <div class="valid-feedback">
-                            OK
-                        </div>
-                        <div class="invalid-feedback">
-                            Devi fornire un telefono valido, nel formato corretto (10 cifre).
-                        </div>
-                    </div>
+						<label for="telefono" class="form-label">Telefono*</label>
+						<input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Inserisci Numero di Telefono" required>
+						<span class="text-danger" id="validazione-telefono"></span>
+					</div>
 
                     <!-- COME LO DEVO GESTIRE? PERCHE' SOLO QUI E NON ANCHE IN regPersonale (PERSONALE-1) ?-->
 					<!-- Nascosto, TIPO_UTENTE (CLIENTE-0) -->
 					<div class="col-md-4">
-						<input type="number" id="tipo" value="0" class="form-control" hidden>
+						<input type="number" id="tipo_utente" value="0" class="form-control" hidden>
 					</div>
 
 					<!-- TERMINI e CONDIZIONI & SUBMIT FORM-->
@@ -100,10 +75,10 @@
                         </div>
                         </div>
 					<div class="col-12">
-                        <button class="btn btn-lg registrati_btn">Registrati</button>
+                        <button class="btn btn-lg registrati_btn" id="signup-btn-cliente">Registrati</button>
 					</div>
 				</form>
-				</div>
+			</div>
 		
 		</div>
         <!-- UTILE? -->

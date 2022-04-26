@@ -1,17 +1,19 @@
 /**
  * @class EntPersonale Rappresenta un membro del personale
  */
- class EntPersonale extends EntUtente{
+ class EntPersonale extends EntSupUser{
 
     /**
-     * Creaa un nuovo membro del personale
-     * @param {number} email Email dell'utente
-     * @param {string} nome  Nome dell'utente
-     * @param {string} cognome Cognome dell'utente
-     * @param {string} telefono Telefono dell'utente
+     * Crea un nuovo membro del personale
+     * @param {string} email Email del membro del personale
+     * @param {string} nome  Nome del membro del personale
+     * @param {string} cognome Cognome del membro del personale
+     * @param {number} telefono Telefono del membro del personale
+     * @param {blob}   immagine Immagine (opzionale) del membro del personale
      */
-    constructor (email, nome, cognome, telefono) {
+    constructor (email, nome, cognome, telefono, immagine) {
         super(email, nome, cognome, telefono);
+        this.immagine = immagine;
     }
 }
 

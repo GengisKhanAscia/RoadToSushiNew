@@ -1,5 +1,6 @@
 "use strict";
 
+/*
 (function (){
   // Prendo eventuali parametri dall'URL e li mostro(es. messaggi di errore)
     let currentUrl = new URL(window.location.href);
@@ -34,6 +35,7 @@
         }, false)
       })
   })();
+  */
 
 // INUTILIZZATO AL MOMENTO 
 /*

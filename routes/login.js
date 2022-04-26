@@ -1,16 +1,17 @@
 "use strict";
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const passport = require('passport');
+const logger = require('../util/logger');
 
 /* GET Login page. */
 router.get('/', function(req, res, next) {
   res.render('login', {
     styles: ['/stylesheets/custom.css'],
-    scripts: ['/javascripts/orario_negozio.js'     // Orari
-             ,'/javascripts/richiedimodals.js'     // Modals
-             ,'../routes/form_validazione.js']     // Validazione del form  
+    scripts: ['/javascripts/orario_negozio.js'            // Orari
+             ,'/javascripts/richiedimodals.js'            // Modals
+             ,'/javascripts/validazioneRegistrazione.js'] // Validazione form registrazione (serve?)
   });
 });
 

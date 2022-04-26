@@ -2,18 +2,17 @@
 /**
  * @class EntCliente Rappresenta un cliente
  */
-class EntCliente extends EntUtente{
+class EntCliente extends EntSupUser{
 
     /**
-     * Creaa un nuovo cliente
-     * @param {number} email Email dell'utente
-     * @param {string} nome  Nome dell'utente
-     * @param {string} cognome Cognome dell'utente
-     * @param {string} telefono Telefono dell'utente
-     * @param {string} password Password dell'utente
+     * Crea un nuovo cliente
+     * @param {string} email Email del cliente
+     * @param {string} nome  Nome del cliente
+     * @param {string} cognome Cognome del cliente
+     * @param {number} telefono Telefono del cliente
      */
-    constructor (email, nome, cognome, telefono, password,) {
-        super(email, nome, cognome, telefono, password);
+    constructor (email, nome, cognome, telefono) {
+        super(email, nome, cognome, telefono);
     }
 }
 

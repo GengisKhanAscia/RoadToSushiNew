@@ -31,6 +31,7 @@ const clienteRouter = require('./routes/cliente');
 // ----------------------- SETUP ------------------------
 
 const app = express();
+const port = 3003;
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -92,7 +93,7 @@ passport.deserializeUser(function (id, done) {
 
 app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
-  secret: process.env.SESSION_SECRET,
+  secret: 'Segreto di sessione',// process.env.SESSION_SECRET
   resave: false,
   saveUninitialized: false,
 }));
@@ -106,7 +107,7 @@ const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
       return next();
   } else {
-      res.redirect("/login");
+      res.redirect("/");
   }
 };
 
@@ -133,5 +134,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Attivo definitivamente il server --> Ora accetto richieste
+app.listen (port, () =>  console.log(`Il server di RoadToSushi è attivo all'indirizzo http://localhost:${port}` )) ;
 
 module.exports = app;
