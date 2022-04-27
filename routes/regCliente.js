@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
 });
 
 // Server side validation
+/*
 router.post("/", [
   body("nome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un nome valido"),
   body("cognome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un cognome valido"),
@@ -67,5 +68,6 @@ router.post("/", [
       });
   }
 });
+*/
 
 module.exports = router;
