@@ -1,6 +1,8 @@
+const EntSupUser = require('./entSupUser');
 
 /**
  * @class EntCliente Rappresenta un cliente
+ * @extends EntSupUser Estende la classe base per tutti i Clienti
  */
 class EntCliente extends EntSupUser{
 
@@ -16,4 +18,4 @@ class EntCliente extends EntSupUser{
     }
 }
 
-module.exports = User;
+module.exports = EntCliente;

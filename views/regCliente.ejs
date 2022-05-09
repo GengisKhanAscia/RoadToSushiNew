@@ -18,7 +18,7 @@
 			<div class="row">
 
                 <!-- COMMENTO DA MODIFICARE  --> 
-				<form encType="multipart/form-data" class="row g-3 needs-validation" action="http://localhost:3003/regCliente" method="POST" novalidate>
+				<form class="row g-3 needs-validation" action="/regCliente" method="POST" novalidate>
 				
 					<!-- NOME -->
 					<div class="col-md-4">
@@ -39,20 +39,20 @@
 						<label for="email" class="form-label">Email*</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Inserisci Email" required>
 						<span class="text-danger" id="validazione-email"></span>
-					</div>
-
-					<!-- PASSWORD -->
-					<div class="col-md-4">
-						<label for="password" class="form-label">Password*</label>
-						<input type="text" class="form-control" id="password" name="password" placeholder="Inserisci Password" required>
-						<span class="text-danger" id="validazione-password"></span>
-					</div>
+					</div>	
 
 					<!-- TELEFONO -->
 					<div class="col-md-4">
 						<label for="telefono" class="form-label">Telefono*</label>
 						<input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Inserisci Numero di Telefono" required>
 						<span class="text-danger" id="validazione-telefono"></span>
+					</div>
+
+					<!-- PASSWORD -->
+					<div class="col-md-4">
+						<label for="password" class="form-label">Password*</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Inserisci Password" required>
+						<span class="text-danger" id="validazione-password"></span>
 					</div>
 
                     <!-- COME LO DEVO GESTIRE? PERCHE' SOLO QUI E NON ANCHE IN regPersonale (PERSONALE-1) ?-->
@@ -64,7 +64,7 @@
 					<!-- TERMINI e CONDIZIONI & SUBMIT FORM-->
 					<div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" name="invalidCheck" required>
                             <label class="form-check-label" for="invalidCheck">
                             <a href="pdf/GDPR.pdf" id="termcondiz" style="color: black;" target="_blank">Termini &amp; Condizioni</a>
                             - Accettazione consenso sui dati GDPR della privacy

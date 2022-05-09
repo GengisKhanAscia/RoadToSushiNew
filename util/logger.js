@@ -1,7 +1,6 @@
 "use strict";
 
-const moment = require('moment');
-const now = moment().format();
+const now = require('./time');
 const colors = require('colors');
 
 /**

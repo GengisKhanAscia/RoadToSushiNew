@@ -1,3 +1,4 @@
+
 /**
  * @class EntUtente Rappresenta i dati di un utente
  */
@@ -15,3 +16,5 @@
         this.tipo_utente = tipo_utente;
     }
 }
+
+module.exports = EntUtente;

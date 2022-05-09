@@ -12,7 +12,7 @@ const db = new sqlite.Database(source,
         throw err;
     }
     else{
-        console.log('Il Database RoadToSushi è stato aperto con successo'); // Non lo stampa, why?
+        console.log('Il Database RoadToSushi è stato aperto con successo'); 
     }
 });
 

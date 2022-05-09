@@ -1,5 +1,8 @@
+const EntSupUser = require('./entSupUser');
+
 /**
  * @class EntPersonale Rappresenta un membro del personale
+ * @extends EntSupUser Estende la classe base per tutti gli Utenti
  */
  class EntPersonale extends EntSupUser{
 
@@ -17,4 +20,4 @@
     }
 }
 
-module.exports = User;
+module.exports = EntPersonale;

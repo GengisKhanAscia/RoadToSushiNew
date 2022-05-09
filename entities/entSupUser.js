@@ -2,7 +2,7 @@
 /**
  * @class User rappresenta un utente
  */
- class EntUtente{
+ class EntSupUser{
 
     /**
      * Crea un nuovo utente
@@ -19,4 +19,4 @@
     }
 }
 
-module.exports = User;
+module.exports = EntSupUser;

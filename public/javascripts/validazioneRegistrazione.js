@@ -160,7 +160,8 @@ function validaEmail(email) {
  * @returns true Se la password è valida, false altrimenti
  */
 function validaPassword(password) {
-    return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?]).{4,}$/.test(password);
+    // return /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?]).{4,}$/.test(password);
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,}$/.test(password);
 }
 
 /**

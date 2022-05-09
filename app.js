@@ -13,7 +13,7 @@ const moment = require('moment');
 const passport = require('passport');
 const session = require('express-session')
 const LocalStrategy = require('passport-local').Strategy;
-// const userDao = require('./models/user-dao.js');
+const utenteDao = require('./dao/utenteDao.js');
 const cookieParser = require('cookie-parser');
 // const userType = require('./entities/constants/user-type.js');
 
@@ -63,7 +63,7 @@ passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
 }, (email, password, done) => {
-  userDao.findUserByEmailAndPassword(email, password).then(({ user, check }) => {
+  userDao.findUtenteByEmailAndPassword(email, password).then(({ user, check }) => {
       if (!user) {
           return done(null, false, { message: "Email non valida." });
       }
@@ -82,9 +82,9 @@ passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  userDao.findUserById(id).then(user => {
-      done(null, user);
+passport.deserializeUser(function (email, done) {
+  userDao.findUtenteByEmail(email).then(user => {
+    done(null, user);
   });
 });
 

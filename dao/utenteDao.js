@@ -9,15 +9,15 @@ const logger = require('../util/logger');
 
 
 /**
- * Ottieni il cliente tramite email e password
- * @param {string} email Email del cliente
- * @param {string} password Password del cliente
- * @returns {Promise<Cliente>} Cliente.
+ * Ottieni l'utente tramite email e password
+ * @param {string} email Email dell'utente
+ * @param {string} password Password dell'utente
+ * @returns {Promise<EntUtente>} Utente.
  */
-/*
- function findClienteByEmailAndPassword(email, password) {
+
+ function findUtenteByEmailAndPassword(email, password) { 
     return new Promise((resolve, reject) => {
-        const query = "SELECT * FROM Clienti WHERE email = ?";
+        const query = "SELECT * FROM Utenti WHERE Email = ?";
 
         db.get(query, [email], async function (err, row) {
             if (err) {
@@ -27,32 +27,57 @@ const logger = require('../util/logger');
             } else if (row === undefined) {
                 // logger.logWarn(`No such user with email: ${email}`);
                 console.logWarn("Non c'è nessun utente con quella email!");
-                resolve({ error: "Cliente non trovato" });
+                resolve({ error: "Utente non trovato" });
             } else {
-                const entCliente = new entCliente(
+                const entUtente = new EntUtente(
                     row.Email,
-                    row.Nome,
-                    row.Cognome,
-                    row.Telefono,
-                    row.Password);
+                    row.Password,
+                    row.Tipo_utente);
 
                 const check = await crypt.compare(password, row.Password);
 
-                resolve({ entCliente, check });
+                resolve({ entUtente, check });
             }
         });
     });
 }
-*/
 
 /**
- * Ricerca Cliente per email
- * @param {string} email Email del cliente
- * @returns {Promise<EntCliente>} Cliente
+ * Ricerca Utente per email
+ * @param {string} email Email dell'utente
+ * @returns {Promise<EntUtente>} Utente
  */
- function findClienteByEmail(email) {
+ function findUtenteByEmail(email) {
     return new Promise((resolve, reject) => {
-        const query = "SELECT * FROM Clienti WHERE Email = ?";
+        const query = "SELECT * FROM Utenti WHERE Email = ?";
+
+        db.get(query, [email], function (err, row) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else if (row === undefined) {
+                logger.logWarn(`Nessun utente con l'email: ${email}`);
+                resolve({ error: "Utente non trovato" });
+            } else {
+                const utente = new EntUtente(
+                    row.Email,
+                    row.Password,
+                    row.Tipo_utente);
+
+                resolve(utente);
+            }
+        });
+    });
+}
+
+/**
+ * Ricerca Cliente in Utenti per email
+ * @param {string} email Email dell'utente
+ * @returns {Promise<EntUtente>} Utente
+ */
+ function findUtenteByEmailAndTipo_utente(email) {
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Utenti WHERE Email = ? AND Tipo_utente = 1";
 
         db.get(query, [email], function (err, row) {
             if (err) {
@@ -62,11 +87,10 @@ const logger = require('../util/logger');
                 logger.logWarn(`Nessun cliente con l'email: ${email}`);
                 resolve({ error: "Cliente non trovato" });
             } else {
-                const cliente = new EntCliente(
-                    row.email,
-                    row.nome,
-                    row.cognome,
-                    row.telefono);
+                const cliente = new EntUtente(
+                    row.Email,
+                    row.Password,
+                    row.Tipo_utente);
 
                 resolve(cliente);
             }
@@ -74,4 +98,54 @@ const logger = require('../util/logger');
     });
 }
 
-module.exports = {findClienteByEmailAndPassword};
+/**
+ * Aggiunge Utente al database.
+ * @param {EntUtente} utente Utente da aggiungere al db
+ * @returns {Promise<number>} Id dell'Utente inserito
+ */
+ function addClienteComeUtente(utente) {
+    return new Promise(async (resolve, reject) => {
+        const query = "INSERT INTO Utenti (Email, Password, Tipo_utente) VALUES (?, ?, 0)";
+
+        utente.password = await crypt.hash(utente.password, 10);
+
+        db.run(query, [
+            utente.email,
+            utente.password,
+            utente.tipo_utente], function (err) {
+                if (err) {
+                    logger.logError(err);
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+    });
+}
+
+/**
+ * Aggiunge Cliente al database.
+ * @param {EntCliente} cliente Cliente da aggiungere al db
+ * @returns {Promise<number>} Id del Cliente inserito
+ */
+ function addCliente(cliente) {
+    return new Promise(async (resolve, reject) => {
+        const query = "INSERT INTO Clienti (Email, Nome, Cognome, Telefono) VALUES (?, ?, ?, ?)";
+
+        db.run(query, [
+            cliente.email,
+            cliente.nome,
+            cliente.cognome,
+            cliente.telefono], function (err) {
+                if (err) {
+                    logger.logError(err);
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+    });
+}
+
+
+module.exports = {findUtenteByEmailAndPassword, findUtenteByEmail, findUtenteByEmailAndTipo_utente, addClienteComeUtente, addCliente};
