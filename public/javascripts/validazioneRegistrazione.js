@@ -170,7 +170,7 @@ function validaPassword(password) {
  * @returns true Se il telefono è valido, false altrimenti
  */
  function validaTelefono(telefono) {
-    return /^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$/.test(password);
+    return /^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$/.test(telefono);
 }  
 
 /**
