@@ -32,21 +32,19 @@ const clienteRouter = require('./routes/cliente');
 const app = express();
 const port = 3003;
 
-// View engine setup
+// Setup dell'engine della cartella "views"
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-/*
-// Default variables for views
+// Variabili di default per la cartella "views"
 app.use((_req, _res, next) => {
   app.locals.moment = moment;
-  app.locals.title = ''; // title of page
-  app.locals.message = ''; // info message
-  app.locals.errors = []; // error messages
-  app.locals.active = ''; // active navbar link
+  app.locals.title = '';   // Titolo della pagina of page
+  app.locals.message = ''; // Messaggi utili
+  app.locals.errors = [];  // Messaggi d'errore
+  app.locals.active = '';  // "Sezione" attiva della navbar
   next();
 });
-*/
 
 // ----------------------- MIDDLEWARE ------------------
 

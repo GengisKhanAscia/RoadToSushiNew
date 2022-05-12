@@ -2,11 +2,12 @@
 
 const db = require('../database');
 const crypt = require('bcrypt');
-const Utente = require('../entities/entSupUser');
-const Cliente = require('../entities/entCliente');
-const Personale = require('../entities/entPersonale');
+const EntUtente = require('../entities/entUtente');
+const EntCliente = require('../entities/entCliente');
+const EntPersonale = require('../entities/entPersonale');
 const logger = require('../util/logger');
 
+/************************** UTENTE *****************************/
 
 /**
  * Ottieni l'utente tramite email e password
@@ -71,13 +72,13 @@ const logger = require('../util/logger');
 }
 
 /**
- * Ricerca Cliente in Utenti per email
+ * Ricerca Cliente {0} in Utenti per email e tipo_utente
  * @param {string} email Email dell'utente
  * @returns {Promise<EntUtente>} Utente
  */
- function findUtenteByEmailAndTipo_utente(email) {
+ function findClienteByEmailAndTipo_utente(email) {
     return new Promise((resolve, reject) => {
-        const query = "SELECT * FROM Utenti WHERE Email = ? AND Tipo_utente = 1";
+        const query = "SELECT * FROM Utenti WHERE Email = ? AND Tipo_utente = 0";
 
         db.get(query, [email], function (err, row) {
             if (err) {
@@ -99,7 +100,35 @@ const logger = require('../util/logger');
 }
 
 /**
- * Aggiunge Utente al database.
+ * Ricerca Personale {1} in Utenti per email e tipo_utente
+ * @param {string} email Email dell'utente
+ * @returns {Promise<EntUtente>} Utente
+ */
+ function findPersonaleByEmailAndTipo_utente(email) {
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Utenti WHERE Email = ? AND Tipo_utente = 1";
+
+        db.get(query, [email], function (err, row) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else if (row === undefined) {
+                logger.logWarn(`Nessun membro del personale con l'email: ${email}`);
+                resolve({ error: "Membro del personale non trovato" });
+            } else {
+                const personale = new EntUtente(
+                    row.Email,
+                    row.Password,
+                    row.Tipo_utente);
+
+                resolve(personale);
+            }
+        });
+    });
+}
+
+/**
+ * Aggiunge Utente {Cliente{0}} al database.
  * @param {EntUtente} utente Utente da aggiungere al db
  * @returns {Promise<number>} Id dell'Utente inserito
  */
@@ -122,6 +151,33 @@ const logger = require('../util/logger');
             });
     });
 }
+
+/**
+ * Aggiunge Utente {Membro del Personale{1}} al database.
+ * @param {EntUtente} utente Utente da aggiungere al db
+ * @returns {Promise<number>} Id dell'Utente inserito
+ */
+ function addPersonaleComeUtente(utente) {
+    return new Promise(async (resolve, reject) => {
+        const query = "INSERT INTO Utenti (Email, Password, Tipo_utente) VALUES (?, ?, 1)";
+
+        utente.password = await crypt.hash(utente.password, 10);
+
+        db.run(query, [
+            utente.email,
+            utente.password,
+            utente.tipo_utente], function (err) {
+                if (err) {
+                    logger.logError(err);
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+    });
+}
+
+/************************** CLIENTE *****************************/
 
 /**
  * Aggiunge Cliente al database.
@@ -147,5 +203,31 @@ const logger = require('../util/logger');
     });
 }
 
+/************************** PERSONALE *****************************/
 
-module.exports = {findUtenteByEmailAndPassword, findUtenteByEmail, findUtenteByEmailAndTipo_utente, addClienteComeUtente, addCliente};
+/**
+ * Aggiunge Membro del Personale al database.
+ * @param {EntPersonale} personale Personale da aggiungere al db
+ * @returns {Promise<number>} Id del Membro del Personale inserito
+ */
+ function addPersonale(personale) {
+    return new Promise(async (resolve, reject) => {
+        const query = "INSERT INTO Personale (Email, Nome, Cognome, Telefono, Immagine) VALUES (?, ?, ?, ?, ?)";
+
+        db.run(query, [
+            personale.email,
+            personale.nome,
+            personale.cognome,
+            personale.telefono,
+            personale.immagine], function (err) {
+                if (err) {
+                    logger.logError(err);
+                    reject(err);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
+    });
+}
+
+module.exports = {findUtenteByEmailAndPassword, findUtenteByEmail, findClienteByEmailAndTipo_utente, findPersonaleByEmailAndTipo_utente, addClienteComeUtente, addPersonaleComeUtente, addCliente, addPersonale};

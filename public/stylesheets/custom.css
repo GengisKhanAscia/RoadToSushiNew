@@ -124,7 +124,7 @@ main{
  	overflow: hidden;
  	display: block;
  	position: relative;
-  color: black;
+    color: black;
 }
 
 /* CAROUSEL */
@@ -658,4 +658,8 @@ h5.modal-title{
 
 #termcondiz{
     font-weight:bold;
+}
+
+#imgPersonale{
+    color: green;
 }

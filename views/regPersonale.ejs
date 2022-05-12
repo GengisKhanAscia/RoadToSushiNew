@@ -9,6 +9,20 @@
 
 		<!-- REGISTRAZIONE DI UN UTENTE (personale) -->
 		<h3 class="hspace_mc">&nbsp;</h3>
+
+		<% if (errors.length > 0) { %>
+			<div class="alert alert-danger" role="alert">
+				<% if (Array.isArray(errors)) { %>
+					<% errors.forEach((error) => { %>
+						<p> <%= error.msg %> </p>
+					<% }); %>
+				<% } else { %>
+					<p> <%= errors %> </p>
+				<% } %>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		<% } %>
+
 		<h3 class="hspace h_btm_spec"> <cite title="Source Title">Registrazione di un membro del personale</cite> </h3>
 		
 		<div class="container">
@@ -16,92 +30,79 @@
 			<div class="row">
 
 				<!-- COMMENTO DA MODIFICARE  --> 
-				<form encType="multipart/form-data" id="regdip" class="row g-3 needs-validation" action="http://localhost:3003/regPersonale" method="post" novalidate> <!-- lasciare encType="multipart/form-data" xke ce immagine-->
+				<form encType="multipart/form-data" class="row g-3 needs-validation" id="formRegistrazione" action="regPersonale" method="POST"> <!-- lasciare encType="multipart/form-data" se c'è immagine -->
 				
 					<!-- NOME -->
 					<div class="col-md-4">
-					<label for="nome" class="form-label">Nome*</label>
-					<input type="text" class="form-control" id="nome" name="nome" minlength="1" required>
-					<div class="valid-feedback">
-						OK
-					</div>
-					<div class="invalid-feedback">
-						Devi fornire un nome valido di almeno un carattere.
-					</div>
+						<label for="nome" class="form-label">Nome*</label>
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="Inserisci Nome" required>
+						<span class="text-danger" id="validazione-nome"></span>
 					</div>
 
 					<!-- COGNOME -->
 					<div class="col-md-4">
-					<label for="cognome" class="form-label">Cognome*</label>
-					<input type="text" class="form-control" id="cognome" name="cognome" minlength="1" required>
-					<div class="valid-feedback">
-						OK
-					</div>
-					<div class="invalid-feedback">
-						Devi fornire un cognome valido di almeno un carattere.
-					</div>
+						<label for="cognome" class="form-label">Cognome*</label>
+						<input type="text" class="form-control" id="cognome" name="cognome" placeholder="Inserisci Cognome" required>
+						<span class="text-danger" id="validazione-cognome"></span>
 					</div>
 
 					<!-- EMAIL -->
 					<div class="col-md-4">
 						<label for="email" class="form-label">Email*</label>
-						<input type="email" id="email" name="email" class="form-control" required>
-						<div class="valid-feedback">
-                            OK
-						</div>
-						<div class="invalid-feedback">
-						Devi fornire un indirizzo e-mail valido.
-						</div>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Inserisci Email" required>
+						<span class="text-danger" id="validazione-email"></span>
+					</div>	
+
+					<!-- TELEFONO -->
+					<div class="col-md-4">
+						<label for="telefono" class="form-label">Telefono*</label>
+						<input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Inserisci Numero di Telefono" required>
+						<span class="text-danger" id="validazione-telefono"></span>
 					</div>
 
 					<!-- PASSWORD -->
 					<div class="col-md-4">
-						<label for="pass" class="form-label">Password*</label>
-						<input type="password" id="pass" name="pass" class="form-control" minlength="4" required>
-						<div class="valid-feedback">
-                            OK
-						</div>
-						<div class="invalid-feedback">
-						Devi fornire una password di almeno 4 caratteri.
-						</div>
+						<label for="password" class="form-label">Password*</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Inserisci Password" required>
+						<span class="text-danger" id="validazione-password"></span>
 					</div>
-                   
-					<!-- TELEFONO -->
-					<div class="col-md-4">
-						<label for="tel" class="form-label">Telefono</label>
-						<input type="tel" id="tel" name="tel" class="form-control" pattern = "^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$">
-                        <div class="valid-feedback">
-                            OK
-                        </div>
-                        <div class="invalid-feedback">
-                            Devi fornire un telefono valido, nel formato corretto (10 cifre).
-                        </div>
-                    </div>
 
-                    <!-- FOTO PERSONALE (opzionale) (per la lista del personale) -->
+                    <!-- FOTO PERSONALE (opzionale) -->
                     <div class="col-md-4">
-                        <label for="dipimg" class="form-label">Se ti va, carica una tua foto (.jpg)</label>
-                        <input type="file" name="dipimg" accept="image/jpeg" id="dipimg" value="0" />
+                        <label for="imgPersonale" class="form-label">Se ti va, carica una tua foto (.jpg, .jpeg, .png)</label>
+						<br>
+                        <input type="file" class="form-control" name="imgPersonale" accept=".jpg, .jpeg, .png" id="imgPersonale"/>
+						<span class="text-danger" id="validazione-imgPersonale"></span>
                     </div>
+					
+					<!-- Nascosto, TIPO_UTENTE (PERSONALE-1) -->
+					<div class="col-md-4">
+						<input type="number" id="tipo_utente" value="1" class="form-control" hidden>
+					</div>
 
 					<!-- TERMINI e CONDIZIONI & SUBMIT FORM-->
 					<div class="col-12">
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-						<label class="form-check-label" for="invalidCheck">
-						<a href="pdf/GDPR.pdf" id="termcondiz" style="color: black;" target="_blank">Termini &amp; Condizioni</a>
-						- Accettazione consenso sui dati GDPR della privacy
-						</label>
-						<div class="invalid-feedback">
-						Devi accettare prima di poter procedere.
-						</div>
-					</div>
-					</div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="invalidCheck" name="invalidCheck" required>
+							<span class="text-danger" id="validazione-invalidCheck"></span>
+                            <label class="form-check-label" for="invalidCheck">
+                            <a href="pdf/GDPR.pdf" id="termcondiz" style="color: black;" target="_blank">Termini &amp; Condizioni</a>
+                            - Accettazione consenso sui dati GDPR della privacy
+                            </label>
+							<!--
+							<div class="invalid-feedback">
+								<br>
+								<p style="text-align:center">Non hai spuntato la checkbox della privacy</p>
+							</div>
+							-->
+                        </div>
+                        </div>
 					<div class="col-12">
-					<button class="btn btn-lg registrati_btn">Registrati</button>
+                        <button class="btn btn-lg registrati_btn" id="signup-btn-utente">Registrati</button>
 					</div>
+
 				</form>
-				</div>
+			</div>
 		
 		</div>
         <!-- UTILE? -->

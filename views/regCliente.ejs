@@ -11,14 +11,27 @@
 
 		<!-- REGISTRAZIONE DI UN UTENTE (cliente) -->
 		<h3 class="hspace_mc">&nbsp;</h3>
+
+		<% if (errors.length > 0) { %>
+			<div class="alert alert-danger" role="alert">
+				<% if (Array.isArray(errors)) { %>
+					<% errors.forEach((error) => { %>
+						<p> <%= error.msg %> </p>
+					<% }); %>
+				<% } else { %>
+					<p> <%= errors %> </p>
+				<% } %>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		<% } %>
+
 		<h3 class="hspace h_btm_spec"> <cite title="Source Title">Diventa nostro cliente!</cite> </h3>
 		
 		<div class="container">
 
 			<div class="row">
 
-                <!-- COMMENTO DA MODIFICARE  --> 
-				<form class="row g-3 needs-validation" action="/regCliente" method="POST" novalidate>
+				<form class="row g-3 needs-validation" id="formRegistrazione" action="/regCliente" method="POST">
 				
 					<!-- NOME -->
 					<div class="col-md-4">
@@ -64,19 +77,24 @@
 					<!-- TERMINI e CONDIZIONI & SUBMIT FORM-->
 					<div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" name="invalidCheck" required>
+                            <input class="form-check-input" type="checkbox" id="invalidCheck" name="invalidCheck" required>
+							<span class="text-danger" id="validazione-invalidCheck"></span>
                             <label class="form-check-label" for="invalidCheck">
                             <a href="pdf/GDPR.pdf" id="termcondiz" style="color: black;" target="_blank">Termini &amp; Condizioni</a>
                             - Accettazione consenso sui dati GDPR della privacy
                             </label>
-                            <div class="invalid-feedback">
-                            Devi accettare prima di poter procedere.
-                            </div>
+							<!--
+							<div class="invalid-feedback">
+								<br>
+								<p style="text-align:center">Non hai spuntato la checkbox della privacy</p>
+							</div>
+							-->
                         </div>
                         </div>
 					<div class="col-12">
-                        <button class="btn btn-lg registrati_btn" id="signup-btn-cliente">Registrati</button>
+                        <button class="btn btn-lg registrati_btn" id="signup-btn-utente">Registrati</button>
 					</div>
+
 				</form>
 			</div>
 		

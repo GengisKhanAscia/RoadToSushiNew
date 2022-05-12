@@ -24,21 +24,25 @@ router.post("/", [
   body("cognome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un cognome valido"),
   body("email").trim().isEmail().withMessage("Inserisci un'email valida").escape()
       .custom(async function (email) {
-          const cliente = await utenteDao.findUtenteByEmailAndTipo_utente(email);
+          const cliente = await utenteDao.findClienteByEmailAndTipo_utente(email);
 
-          if(!cliente.hasOwnProperty("error")) { // Se findUserByEmail trova un cliente e non l'errore "Cliente non trovato"
+          if(!cliente.hasOwnProperty("error")) { // Se findClienteByEmailAndTipo_utente trova un cliente e non l'errore "Cliente non trovato"
               logger.logDebug(`Esiste già un cliente con l'email ${email}`);
               throw new Error("L'email inserita è già in uso.");
           }
       }),
-  body("telefono").trim().matches(/^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$/).escape().withMessage("Il numero di telefono deve essere di 10 numeri e può contenere il prefisso italiano (+39)"),
+  body("telefono").trim().matches(/^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{7}$/).escape().withMessage("Il numero di telefono deve essere di 10 numeri e può contenere il prefisso italiano (+39)"),
   body("password").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,}$/).escape().withMessage("La password deve avere almeno 4 caratteri, contenere una minuscola, una maiuscola, un numero e un carattere speciale"),
-  body("invalidCheck")// .isIn(["on"]).withMessage("Non hai spuntato la checkbox della privacy.") 
+  body("invalidCheck")  
     .custom(function (invalidCheck) {
         if(invalidCheck !== 'on'){
             throw new Error("Non hai spuntato la checkbox della privacy.");
         }
+        else{
+            return true;
+        }
     })
+    
 ], async function (req, res) {
   const errors = validationResult(req);
 
@@ -58,16 +62,16 @@ router.post("/", [
     );
 
     // Aggiungo Utente
-    let utenteId = await userDao.addClienteComeUtente(utente);
+    let utenteId = await utenteDao.addClienteComeUtente(utente);
     logger.logInfo(`Nuovo utente aggiunto con l'id: ${utenteId}`);
 
     // Aggiungo Cliente
-    let clienteId = await userDao.addCliente(cliente);
-    logger.logInfo(`Nuovo utente aggiunto con l'id: ${clienteId}`);
+    let clienteId = await utenteDao.addCliente(cliente);
+    logger.logInfo(`Nuovo cliente aggiunto con l'id: ${clienteId}`);
 
     res.render("login", {
         title: "Login",
-        message: "Cliente registrato con successo!",
+        message:`${cliente.nome} ${cliente.cognome}  ti sei registrato con successo!`, 
         styles: ['/stylesheets/custom.css']
     });
   } else {

@@ -5,7 +5,7 @@
 /**
  * @type {HTMLButtonElement}
  */
-const signupBtn = document.getElementById("signup-btn-cliente");
+const signupBtn = document.getElementById("signup-btn-utente");
 
 /**
  * @type {HTMLInputElement}
@@ -56,21 +56,60 @@ const validazionePassword = document.getElementById("validazione-password");
   * @type {HTMLSpanElement}
   */
  const validazioneTelefono = document.getElementById("validazione-telefono");
+ 
+ /**
+ * @type {HTMLInputElement}
+ */
+  const invalidCheck = document.getElementById("invalidCheck");
+
+/**
+* @type {HTMLSpanElement}
+*/
+const validazioneInvalidCheck = document.getElementById("validazione-invalidCheck");
+
+/**
+ * @type {HTMLInputElement}
+ */
+const imgPersonale = document.getElementById("imgPersonale");
+
+/**
+* @type {HTMLSpanElement}
+*/
+const validazioneImgPersonale = document.getElementById("validazione-imgPersonale");
+
+/************************** INIZIALIZZAZIONE *****************************/
+
+nome.classList.add('non-valido');
+cognome.classList.add('non-valido');
+email.classList.add('non-valido');
+password.classList.add('non-valido');
+telefono.classList.add('non-valido');
+invalidCheck.classList.add('non-valido');
+imgPersonale.classList.add('non-valido');
+disableBtn(signupBtn);
 
 /************************** EVENT LISTENERS *****************************/
 
 let valid = true;
+const formRegistrazione = document.getElementById("formRegistrazione");
 
 // Check Nome
 nome.addEventListener("input", () => {
     if (!validaNomeCognome(nome.value)) {
         setValidationMessage(validazioneNome, "Inserisci un nome valido (max 50 caratteri)");
         disableBtn(signupBtn);
+        nome.classList.add('non-valido');
         valid = false;
     } else {
         clearValidationMsg(validazioneNome);
-        enableBtn(signupBtn);
-        valid = true;
+        nome.classList.remove('non-valido');
+        // const nonValidi = formRegistrazione.getElementsByClassName("non-valido");
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
     }
 });
 
@@ -79,24 +118,36 @@ cognome.addEventListener("input", () => {
     if (!validaNomeCognome(cognome.value)) {
         setValidationMessage(validazioneCognome, "Inserisci un cognome valido (max 50 caratteri)");
         disableBtn(signupBtn);
+        cognome.classList.add('non-valido');
         valid = false;
     } else {
         clearValidationMsg(validazioneCognome);
-        enableBtn(signupBtn);
-        valid = true;
+        cognome.classList.remove('non-valido');
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
     }
 });
 
 // Check Email
 email.addEventListener("input", () => {
     if (!validaEmail(email.value)) {
-        setValidationMessage(signupEmailValidation, "Inserisci un'email valida");
+        setValidationMessage(validazioneEmail, "Inserisci un'email valida");
         disableBtn(signupBtn);
+        email.classList.add('non-valido');
         valid = false;
     } else {
         clearValidationMsg(validazioneEmail);
-        enableBtn(signupBtn);
-        valid = true;
+        email.classList.remove('non-valido');
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
     }
 });
 
@@ -105,11 +156,17 @@ password.addEventListener("input", () => {
     if (!validaPassword(password.value)) {
         setValidationMessage(validazionePassword, "La password deve avere almeno 4 caratteri, contenere una minuscola, una maiuscola, un numero e un carattere speciale");
         disableBtn(signupBtn);
+        password.classList.add('non-valido');
         valid = false;
     } else {
         clearValidationMsg(validazionePassword);
-        enableBtn(signupBtn);
-        valid = true;
+        password.classList.remove('non-valido');
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
     }
 });
 
@@ -118,12 +175,60 @@ telefono.addEventListener("input", () => {
     if (!validaTelefono(telefono.value)) {
         setValidationMessage(validazioneTelefono, "Il numero di telefono deve essere di 10 numeri e può contenere il prefisso italiano (+39)");
         disableBtn(signupBtn);
+        telefono.classList.add('non-valido');
         valid = false;
     } else {
         clearValidationMsg(validazioneTelefono);
-        enableBtn(signupBtn);
-        valid = true;
+        telefono.classList.remove('non-valido');
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
     }
+});
+
+// Check Checkbox
+invalidCheck.addEventListener("input", () => {
+    if (!validaCheckbox(invalidCheck)) {
+        setValidationMessage(validazioneInvalidCheck, "Non hai spuntato la checkbox della privacy");
+        disableBtn(signupBtn);
+        invalidCheck.classList.add('non-valido');
+        valid = false;
+    }
+    else{
+        clearValidationMsg(validazioneInvalidCheck);
+        invalidCheck.classList.remove('non-valido');
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
+    }
+});
+
+// Check Immagine del Personale
+imgPersonale.addEventListener("input", () => {
+    const filePath = imgPersonale.value;
+    if(!validaFormatoImmagine(filePath)){
+        setValidationMessage(validazioneImgPersonale, "Si accettano solo .jpg, .jpeg o .png!");
+        disableBtn(signupBtn);
+        imgPersonale.classList.add('non-valido');
+        valid = false;
+    }
+    else{
+        clearValidationMsg(validazioneImgPersonale);
+        imgPersonale.classList.remove('non-valido');
+        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(signupBtn);
+            valid = true;
+        }
+        // valid = true;
+    }
+    
 });
 
 signupBtn.addEventListener("click", (e) => {
@@ -171,8 +276,36 @@ function validaPassword(password) {
  * @returns true Se il telefono è valido, false altrimenti
  */
  function validaTelefono(telefono) {
-    return /^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{6,7}$/.test(telefono);
+    return /^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{7}$/.test(telefono);
 }  
+
+/**
+ * Valida la checkbox
+ * @param {checkbox} check La checkbox da controllare
+ * @returns true Se la checkbox è spuntata (on), false (undefined) altrimenti
+ */
+ function validaCheckbox(check) {
+    // if(check !== 'on'){
+    // if(check === 'undefined'){
+    if(check.checked){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function validaFormatoImmagine(img){
+    const validaEstensioni = /(\.png|\.jpeg|\.jpg)$/i;       
+    if (!validaEstensioni.exec(img)) {
+        alert('ERRORE: accettiamo solo .jpg, .jpeg o .png!');
+        imgPersonale.value = '';
+        return false;
+    }
+    else{
+        return true;
+    } 
+}
 
 /**
  * Imposta il messaggio di validazione per il dato elemento
