@@ -11,52 +11,41 @@ router.get('/', function(req, res, next) {
     styles: ['/stylesheets/custom.css'],
     scripts: ['/javascripts/orario_negozio.js'            // Orari
              ,'/javascripts/richiedimodals.js'            // Modals
-             ,'/javascripts/validazioneRegistrazione.js'] // Validazione form registrazione (serve?)
+             ,'/javascripts/validazioneLogin.js']         // Validazione form login
   });
 });
 
-/* POST di un login cliente */ 
+// POST di un login
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
       if (err) {
-          console.error("ERRORE: " + err);
-          return next(err);
+        logger.logError(err);
+        return next(err);
       }
       if (!user) {
-        console.error("ERRORE: " + info.message);
-        return res.render("login", {  // QUI COSA METTO?
-              errors: info.message,
-              styles: ['/stylesheets/custom.css']
+        logger.logError(info.message);
+        return res.render("login", { 
+              errors: info.message,       // Che cosa stampa? Invalid email/pwd di app.js?
+              styles: ['/stylesheets/custom.css'],
+              scripts: ['/javascripts/login.js']
           });
       }
 
       // SUCCESS
       req.login(user, async (err) => {
           if (err) {
-            console.error("ERRORE: " + err);
+            logger.logError(err);
             return next(err);
           }
-          const features = await featuresDao.findAllFeatures();
-          const books = await bookDao.findAllBooks();
 
-          // fill feature properties (?)
-          features.forEach(feature => {
-              books.forEach(book => {
-                  if (book.id === feature.bookId) {
-                      feature.book = book;
-                  }
-              });
+          res.render("home", {
+              utente: user,
+              message:`${user.email} ti sei loggato con successo!`, 
+              styles: ['/stylesheets/custom.css'],
+              scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js']
           });
 
-          res.render("index", {
-              user: user,
-              features: features,
-              books: books,
-              styles: ['/stylesheets/index.css'],
-              scripts: ['/javascripts/index.js']
-          });
-
-          logger.logInfo("User logged in successfully");
+          logger.logInfo("Utente loggato con successo!");
       });
   })(req, res, next);
 });

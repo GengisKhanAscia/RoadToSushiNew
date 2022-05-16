@@ -71,8 +71,9 @@ router.post("/", [
 
     res.render("login", {
         title: "Login",
-        message:`${cliente.nome} ${cliente.cognome}  ti sei registrato con successo!`, 
-        styles: ['/stylesheets/custom.css']
+        message:`${cliente.nome} ${cliente.cognome} ti sei registrato con successo!`, 
+        styles: ['/stylesheets/custom.css'],
+        scripts: ['/javascripts/validazioneLogin.js']
     });
   } else {
     logger.logError(JSON.stringify(errors));

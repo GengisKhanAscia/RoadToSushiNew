@@ -10,63 +10,64 @@
 
 		<h3 class="hspace_mc">&nbsp;</h3>
 
-		<% if (message.length > 0) { %>
+		<!--
+		< % if (message.length > 0) { %>
 			<div class="alert alert-primary" role="alert">
+				<p>
+					< %= message %>
+				</p>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		< % } %>
+		-->
+		
+		<% if (message.length > 0) { %>
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				<p>
 					<%= message %>
 				</p>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<% } %>
+		
+		<div id="alertResizing">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Holy guacamole!</strong> You should check in on some of those fields below.
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</div>
 
 		<!-- REGISTRAZIONE DI UN UTENTE (cliente) -->
 		<h3 class="hspace h_btm_spec"><cite title="Source Title"> Effettua il login </cite></h3>
-		<h6 id="errore_msg"></h6> <!--js (form_valida.js)-->
+
 		<div class="container">
+			<div class="form-group">
+				<div class="col-md-6 mx-auto">
+					<form encType="multipart/form-data" class="row g-3 needs-validation" id="formLogin" action="/login" method="POST"> <!-- Tolgo? encType="multipart/form-data" -->
+							
+						<!-- EMAIL -->
+						<div>
+							<label for="email" class="form-label">Email*</label>
+							<input type="email" class="form-control" id="email" name="email" placeholder="Inserisci Email" required>
+							<span class="text-danger" id="validazione-email"></span>
+						</div>
 
-			<div class="row">
+						<!-- PASSWORD -->
+						<div>
+							<label for="password" class="form-label">Password*</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="Inserisci Password" required>
+							<span class="text-danger" id="validazione-password"></span>
+						</div>
+							
+						<div class="col-12">
+							<button class="btn btn-lg accedi_btn" id="accedi_btn">Accedi</button>
+						</div>
 
-                <!-- COMMENTO DA MODIFICARE --> 
-				<form encType="multipart/form-data" class="row g-3 needs-validation" action="http://localhost:3002/loguser" method="post" novalidate>
-						
-                    <!-- EMAIL -->
-					<div class="col-md-4">
-						<label for="email" class="form-label">Email*</label>
-						<input type="email" id="email" name="email" class="form-control" required>
-						<div class="valid-feedback">
-						    OK
-						</div>
-						<div class="invalid-feedback">
-						    Devi fornire un indirizzo e-mail valido.
-						</div>
-					</div>
-					
-                    <!--
-					<div class="col-md-4">
-						<label for="email" class="form-label" hidden>Email*</label>
-						<input type="email" id="email" name="email" class="form-control" hidden>
-					</div>
-                    -->
-
-					<!-- PASSWORD -->
-					<div class="col-md-4">
-						<label for="pass" class="form-label">Password*</label>
-						<input type="password" id="password" name="password" class="form-control" required>
-						<div class="valid-feedback">
-						    Perfetto!
-						</div>
-						<div class="invalid-feedback">
-						    Devi fornire la password collegata al tuo account.
-						</div>
-						</div>
-						
-					<div class="col-12">
-						<button class="btn btn-lg accedi_btn">Accedi</button>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
-
 		</div>
+
         <!-- UTILE? -->
 		<h3 class="hspace_mc_btm">&nbsp;</h3>
 	</main>  

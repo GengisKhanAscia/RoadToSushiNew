@@ -81,7 +81,8 @@ router.post("/", upload.single('imgPersonale'), [
     res.render("login", {
         title: "Login",
         message:`${personale.nome} ${personale.cognome} benvenuto nel personale!`, 
-        styles: ['/stylesheets/custom.css']
+        styles: ['/stylesheets/custom.css'],
+        scripts: ['/javascripts/validazioneLogin.js', '/javascripts/navbarfootbar.js','/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
     });
   } else {
     logger.logError(JSON.stringify(errors));

@@ -85,7 +85,9 @@ email.classList.add('non-valido');
 password.classList.add('non-valido');
 telefono.classList.add('non-valido');
 invalidCheck.classList.add('non-valido');
-imgPersonale.classList.add('non-valido');
+if(imgPersonale){
+    imgPersonale.classList.add('non-valido');
+}
 disableBtn(signupBtn);
 
 /************************** EVENT LISTENERS *****************************/

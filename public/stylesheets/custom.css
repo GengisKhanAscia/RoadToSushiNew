@@ -663,3 +663,13 @@ h5.modal-title{
 #imgPersonale{
     color: green;
 }
+
+.form-group{
+    align-items: center;
+}
+
+#alertResizing{
+    height: auto;
+    width: auto;
+    display: inline-block;
+}
