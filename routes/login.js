@@ -27,7 +27,7 @@ router.post("/login", (req, res, next) => {
         return res.render("login", { 
               errors: info.message,       // Che cosa stampa? Invalid email/pwd di app.js?
               styles: ['/stylesheets/custom.css'],
-              scripts: ['/javascripts/login.js']
+              scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js', '/javascripts/validazioneLogin.js']
           });
       }
 

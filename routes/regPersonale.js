@@ -72,17 +72,17 @@ router.post("/", upload.single('imgPersonale'), [
 
     // Aggiungo Utente
     let utenteId = await utenteDao.addPersonaleComeUtente(utente);
-    logger.logInfo(`Nuovo utente aggiunto con l'id: ${utenteId}`);
+    logger.logInfo(`Nuovo utente aggiunto con l'email: ${utenteId}`);
 
     // Aggiungo Personale
     let personaleId = await utenteDao.addPersonale(personale);
-    logger.logInfo(`Nuovo personale aggiunto con l'id: ${personaleId}`);
+    logger.logInfo(`Nuovo personale aggiunto con l'email: ${personaleId}`);
 
     res.render("login", {
         title: "Login",
         message:`${personale.nome} ${personale.cognome} benvenuto nel personale!`, 
         styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/validazioneLogin.js', '/javascripts/navbarfootbar.js','/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
+        scripts: ['/javascripts/validazioneLogin.js','/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
     });
   } else {
     logger.logError(JSON.stringify(errors));
@@ -91,7 +91,7 @@ router.post("/", upload.single('imgPersonale'), [
         title: "Registrazione Personale",
         errors: errors.array(),
         styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/validazioneRegistrazione.js']
+        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneRegistrazione.js']
     });
   }
 });

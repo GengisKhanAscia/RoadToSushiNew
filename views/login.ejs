@@ -20,6 +20,18 @@
 			</div>
 		< % } %>
 		-->
+		<% if (errors.length > 0) { %>
+			<div class="alert alert-danger" role="alert">
+				<% if (Array.isArray(errors)) { %>
+					<% errors.forEach((error) => { %>
+						<p> <%= error.msg %> </p>
+					<% }); %>
+				<% } else { %>
+					<p> <%= errors %> </p>
+				<% } %>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		<% } %>
 		
 		<% if (message.length > 0) { %>
 			<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -30,13 +42,15 @@
 			</div>
 		<% } %>
 		
+		<!--
 		<div id="alertResizing">
 			<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				<strong>Holy guacamole!</strong> You should check in on some of those fields below.
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		</div>
-
+		-->
+		
 		<!-- REGISTRAZIONE DI UN UTENTE (cliente) -->
 		<h3 class="hspace h_btm_spec"><cite title="Source Title"> Effettua il login </cite></h3>
 

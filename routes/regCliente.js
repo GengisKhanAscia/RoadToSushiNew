@@ -82,7 +82,7 @@ router.post("/", [
         title: "Registrazione Cliente",
         errors: errors.array(),
         styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/validazioneRegistrazione.js']
+        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneRegistrazione.js']
     });
   }
 });

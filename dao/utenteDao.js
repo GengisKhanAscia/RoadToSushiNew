@@ -22,12 +22,10 @@ const logger = require('../util/logger');
 
         db.get(query, [email], async function (err, row) {
             if (err) {
-                // logger.logError(err);
-                console.error("ERRORE: " + err);
+                logger.logError(err);
                 reject(err);
             } else if (row === undefined) {
-                // logger.logWarn(`No such user with email: ${email}`);
-                console.logWarn("Non c'è nessun utente con quella email!");
+                logger.logWarn(`Non c'è nessun utente con quella email: ${email}`);
                 resolve({ error: "Utente non trovato" });
             } else {
                 const entUtente = new EntUtente(
@@ -146,7 +144,7 @@ const logger = require('../util/logger');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(this.lastID);
+                    resolve(utente.email); // this.lastID
                 }
             });
     });
@@ -171,7 +169,7 @@ const logger = require('../util/logger');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(this.lastID);
+                    resolve(utente.email); // this.lastID
                 }
             });
     });
@@ -197,7 +195,7 @@ const logger = require('../util/logger');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(this.lastID);
+                    resolve(cliente.email); // this.lastID
                 }
             });
     });
@@ -224,7 +222,7 @@ const logger = require('../util/logger');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(this.lastID);
+                    resolve(personale.email); // this.lastID
                 }
             });
     });

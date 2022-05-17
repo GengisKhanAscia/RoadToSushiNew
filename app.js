@@ -24,8 +24,7 @@ const regPersonaleRouter = require('./routes/regPersonale');
 const regClienteRouter = require('./routes/regCliente');
 const loginRouter = require('./routes/login');
 const personaleRouter = require('./routes/personale');
-const clienteRouter = require('./routes/cliente');
-// const formValidazioneRouter = require('./routes/form_validazione');
+const clienteRouter = require('./routes/cliente'); 
 
 // ----------------------- SETUP ------------------------
 
@@ -61,7 +60,7 @@ passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
 }, (email, password, done) => {
-  userDao.findUtenteByEmailAndPassword(email, password).then(({ user, check }) => {
+  utenteDao.findUtenteByEmailAndPassword(email, password).then(({ user, check }) => {
       if (!user) {
           return done(null, false, { message: "Email non valida." });
       }
@@ -77,11 +76,11 @@ passport.use(new LocalStrategy({
 // ----------------------- UTENTE - SESSIONE -----------
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user.email); // user.id
 });
 
 passport.deserializeUser(function (email, done) {
-  userDao.findUtenteByEmail(email).then(user => {
+  utenteDao.findUtenteByEmail(email).then(user => {
     done(null, user);
   });
 });
@@ -90,7 +89,7 @@ passport.deserializeUser(function (email, done) {
 
 app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
-  secret: 'Segreto di sessione',// process.env.SESSION_SECRET
+  secret: 'Segreto di sessione',           // process.env.SESSION_SECRET
   resave: false,
   saveUninitialized: false,
 }));
