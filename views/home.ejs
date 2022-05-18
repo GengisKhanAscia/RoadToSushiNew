@@ -9,7 +9,27 @@
 
   <body>
     
+    <h3 class="hspace_mc">&nbsp;</h3>
+
+    <!-- DA SISTEMARE, TUTTO A SX-->
+    <!--
+    <div class="alert alert-warning alert-dismissible fade show alertResizing" role="alert">
+			<strong>Holy guacamole!</strong> You should check in on some of those fields below.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    -->
+
     <h3 class="spaziaturaTitolo" id="fond"> <strong> Road To Sushi </strong></h3>
+
+    <% if (message.length > 0) { %>
+			<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
+				<p>
+					<%= message %>
+				</p>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		<% } %>
+
     <center><p id="titoletto"> <strong>&quot;</strong><cite title="Source Title">Il sushi più buono che c'è!</cite><strong>&quot;</strong> </p></center>
     
     <main> 

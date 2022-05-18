@@ -669,8 +669,9 @@ h5.modal-title{
     align-items: center;
 }
 
-#alertResizing{
-    height: auto;
-    width: auto;
-    display: inline-block;
+/* CAMBIATO DA ID A CLASSE*/
+.alertResizing{
+    height: auto !important;
+    width: auto !important;
+    display: inline-block !important;
 }

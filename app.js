@@ -15,7 +15,6 @@ const session = require('express-session')
 const LocalStrategy = require('passport-local').Strategy;
 const utenteDao = require('./dao/utenteDao.js');
 const cookieParser = require('cookie-parser');
-// const userType = require('./entities/constants/user-type.js');
 
 // ----------------------- ROUTES -----------------------
 const homeRouter = require('./routes/home');
@@ -24,7 +23,7 @@ const regPersonaleRouter = require('./routes/regPersonale');
 const regClienteRouter = require('./routes/regCliente');
 const loginRouter = require('./routes/login');
 const personaleRouter = require('./routes/personale');
-const clienteRouter = require('./routes/cliente'); 
+// const clienteRouter = require('./routes/cliente'); // Al momento non lo sto usando
 
 // ----------------------- SETUP ------------------------
 
@@ -55,20 +54,19 @@ app.use(express.static(path.join(__dirname, 'public')));  // Solo per file stati
 
 // ----------------------- AUTENTICAZIONE --------------
 
-// MANCA DAO
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
-}, (email, password, done) => {
+}, (email, password, done) => {  // Modificare username => email
   utenteDao.findUtenteByEmailAndPassword(email, password).then(({ user, check }) => {
-      if (!user) {
-          return done(null, false, { message: "Email non valida." });
-      }
-      if (!check) {
-          return done(null, false, { message: "Password non valida." });
-      }
+    if (!user) {
+      return done(null, false, { message: "Email non valida." });
+    }
+    if (!check) {
+      return done(null, false, { message: "Password non valida." });
+    }
 
-      return done(null, user);
+    return done(null, user);
   });
 }
 ));
@@ -76,7 +74,7 @@ passport.use(new LocalStrategy({
 // ----------------------- UTENTE - SESSIONE -----------
 
 passport.serializeUser(function (user, done) {
-  done(null, user.email); // user.id
+  done(null, user.email); // Non usare user.id/auto-increment
 });
 
 passport.deserializeUser(function (email, done) {
@@ -85,7 +83,7 @@ passport.deserializeUser(function (email, done) {
   });
 });
 
-// session
+// SESSION
 
 app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
@@ -94,16 +92,15 @@ app.use(session({
   saveUninitialized: false,
 }));
 
-// passport
-
+// PASSPORT
 app.use(passport.initialize());
 app.use(passport.session());
 
 const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
-      return next();
+    return next();
   } else {
-      res.redirect("/");
+    res.redirect("/");
   }
 };
 
@@ -115,13 +112,13 @@ app.use('/login', loginRouter);
 app.use('/personale', personaleRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -132,6 +129,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Attivo definitivamente il server --> Ora accetto richieste
-app.listen (port, () =>  console.log(`Il server di RoadToSushi è attivo all'indirizzo http://localhost:${port}` )) ;
+app.listen(port, () => console.log(`Il server di RoadToSushi è attivo all'indirizzo http://localhost:${port}`));
 
 module.exports = app;

@@ -5,7 +5,7 @@
 /**
  * @type {HTMLButtonElement}
  */
- const accediBtn = document.getElementById("accedi_btn");
+ const accediBtn = document.getElementById("accedi-btn");
 
 /**
  * @type {HTMLInputElement}

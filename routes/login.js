@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
 });
 
 // POST di un login
-router.post("/login", (req, res, next) => {
+router.post("/", (req, res, next) => {  // era /login
+  console.log("Stampo email pre-autenticazione: " + req.body.email);
+  console.log("Stampo password pre-autenticazione: " + req.body.password);
   passport.authenticate("local", (err, user, info) => {
       if (err) {
         logger.logError(err);
@@ -25,7 +27,7 @@ router.post("/login", (req, res, next) => {
       if (!user) {
         logger.logError(info.message);
         return res.render("login", { 
-              errors: info.message,       // Che cosa stampa? Invalid email/pwd di app.js?
+              errors: info.message,       // Che cosa stampa? Invalid email/pwd di app.js? [Missing credentials]
               styles: ['/stylesheets/custom.css'],
               scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js', '/javascripts/validazioneLogin.js']
           });

@@ -2,10 +2,10 @@
 
 const db = require('../database');
 const crypt = require('bcrypt');
+const logger = require('../util/logger');
 const EntUtente = require('../entities/entUtente');
 const EntCliente = require('../entities/entCliente');
 const EntPersonale = require('../entities/entPersonale');
-const logger = require('../util/logger');
 
 /************************** UTENTE *****************************/
 
@@ -15,7 +15,6 @@ const logger = require('../util/logger');
  * @param {string} password Password dell'utente
  * @returns {Promise<EntUtente>} Utente.
  */
-
  function findUtenteByEmailAndPassword(email, password) { 
     return new Promise((resolve, reject) => {
         const query = "SELECT * FROM Utenti WHERE Email = ?";
@@ -28,14 +27,14 @@ const logger = require('../util/logger');
                 logger.logWarn(`Non c'è nessun utente con quella email: ${email}`);
                 resolve({ error: "Utente non trovato" });
             } else {
-                const entUtente = new EntUtente(
+                const user = new EntUtente( // Lasciare 'user'
                     row.Email,
                     row.Password,
                     row.Tipo_utente);
 
                 const check = await crypt.compare(password, row.Password);
 
-                resolve({ entUtente, check });
+                resolve({ user, check });
             }
         });
     });
