@@ -6,7 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('personale', {
     styles: ['/stylesheets/custom.css'],
     scripts: ['/javascripts/orario_negozio.js'     // Orari
-             ,'/javascripts/richiedimodals.js']    // Modals
+             ,'/javascripts/richiedimodals.js'],   // Modals
+    utente: req.user
   });
 });
 

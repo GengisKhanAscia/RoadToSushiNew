@@ -675,3 +675,8 @@ h5.modal-title{
     width: auto !important;
     display: inline-block !important;
 }
+
+/* LOGOUT */
+#profile-dropdown {
+    margin-left: 0.5rem;
+}
