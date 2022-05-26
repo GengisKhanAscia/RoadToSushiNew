@@ -497,14 +497,14 @@ h3{
 
 }
 
-.registrati_btn, .accedi_btn{
+.registrati_btn, .accedi_btn, .aggiungipiatto_btn{
     background-color: red;
     color: white;
     font-weight: bold;
     border-width: 5px;
 }
 
-.registrati_btn:hover, .registrati_btn:checked, .accedi_btn:hover, .accedi_btn:checked {
+.registrati_btn:hover, .registrati_btn:checked, .accedi_btn:hover, .accedi_btn:checked, .aggiungipiatto_btn:hover, .aggiungipiatto_btn:checked {
     background-color: green;
     color: white;
 }

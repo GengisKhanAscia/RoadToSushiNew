@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const logger = require('../util/logger');
 
 /* GET Home page. */
 router.get('/', function(req, res, next) {
@@ -11,10 +12,20 @@ router.get('/', function(req, res, next) {
   });
 });
 
+
 router.delete("/logout", (req, res, next) => {
   logger.logInfo("Utente uscito con successo!");
   req.logout();
   res.end();
 });
+
+// METODOLOGIA di PASSPORT
+/*
+router.post("/logout", (req, res) => {
+  logger.logInfo("Utente uscito con successo!");
+  req.logout();
+  res.redirect('/');
+});
+*/
 
 module.exports = router;

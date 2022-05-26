@@ -22,7 +22,8 @@ const contattiRouter = require('./routes/contatti');
 const regPersonaleRouter = require('./routes/regPersonale');
 const regClienteRouter = require('./routes/regCliente');
 const loginRouter = require('./routes/login');
-const personaleRouter = require('./routes/personale');
+const piattiRouter = require('./routes/piatti');
+const aggPiattiRouter = require('./routes/aggpiatto');
 // const clienteRouter = require('./routes/cliente'); // Al momento non lo sto usando
 
 // ----------------------- SETUP ------------------------
@@ -109,7 +110,8 @@ app.use('/contatti', contattiRouter);
 app.use('/regPersonale', regPersonaleRouter);
 app.use('/regCliente', regClienteRouter);
 app.use('/login', loginRouter);
-app.use('/personale', personaleRouter);
+app.use('/piatti', piattiRouter);
+app.use('/aggpiatto', aggPiattiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

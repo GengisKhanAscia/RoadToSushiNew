@@ -1,0 +1,59 @@
+<%- include('partials/head') -%>
+<%- include('partials/navbar', { active: "aggpiatto" }); -%>
+
+  <body class="corpo">
+
+	<main>
+
+        <h3 class="hspace_mc">&nbsp;</h3>
+
+		<h3 class="hspace h_btm_spec" id="fond"><cite title="Source Title">Inserisci un nuovo piatto</cite></h3>
+
+        <!-- AGGIUNTA DI UN PIATTO (Funzionalità esclusiva dell'admin) -->
+        <div class="container">
+			<div class="form-group">
+				<div class="col-md-6 mx-auto">
+					<form class="row g-3 needs-validation" id="formAggPiatto" action="/aggpiatto" method="POST"> <!-- DA MODIFICARE, CHE COSA METTO? -->
+							
+						<!-- NOME -->
+						<div>
+							<label for="nome" class="form-label">Nome*</label>
+							<input type="text" class="form-control" id="nome" name="nome" placeholder="Inserisci Nome" required>
+							<span class="text-danger" id="validazione-nome"></span>
+						</div>
+
+						<!-- PREZZO -->
+						<div>
+							<label for="prezzo" class="form-label">Prezzo*</label>
+							<input type="number" class="form-control" id="prezzo" name="prezzo" placeholder="Inserisci Prezzo" required>
+							<span class="text-danger" id="validazione-prezzo"></span>
+						</div>
+
+                        <!-- INGREDIENTI -->
+						<div>
+							<label for="ingredienti" class="form-label">Ingredienti*</label>
+							<input type="text" class="form-control" id="ingredienti" name="ingredienti" placeholder="Inserisci Ingredienti" required>
+							<span class="text-danger" id="validazione-ingredienti"></span>
+						</div>
+
+                        <!-- FOTO PIATTO -->
+                        <div class="col-md-4">
+                        <label for="imgPiatto" class="form-label">Carica una foto del piatto (.jpg, .jpeg, .png)*</label>
+						<br>
+                        <input type="file" class="form-control" name="imgPiatto" accept=".jpg, .jpeg, .png" id="imgPiatto" required>
+						<span class="text-danger" id="validazione-imgPiatto"></span>
+                        </div>
+							
+						<div class="col-12">
+							<button class="btn btn-lg aggiungipiatto_btn" id="aggiungipiatto-btn">Aggiungi</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+        <!-- UTILE? -->
+		<h3 class="hspace_mc_btm">&nbsp;</h3>
+	</main>
+
+<%- include('partials/footer'); -%>     

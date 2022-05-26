@@ -30,7 +30,7 @@ const x = `
               <a class="nav-link" href="/contatti">Contatti</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="/personale" id="dips" >Personale</a>
+              <a class="nav-link" href="/piatti" id="dips" >Personale</a>
           </li>
 
           <!-- COMMENTO -->
