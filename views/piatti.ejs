@@ -16,6 +16,31 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			<% } %>
+		
+
+			<div class="row">
+				<% if (typeof piatti !== "undefined") { %> 
+					<% if(piatti.length > 0) { %>
+						<% piatti.forEach((piatto) => { %>
+							<div class="card piatto mb-3">
+								<img src="data:image/bmp;base64,<%= piatto.immagine.toString('base64')%>" class="card-img-top img-fluid rounded-start resizingPiatti"> <!-- height="30" width="30"> IMMAGINE PIATTO class = img-fluid rounded-start img-struttur.. -->
+								<div class="card-body">
+									<h3 class="card-title nome">
+										<%= piatto.nome %>
+									</h3> 
+									<h6 class="card-text ingredienti">
+										<%= piatto.ingredienti %>
+									</h6> 
+									<h4 class="card-text prezzo">
+										<%= piatto.prezzo %> € 
+									</h4> 
+								</div>
+							</div>
+						<% }); %>
+					<% } %>
+				<% } %>
+			</div>
+
 		</div>
 		
       <!-- js 

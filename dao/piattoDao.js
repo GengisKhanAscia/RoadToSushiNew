@@ -8,6 +8,41 @@ const EntPiatto = require('../entities/entPiatto');
 /************************** PIATTO *****************************/
 
 /**
+ * Ricerca di tutti i Piatti nel DB
+ * @returns {Promise<List<EntPiatto>>} Piatto
+ */
+ function findAllPiatti(){
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Piatti";
+
+        db.all(query, function (err, rows) {
+            if(err){
+                logger.logError(err);
+                reject(err);
+            }
+            else if (rows === undefined || rows.length === 0) {
+                logger.logWarn(`Nessun piatto presente nel DB.`);
+                resolve({error: "Nessun piatto trovato"});
+            } else {
+                const listaPiatti = [];
+
+                rows.forEach((row) => {
+                    const piatto = new EntPiatto(
+                        row.Nome,
+                        row.Prezzo,
+                        row.Ingredienti,
+                        row.Immagine);
+                        
+                    listaPiatti.push(piatto);
+                });
+
+                resolve(listaPiatti);
+            }
+        });
+    });
+}
+
+/**
  * Ricerca Piatto in Piatti per nome
  * @param {string} nome Nome del piatto
  * @returns {Promise<EntPiatto>} Piatto
@@ -61,4 +96,4 @@ const EntPiatto = require('../entities/entPiatto');
     });
 }
 
-module.exports = {findPiattoByNome, addPiatto};
+module.exports = {findAllPiatti, findPiattoByNome, addPiatto};

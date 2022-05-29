@@ -680,3 +680,28 @@ h5.modal-title{
 #profile-dropdown {
     margin-left: 0.5rem;
 }
+
+/*
+.resizingPiatti{
+    object-fit: cover;
+    max-width: 1500px; 
+    max-height: 200px;
+    min-width: 250px;
+    min-height: 200px;
+    background-size: cover;
+    align-self: center;
+}
+*/
+
+/*
+.resizingPiatti{
+    width: 100%;
+    object-fit: contain;
+}
+*/
+
+/*
+.piatto{
+    background-color: #FBFAF4;
+}
+*/

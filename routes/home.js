@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
 router.delete("/logout", (req, res, next) => {
   logger.logInfo("Utente uscito con successo!");
   req.logout();

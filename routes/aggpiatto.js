@@ -57,6 +57,7 @@ router.post("/", upload.single('imgPiatto'), [
     logger.logInfo(`Nuovo piatto aggiunto con il nome: ${piattoId}`);
 
     res.render("piatti", {
+        utente: req.user,
         title: "Piatti",
         message:`${piatto.nome} aggiunto correttamente!`, 
         styles: ['/stylesheets/custom.css'],
@@ -66,6 +67,7 @@ router.post("/", upload.single('imgPiatto'), [
     logger.logError(JSON.stringify(errors));
 
     res.render("aggPiatto", {
+        utente: req.user,
         title: "Aggiungi Piatto",
         errors: errors.array(),
         styles: ['/stylesheets/custom.css'],
