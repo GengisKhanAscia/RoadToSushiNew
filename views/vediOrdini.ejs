@@ -1,12 +1,12 @@
 <%- include('partials/head') -%>
-<%- include('partials/navbar', { active: "piatti" }); -%>
+<%- include('partials/navbar', { active: "vediOrdini" }); -%>
 
 <body>
         
 	<main>
 
 		<div class="container">
-			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">I nostri piatti</cite></h3>
+			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">I nostri ordini</cite></h3>
 
 			<% if (message.length > 0) { %>
 				<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
@@ -17,14 +17,6 @@
 				</div>
 			<% } %>
 		</div>
-		
-      <!-- js 
-			<h5 id="haicercato"></h5>
-					<div class="row" id="listadip_row"></div>
-            <h3 class="hspace_bottom"></h3>
-		      </div>
-      -->
 
 	</main>
-	
-<%- include('partials/footer'); -%>      
+<%- include('partials/footer'); -%>     

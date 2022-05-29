@@ -3,9 +3,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET Piatti page. */
+/* GET Vedi Ordini page. */
 router.get('/', function(req, res, next) {
-  res.render('piatti', {
+  res.render('vediOrdini', {
     styles: ['/stylesheets/custom.css'],
     scripts: ['/javascripts/orario_negozio.js'     // Orari
              ,'/javascripts/richiedimodals.js'],   // Modals

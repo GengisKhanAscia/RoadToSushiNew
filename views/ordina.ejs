@@ -1,0 +1,92 @@
+<%- include('partials/head') -%>
+<%- include('partials/navbar', { active: "ordina" }); -%>
+
+<body>
+        
+	<main>
+
+		<div class="container">
+
+			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">Effettua il tuo ordine</cite></h3>
+
+			<% if (message.length > 0) { %>
+				<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
+					<p>
+						<%= message %>
+					</p>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% } %>
+
+			<div class="form-group">
+
+				<div class="col-md-6 mx-auto">
+
+					<form class="row g-3 needs-validation" id="formRegistrazione" action="/ordina" method="POST">
+						
+						<!-- ID come viene gestito? (auto-increment nel DB); NON E' QUI-->
+
+						<!-- INFO (contenuto dell'ordine) => DA PRENDERE NEL DB -->
+						<div>
+							<label for="piatto" class="form-label">Piatto*</label>
+							<select class="form-control" id="piatto" name="piatto" placeholder="Scegli un piatto" required>
+								<option></option>
+								<option value="Almond">Almond</option>
+								<option value="Spicy Crunch Tuna">Spicy Crunch Tuna</option>
+								<option value="Mexico">Mexico</option>
+								<option value="Udon">Udon</option>
+								<option value="Yakitori Rice">Yakitori Rice</option>
+								<option value="Miso Soup">Miso Soup</option>
+							</select>
+						</div>
+
+						<!-- EMAIL (prende quella da tabella Utenti) -->
+						<div>
+							<label for="email" class="form-label">Email*</label>
+							<input type="email" class="form-control" id="email" name="email" readonly> <!-- NOT POSSIBLE readonly & required together: https://stackoverflow.com/questions/12777751/html-required-readonly-input-in-form -->
+						</div>
+
+						<!-- TELEFONO (prende quello del cliente) =>  DEVO PASSARMI anche CLIENTE per prendermi il TELEFONO (altrimenti glielo faccio rimettere perchè è non-editabile il campo) -->
+						<div>
+							<label for="telefono" class="form-label">Telefono*</label>
+							<input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Inserisci Numero di Telefono" required>
+							<span class="text-danger" id="validazione-telefono"></span>
+						</div>
+						
+						<!-- DATA (di quando vado a ritirare l'ordine); Criterio? Almeno il giorno stesso -->
+						<div>
+							<label for="dataOrdine" class="form-label">Data Ordine*</label>
+							<input type="date" class="form-control" id="dataOrdine" name="dataOrdine" required>
+							<span class="text-danger" id="validazione-dataOrdine"></span>
+						</div>
+
+						<!-- ORA (di quando vado a ritirare l'ordine) Criterio? Almeno un minuto dopo l'ora attuale [NEGOZIO APERTO] -->
+						<div>
+							<label for="oraOrdine" class="form-label">Ora Ordine*</label>
+							<input type="time" class="form-control" id="oraOrdine" name="oraOrdine" min="12:00" max="22:00" required>
+							<div class="valid-feedback">
+								Perfetto!
+							</div>
+							<div class="invalid-feedback">
+								Devi fornire un orario valido, compreso tra le 12:00 e le 22:00.
+							</div>
+						</div>
+
+						<!-- STATO (In preparazione/Pronto); NON E' QUI -->
+
+						<!-- TOTALE (€ cumulativi dalla scelta dei piatti); DOVREBBE VISUALIZZARMELO GIA' QUI IN BASE AL PREZZO DEI PIATTI SCELTI PRIMA -->
+		
+						<div class="col-12">
+							<button class="btn btn-lg registrati_btn" id="btn-checkout">Vai al checkout</button> <!-- MODIFICARE NOME registrati_btn -->
+						</div>
+			
+					</form>
+
+				</div>
+			</div>		
+
+		</div>
+
+	</main>
+    
+<%- include('partials/footer'); -%>    

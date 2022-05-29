@@ -1,0 +1,43 @@
+<%- include('partials/head') -%>
+<%- include('partials/navbar', { active: "iMieiOrdini" }); -%>
+
+<body>
+        
+	<main>
+
+		<div class="container">
+
+			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">I miei ordini</cite></h3>
+
+			<% if (message.length > 0) { %>
+				<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
+					<p>
+						<%= message %>
+					</p>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% } %>
+
+			<h5 class="hspace h_btm_spec"><cite title="Source Title">Vedrai esclusivamente gli ordini in preparazione/pronti dal nostro personale</cite></h5>
+		
+				<div class="row">
+
+					<main>
+                    
+						<h1 id="title" class="hspace_minus"><cite title="Source Title">Tutti gli ordini</cite></h1>
+						<br>
+						
+						<!-- Qui ci penserà JS
+						<ul class="list-group list-group-flush" id="servizi3-list">
+					   
+						</ul>
+						-->
+						
+					  </main>
+				</div>
+		
+		</div>
+
+	</main>
+    
+<%- include('partials/footer'); -%>      

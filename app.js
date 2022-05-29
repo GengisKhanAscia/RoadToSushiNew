@@ -24,7 +24,9 @@ const regClienteRouter = require('./routes/regCliente');
 const loginRouter = require('./routes/login');
 const piattiRouter = require('./routes/piatti');
 const aggPiattiRouter = require('./routes/aggPiatto');
-// const clienteRouter = require('./routes/cliente'); // Al momento non lo sto usando
+const vediOrdiniRouter = require('./routes/vediOrdini');
+const ordinaRouter = require('./routes/ordina');
+const iMieiOrdiniRouter = require('./routes/iMieiOrdini');
 
 // ----------------------- SETUP ------------------------
 
@@ -111,6 +113,9 @@ app.use('/regCliente', regClienteRouter);
 app.use('/login', loginRouter);
 app.use('/piatti', piattiRouter);
 app.use('/aggPiatto', aggPiattiRouter);
+app.use('/vediOrdini', vediOrdiniRouter);
+app.use('/ordina', ordinaRouter);
+app.use('/iMieiOrdini', iMieiOrdiniRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

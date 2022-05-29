@@ -148,7 +148,7 @@ aggiungiPiattoBtn.addEventListener("click", (e) => {
  * @returns true Se il nome di un piatto è valido, false altrimenti
  */
  function validaNome(text) {
-  return /^[a-zA-Z]{1,50}$/.test(text);
+  return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,50}$/.test(text);
 }
 
 /**
@@ -167,7 +167,7 @@ aggiungiPiattoBtn.addEventListener("click", (e) => {
  * @returns true Se la lista degli ingredienti è valida, false altrimenti
  */
  function validaIngredienti(text) {
-  return /^[A-Za-z0-9_.,()&| ]{1,280}$/.test(text);
+  return /^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ_.,()&| ]{1,280}$/.test(text);
 }
 
 /**

@@ -25,13 +25,24 @@
           <li class="nav-item">
               <a class="nav-link <%= active === "piatti" ? "active" : "" %>" href="/piatti" id="piatti">Piatti</a>
           </li>
-          <%# Se l'utente e' un admin %>
+          <%# Se l'utente e' un MEMBRO del PERSONALE %>
           <% if(typeof utente !== "undefined") { %>
             <% if(utente.tipo_utente === 1) { %>
               <li class="nav-item">
                 <a class="nav-link <%= active === "aggPiatto" ? "active" : "" %>" aria-current="page" href="/aggPiatto">Aggiungi piatto</a>
               </li>
-            <% } %>
+              <li class="nav-item">
+                <a class="nav-link <%= active === "vediOrdini" ? "active" : "" %>" aria-current="page" href="/vediOrdini">Vedi Ordini</a>
+              </li>
+          <%# Se l'utente e' un CLIENTE %>
+            <% } else if(utente.tipo_utente === 0){ %>
+              <li class="nav-item">
+                <a class="nav-link <%= active === "ordina" ? "active" : "" %>" aria-current="page" href="/ordina">Ordina</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= active === "iMieiOrdini" ? "active" : "" %>" aria-current="page" href="/iMieiOrdini">I Miei Ordini</a>
+              </li>
+              <% } %>
           <% } %>
           <%# Se l'utente NON e' loggato %>
           <% if(typeof utente === "undefined") { %>

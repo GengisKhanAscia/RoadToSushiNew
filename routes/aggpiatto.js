@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
 
 // Server side validation
 router.post("/", upload.single('imgPiatto'), [
-  body("nome").trim().matches(/^[a-zA-Z]{1,50}$/).escape().withMessage("Inserisci un nome valido")
+  body("nome").trim().matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,50}$/).escape().withMessage("Inserisci un nome valido")
     .custom(async function (nome) {
       const piatto = await piattoDao.findPiattoByNome(nome);
 
@@ -38,7 +38,7 @@ router.post("/", upload.single('imgPiatto'), [
       }
     }),
   body("prezzo").trim().matches(/^\d*(\.\d{0,2})?$/).escape().withMessage("Il prezzo deve essere di almeno 1€ e puoi aumentarlo di 0.50€ alla volta"),
-  body("ingredienti").trim().matches(/^[A-Za-z0-9_.,()&| ]{1,280}$/).escape().withMessage("La lista degli ingredienti non deve superare i 280 caratteri"),
+  body("ingredienti").trim().matches(/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ_.,()&| ]{1,280}$/).escape().withMessage("La lista degli ingredienti non deve superare i 280 caratteri"),
     
 ], async function (req, res) {
   const errors = validationResult(req);
