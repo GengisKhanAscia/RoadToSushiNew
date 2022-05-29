@@ -127,7 +127,7 @@ const EntPersonale = require('../entities/entPersonale');
 /**
  * Aggiunge Utente {Cliente{0}} al database.
  * @param {EntUtente} utente Utente da aggiungere al db
- * @returns {Promise<number>} Id dell'Utente inserito
+ * @returns {Promise<String>} Email dell'Utente inserito
  */
  function addClienteComeUtente(utente) {
     return new Promise(async (resolve, reject) => {
@@ -143,7 +143,7 @@ const EntPersonale = require('../entities/entPersonale');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(utente.email); // this.lastID
+                    resolve(utente.email); 
                 }
             });
     });
@@ -152,7 +152,7 @@ const EntPersonale = require('../entities/entPersonale');
 /**
  * Aggiunge Utente {Membro del Personale{1}} al database.
  * @param {EntUtente} utente Utente da aggiungere al db
- * @returns {Promise<number>} Id dell'Utente inserito
+ * @returns {Promise<String>} Email dell'Utente inserito
  */
  function addPersonaleComeUtente(utente) {
     return new Promise(async (resolve, reject) => {
@@ -168,7 +168,7 @@ const EntPersonale = require('../entities/entPersonale');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(utente.email); // this.lastID
+                    resolve(utente.email); 
                 }
             });
     });
@@ -179,7 +179,7 @@ const EntPersonale = require('../entities/entPersonale');
 /**
  * Aggiunge Cliente al database.
  * @param {EntCliente} cliente Cliente da aggiungere al db
- * @returns {Promise<number>} Id del Cliente inserito
+ * @returns {Promise<String>} Email del Cliente inserito
  */
  function addCliente(cliente) {
     return new Promise(async (resolve, reject) => {
@@ -194,7 +194,7 @@ const EntPersonale = require('../entities/entPersonale');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(cliente.email); // this.lastID
+                    resolve(cliente.email); 
                 }
             });
     });
@@ -205,7 +205,7 @@ const EntPersonale = require('../entities/entPersonale');
 /**
  * Aggiunge Membro del Personale al database.
  * @param {EntPersonale} personale Personale da aggiungere al db
- * @returns {Promise<number>} Id del Membro del Personale inserito
+ * @returns {Promise<String>} Email del Membro del Personale inserito
  */
  function addPersonale(personale) {
     return new Promise(async (resolve, reject) => {
@@ -221,7 +221,7 @@ const EntPersonale = require('../entities/entPersonale');
                     logger.logError(err);
                     reject(err);
                 } else {
-                    resolve(personale.email); // this.lastID
+                    resolve(personale.email);
                 }
             });
     });

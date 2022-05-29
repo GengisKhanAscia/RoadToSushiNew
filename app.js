@@ -23,7 +23,7 @@ const regPersonaleRouter = require('./routes/regPersonale');
 const regClienteRouter = require('./routes/regCliente');
 const loginRouter = require('./routes/login');
 const piattiRouter = require('./routes/piatti');
-const aggPiattiRouter = require('./routes/aggpiatto');
+const aggPiattiRouter = require('./routes/aggPiatto');
 // const clienteRouter = require('./routes/cliente'); // Al momento non lo sto usando
 
 // ----------------------- SETUP ------------------------
@@ -85,7 +85,6 @@ passport.deserializeUser(function (email, done) {
 });
 
 // SESSION
-
 app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
   secret: 'Segreto di sessione',           // process.env.SESSION_SECRET
@@ -111,7 +110,7 @@ app.use('/regPersonale', regPersonaleRouter);
 app.use('/regCliente', regClienteRouter);
 app.use('/login', loginRouter);
 app.use('/piatti', piattiRouter);
-app.use('/aggpiatto', aggPiattiRouter);
+app.use('/aggPiatto', aggPiattiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -119,7 +118,6 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

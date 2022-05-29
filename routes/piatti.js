@@ -12,10 +12,3 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-
-/*
-  <script defer src="js/listadip_dipendente.js"></script>
-  <script defer src="js/listadip_dipendenteManager.js"></script> 
-  <script defer src="js/listadip_app.js"></script>
-  <script defer src="js/listadip_main.js"></script>
-*/

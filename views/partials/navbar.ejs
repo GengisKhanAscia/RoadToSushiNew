@@ -29,7 +29,7 @@
           <% if(typeof utente !== "undefined") { %>
             <% if(utente.tipo_utente === 1) { %>
               <li class="nav-item">
-                <a class="nav-link <%= active === "aggpiatto" ? "active" : "" %>" aria-current="page" href="/aggpiatto">Aggiungi piatto</a>
+                <a class="nav-link <%= active === "aggPiatto" ? "active" : "" %>" aria-current="page" href="/aggPiatto">Aggiungi piatto</a>
               </li>
             <% } %>
           <% } %>
@@ -44,7 +44,7 @@
           <% } %>
         </ul>
         
-        <form class="d-flex" id="form_cerca" action="personale.html">
+        <form class="d-flex" id="form_cerca" action="piatti.html"> <!-- Era action="personale.html" Quando clicchi il "cerca", per quello si spacca quando lo faccio-->
           <input class="form-control me-2" type="search" placeholder="Cerca tra i piatti..." id="cerca_dip" name="cerca_dip" aria-label="Cerca tra i piatti...">
           <button class="btn btn-outline-success" id="btn_cerca" type="submit">Cerca</button>
         </form>

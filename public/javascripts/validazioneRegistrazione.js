@@ -230,7 +230,6 @@ imgPersonale.addEventListener("input", () => {
         }
         // valid = true;
     }
-    
 });
 
 signupBtn.addEventListener("click", (e) => {
@@ -274,7 +273,7 @@ function validaPassword(password) {
 /**
  * Valida telefono
  * @link https://forum.html.it/forum/showthread/t-1029132.html
- * @param {string} telefono Telefono da controllare
+ * @param {number} telefono Telefono da controllare
  * @returns true Se il telefono è valido, false altrimenti
  */
  function validaTelefono(telefono) {
@@ -297,6 +296,11 @@ function validaPassword(password) {
     }
 }
 
+/**
+ * Valida l'Immagine del Personale
+ * @param {blob} img L'immagine da controllare
+ * @returns true Se l'immagine soddisfa i requisiti, false altrimenti
+ */
 function validaFormatoImmagine(img){
     const validaEstensioni = /(\.png|\.jpeg|\.jpg)$/i;       
     if (!validaEstensioni.exec(img)) {

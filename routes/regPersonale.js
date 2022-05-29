@@ -28,8 +28,8 @@ router.get('/', function(req, res, next) {
 
 // Server side validation
 router.post("/", upload.single('imgPersonale'), [
-  body("nome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un nome valido"),
-  body("cognome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un cognome valido"),
+  body("nome").trim().matches(/^[a-zA-Z]{1,50}$/).escape().withMessage("Inserisci un nome valido"),
+  body("cognome").trim().matches(/^[a-zA-Z]{1,50}$/).escape().withMessage("Inserisci un cognome valido"),
   body("email").trim().isEmail().withMessage("Inserisci un'email valida").escape()
       .custom(async function (email) {
           const personale = await utenteDao.findPersonaleByEmailAndTipo_utente(email);
