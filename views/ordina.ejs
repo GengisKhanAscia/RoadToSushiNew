@@ -22,28 +22,34 @@
 
 				<div class="col-md-6 mx-auto">
 
-					<form class="row g-3 needs-validation" id="formRegistrazione" action="/ordina" method="POST">
+					<form class="row g-3 needs-validation" id="formOrdinazione" action="/ordina" method="POST">
 						
 						<!-- ID come viene gestito? (auto-increment nel DB); NON E' QUI-->
 
-						<!-- INFO (contenuto dell'ordine) => DA PRENDERE NEL DB -->
+						<!-- INFO (contenuto dell'ordine) => DA PRENDERE NEL DB; ad ogni compilamento di uno, si dovrebbe aggiungere un altro dropdown, altrimenti campo input range/numerico per far scegliere numero di piatti = numero di dropdown che compaiono -->
 						<div>
 							<label for="piatto" class="form-label">Piatto*</label>
-							<select class="form-control" id="piatto" name="piatto" placeholder="Scegli un piatto" required>
-								<option></option>
-								<option value="Almond">Almond</option>
-								<option value="Spicy Crunch Tuna">Spicy Crunch Tuna</option>
-								<option value="Mexico">Mexico</option>
-								<option value="Udon">Udon</option>
-								<option value="Yakitori Rice">Yakitori Rice</option>
-								<option value="Miso Soup">Miso Soup</option>
-							</select>
+							<div class="form-group">
+								<select class="form-select" name="lista-piatti" id="lista-piatti" required>
+									<option value="" disabled selected>Seleziona il piatto</option>
+									<% if (typeof piatti !== "undefined") { %> 
+										<% if(piatti.length > 0) { %>
+											<% piatti.forEach((piatto) => { %>
+												<!-- <option value="< %= piatto.nome %> (< %= piatto.prezzo %>)">< %= piatto %></option> -->	<!-- A cosa serve < %= piatto %> ?-->
+												<option value="<%= piatto.nome %>"><%= piatto %></option> <!-- stampa [object Object] -->
+											<% }); %>
+										<% } %>
+									<% } %>
+								</select>
+							</div>
 						</div>
 
 						<!-- EMAIL (prende quella da tabella Utenti) -->
 						<div>
 							<label for="email" class="form-label">Email*</label>
-							<input type="email" class="form-control" id="email" name="email" readonly> <!-- NOT POSSIBLE readonly & required together: https://stackoverflow.com/questions/12777751/html-required-readonly-input-in-form -->
+							<% if(typeof utente !== "undefined") { %>
+								<input type="email" class="form-control" id="email" name="email" value="<%= utente.email %>" readonly> <!-- NOT POSSIBLE readonly & required together: https://stackoverflow.com/questions/12777751/html-required-readonly-input-in-form -->
+							<% } %>
 						</div>
 
 						<!-- TELEFONO (prende quello del cliente) =>  DEVO PASSARMI anche CLIENTE per prendermi il TELEFONO (altrimenti glielo faccio rimettere perchè è non-editabile il campo) -->
@@ -77,7 +83,7 @@
 						<!-- TOTALE (€ cumulativi dalla scelta dei piatti); DOVREBBE VISUALIZZARMELO GIA' QUI IN BASE AL PREZZO DEI PIATTI SCELTI PRIMA -->
 		
 						<div class="col-12">
-							<button class="btn btn-lg registrati_btn" id="btn-checkout">Vai al checkout</button> <!-- MODIFICARE NOME registrati_btn -->
+							<button class="btn btn-lg ordina_btn" id="btn-ordina-vaicheckout">Vai al checkout</button> <!-- MODIFICARE NOME registrati_btn -->
 						</div>
 			
 					</form>
