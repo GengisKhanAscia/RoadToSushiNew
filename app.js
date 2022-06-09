@@ -27,6 +27,7 @@ const aggPiattiRouter = require('./routes/aggPiatto');
 const vediOrdiniRouter = require('./routes/vediOrdini');
 const ordinaRouter = require('./routes/ordina');
 const iMieiOrdiniRouter = require('./routes/iMieiOrdini');
+const checkoutRouter = require('./routes/checkout.js');
 
 // ----------------------- SETUP ------------------------
 
@@ -116,6 +117,7 @@ app.use('/aggPiatto', aggPiattiRouter);
 app.use('/vediOrdini', vediOrdiniRouter);
 app.use('/ordina', ordinaRouter);
 app.use('/iMieiOrdini', iMieiOrdiniRouter);
+app.use('/checkout', checkoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

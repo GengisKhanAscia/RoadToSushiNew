@@ -54,11 +54,10 @@ prezzo.classList.add('non-valido');
 ingredienti.classList.add('non-valido');
 imgPiatto.classList.add('non-valido');
 disableBtn(aggiungiPiattoBtn);
-
-/************************** EVENT LISTENERS *****************************/
-
 let valid = true;
 const formAggPiatto = document.getElementById("formAggPiatto");
+
+/************************** EVENT LISTENERS *****************************/
 
 // Check Nome
 nome.addEventListener("input", () => {

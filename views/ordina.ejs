@@ -7,7 +7,7 @@
 
 		<div class="container">
 
-			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">Effettua il tuo ordine</cite></h3>
+			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">Effettua il tuo ordine - Da 1 a 5 piatti &#127843; &#128523; &#127836;</cite></h3>
 
 			<% if (message.length > 0) { %>
 				<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
@@ -26,23 +26,48 @@
 						
 						<!-- ID come viene gestito? (auto-increment nel DB); NON E' QUI-->
 
-						<!-- INFO (contenuto dell'ordine) => DA PRENDERE NEL DB; ad ogni compilamento di uno, si dovrebbe aggiungere un altro dropdown, altrimenti campo input range/numerico per far scegliere numero di piatti = numero di dropdown che compaiono -->
+						<!-- NUMERO PIATTI (genera tanti form di inserimento piatto in base a quanti piatti metto)
 						<div>
-							<label for="piatto" class="form-label">Piatto*</label>
+							<label for="numeroPiatti" class="form-label">Numero Piatti*</label>
+							<input type="number" class="form-control" id="numeroPiatti" name="numeroPiatti" min="1" max="5" placeholder="Inserisci il Numero di Piatti che vuoi ordinare" required>
+						</div>
+						-->
+
+						<!-- PIATTO 1 (contenuto nell'ordine) -->
+						<div>
+							<label for="piatto" class="form-label">Piatto 1*</label>
 							<div class="form-group">
-								<select class="form-select" name="lista-piatti" id="lista-piatti" required>
+								<select class="form-select" name="piatto1" id="piatto1" required>
 									<option value="" disabled selected>Seleziona il piatto</option>
 									<% if (typeof piatti !== "undefined") { %> 
 										<% if(piatti.length > 0) { %>
 											<% piatti.forEach((piatto) => { %>
-												<!-- <option value="< %= piatto.nome %> (< %= piatto.prezzo %>)">< %= piatto %></option> -->	<!-- A cosa serve < %= piatto %> ?-->
-												<option value="<%= piatto.nome %>"><%= piatto %></option> <!-- stampa [object Object] -->
+												<option value="<%= piatto.nome %>"><%= piatto.nome + " " + piatto.prezzo %> €</option> 
 											<% }); %>
 										<% } %>
 									<% } %>
 								</select>
 							</div>
 						</div>
+
+						<!-- PIATTI 2-5 (contenuti nell'ordine) -->
+						<% for (let i = 2; i < 6; i++) {  %>
+							<div>
+								<label for="piatto" class="form-label">Piatto <%=i%></label>
+								<div class="form-group">
+									<select class="form-select" name="piatto<%=i%>" id="piatto<%=i%>">
+										<option value="" disabled selected>Seleziona il piatto</option>
+										<% if (typeof piatti !== "undefined") { %> 
+											<% if(piatti.length > 0) { %>
+												<% piatti.forEach((piatto) => { %>
+													<option value="<%= piatto.nome %>"><%= piatto.nome + " " + piatto.prezzo %> €</option> 
+												<% }); %>
+											<% } %>
+										<% } %>
+									</select>
+								</div>
+							</div>
+						<% } %>
 
 						<!-- EMAIL (prende quella da tabella Utenti) -->
 						<div>
@@ -83,7 +108,7 @@
 						<!-- TOTALE (€ cumulativi dalla scelta dei piatti); DOVREBBE VISUALIZZARMELO GIA' QUI IN BASE AL PREZZO DEI PIATTI SCELTI PRIMA -->
 		
 						<div class="col-12">
-							<button class="btn btn-lg ordina_btn" id="btn-ordina-vaicheckout">Vai al checkout</button> <!-- MODIFICARE NOME registrati_btn -->
+							<button class="btn btn-lg ordina_btn" id="btn-ordina-vaicheckout">Vai al checkout</button>
 						</div>
 			
 					</form>

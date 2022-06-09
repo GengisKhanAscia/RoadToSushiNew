@@ -32,11 +32,10 @@
 email.classList.add('non-valido');
 password.classList.add('non-valido');
 disableBtn(accediBtn);
-
-/************************** EVENT LISTENERS *****************************/
-
 let valid = true;
 const formLogin = document.getElementById("formLogin");
+
+/************************** EVENT LISTENERS *****************************/
 
 // Check Email
 email.addEventListener("input", () => {

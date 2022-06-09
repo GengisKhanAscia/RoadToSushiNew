@@ -89,11 +89,10 @@ if(imgPersonale){
     imgPersonale.classList.add('non-valido');
 }
 disableBtn(signupBtn);
-
-/************************** EVENT LISTENERS *****************************/
-
 let valid = true;
 const formRegistrazione = document.getElementById("formRegistrazione");
+
+/************************** EVENT LISTENERS *****************************/
 
 // Check Nome
 nome.addEventListener("input", () => {
@@ -111,7 +110,6 @@ nome.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -130,7 +128,6 @@ cognome.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -149,7 +146,6 @@ email.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -168,7 +164,6 @@ password.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -187,7 +182,6 @@ telefono.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -207,7 +201,6 @@ invalidCheck.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -228,7 +221,6 @@ imgPersonale.addEventListener("input", () => {
             enableBtn(signupBtn);
             valid = true;
         }
-        // valid = true;
     }
 });
 
@@ -246,7 +238,7 @@ signupBtn.addEventListener("click", (e) => {
  * @returns true Se il nome/cognome di un cliente è valido, false altrimenti
  */
 function validaNomeCognome(text) {
-    return /^[a-zA-Z]{1,50}$/.test(text);
+    return /^[a-zA-Z ]{1,50}$/.test(text);
 }
 
 /**

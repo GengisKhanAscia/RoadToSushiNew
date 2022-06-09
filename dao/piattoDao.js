@@ -73,6 +73,30 @@ const EntPiatto = require('../entities/entPiatto');
 }
 
 /**
+ * Ricerca Prezzo del Piatto in Piatti per nome
+ * @param {string} nome Nome del piatto
+ * @returns {Promise<Number>} Prezzo del piatto
+ */
+ function findPrezzoDelPiattoByNome(nome){
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Piatti WHERE Nome = ?";
+
+        db.get(query, [nome], function (err, row) {
+            if(err){
+                logger.logError(err);
+                reject(err);
+            }
+            else if (row === undefined) {
+                logger.logWarn(`Nessun piatto con il nome: ${nome}`);
+                resolve({error: "Piatto non trovato"});
+            } else {
+                resolve(row.Prezzo);
+            }
+        });
+    });
+}
+
+/**
  * Aggiunge Piatto al database.
  * @param {EntPiatto} piatto Piatto da aggiungere al db
  * @returns {Promise<String>} Nome del Piatto inserito
@@ -96,4 +120,4 @@ const EntPiatto = require('../entities/entPiatto');
     });
 }
 
-module.exports = {findAllPiatti, findPiattoByNome, addPiatto};
+module.exports = {findAllPiatti, findPiattoByNome, findPrezzoDelPiattoByNome, addPiatto};
