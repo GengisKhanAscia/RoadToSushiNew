@@ -9,6 +9,19 @@
 
 			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">Effettua il tuo ordine - Da 1 a 5 piatti &#127843; &#128523; &#127836;</cite></h3>
 
+			<% if (errors.length > 0) { %>
+				<div class="alert alert-danger" role="alert">
+					<% if (Array.isArray(errors)) { %>
+						<% errors.forEach((error) => { %>
+							<p> <%= error.msg %> </p>
+						<% }); %>
+					<% } else { %>
+						<p> <%= errors %> </p>
+					<% } %>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% } %>
+
 			<% if (message.length > 0) { %>
 				<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
 					<p>

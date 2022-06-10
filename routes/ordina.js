@@ -23,16 +23,16 @@ router.get('/', async function(req, res, next) {
 
 // Aggiunta dell'ordine
 router.post('/', [
-  
-  body("piatto1").trim().escape().withMessage("Inserisci un piatto valido")
+
+  body("piatto1") // NOT WORK .trim().escape().withMessage("Inserisci un piatto opzionale valido")
   .custom(async function (piatto1) {
-    if(piatto1 === "undefined" || piatto1 === null || piatto1 === "") { 
+    if(piatto1 === undefined || piatto1 === null || piatto1 === "") { 
         logger.logDebug(`Devi inserire almeno un piatto! Non va bene ${piatto1}`);
         throw new Error("Hai inserito un piatto che non va bene");
     }
   }),
 
-  body("piatto2").trim().escape().withMessage("Inserisci un piatto opzionale valido")
+  body("piatto2")
   .custom(async function (piatto2) {
     if(piatto2 === null || piatto2 === "") { 
         logger.logDebug(`Seleziona correttamente un piatto, altrimenti non selezionarlo. Non va bene ${piatto2}`);
@@ -40,7 +40,7 @@ router.post('/', [
     }
   }),
 
-  body("piatto3").trim().escape().withMessage("Inserisci un piatto opzionale valido")
+  body("piatto3")
   .custom(async function (piatto3) {
     if(piatto3 === null || piatto3 === "") { 
         logger.logDebug(`Seleziona correttamente un piatto, altrimenti non selezionarlo. Non va bene ${piatto3}`);
@@ -48,7 +48,7 @@ router.post('/', [
     }
   }),
 
-  body("piatto4").trim().escape().withMessage("Inserisci un piatto opzionale valido")
+  body("piatto4")
   .custom(async function (piatto4) {
     if(piatto4 === null || piatto4 === "") { 
         logger.logDebug(`Seleziona correttamente un piatto, altrimenti non selezionarlo. Non va bene ${piatto4}`);
@@ -56,7 +56,7 @@ router.post('/', [
     }
   }),
 
-  body("piatto5").trim().escape().withMessage("Inserisci un piatto opzionale valido")
+  body("piatto5")
   .custom(async function (piatto5) {
     if(piatto5 === null || piatto5 === "") { 
         logger.logDebug(`Seleziona correttamente un piatto, altrimenti non selezionarlo. Non va bene ${piatto5}`);
@@ -65,7 +65,7 @@ router.post('/', [
   }),
   
   body("telefono").trim().matches(/^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{7}$/).escape().withMessage("Il numero di telefono deve essere di 10 numeri e può contenere il prefisso italiano (+39)"),
-  body("dataOrdine")
+  body("dataOrdine")  // yyyy-dd-mm
   .custom(async function (dataOrdine) {
     const today = new Date();
     if(!((new Date(dataOrdine) > today) || (new Date(dataOrdine).getFullYear() >= today.getFullYear() && new Date(dataOrdine).getMonth() >= today.getMonth() && new Date(dataOrdine).getDate() >= today.getDate()))){
@@ -73,16 +73,19 @@ router.post('/', [
     }
   }),
 
-  body("oraOrdine")
+  body("oraOrdine").trim().matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).escape().withMessage("L'ora deve essere di formato HH:mm")  
   .custom(async function (oraOrdine) {
     if(oraOrdine <= "12:00" || oraOrdine >= "22:00"){
+      logger.logDebug(`Orario che NON va bene`);
       throw new Error("Devi fornire un orario valido, compreso tra le 12:00 e le 22:00.");
+    }
+    else{
+      logger.logDebug(`Orario che va bene`);
     }
   }),
   
   ], async function(req, res, next) {
 
-  
   console.log(req.body.piatto1);
   console.log(req.body.piatto2);
   console.log(req.body.piatto3);
@@ -93,7 +96,6 @@ router.post('/', [
   console.log(req.body.dataOrdine);
   console.log(req.body.oraOrdine);
   
-
   const errors = validationResult(req);
 
   if (errors.isEmpty()) {
@@ -101,19 +103,22 @@ router.post('/', [
     res.render('checkout', {
       utente: req.user,
       title: "Checkout",
-      message:`Ordine realizzato da ${ordine.email} !`, 
+      message:`Ordine trasmesso correttamente al checkout!`, 
       styles: ['/stylesheets/custom.css'],
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js']
     });
   } else {
     logger.logError(JSON.stringify(errors));
 
+    const piatti = await piattoDao.findAllPiatti();
+
     res.render("ordina", {
-        utente: req.user,
-        title: "Ordina",
-        errors: errors.array(),
-        styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneOrdine.js']
+      piatti: piatti,
+      utente: req.user,
+      title: "Ordina",
+      errors: errors.array(),
+      styles: ['/stylesheets/custom.css'],
+      scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneOrdine.js']
     });
   }
 });
