@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-// Server side validation
+// POST Aggiungi Piatto
 router.post("/", upload.single('imgPiatto'), [
   body("nome").trim().matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,50}$/).escape().withMessage("Inserisci un nome valido")
     .custom(async function (nome) {
