@@ -1,6 +1,5 @@
 "use strict";
 
-const { body, validationResult } = require('express-validator');
 var express = require('express');
 const { body } = require('express-validator');
 var router = express.Router();
