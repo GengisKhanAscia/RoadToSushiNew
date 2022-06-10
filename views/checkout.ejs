@@ -27,39 +27,42 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <% } %>
-        
+
         <% if (typeof carrello !== "undefined" && typeof utente !== "undefined") { %>
             <div class="row my-3">
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-primary">Il tuo carrello</span>
-                        <span class="badge bg-primary rounded-pill"><%= carrello.totale %></span>
                     </h4>
                     <ul class="list-group mb-3">
-                        <% carrello.items.forEach(item => { %>
-                            <li class="list-group-item d-flex justify-content-between lh-sm">
-                                <div>
-                                    <h6 class="my-0">
-                                        <%= item.piatto.nome %>
-                                    </h6>
-                                </div>
-                                <span class="text-muted"><%= item.piatto.prezzo %> €</span>
-                            </li>
-                        <% }); %>
+                        <% for (let i = 0; i < carrello.piatti.length; i++) { %>
+                            <% if (carrello.piatti[i] !== "undefined") { %> 
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-0">
+                                            <%= carrello.piatti[i].nome %>
+                                        </h6>
+                                    </div>
+                                    <span class="text-muted"><%= carrello.piatti[i].prezzo %> €</span>                           
+                                </li>
+                            <% } %> 
+                        <% } %>
                         <li class="list-group-item d-flex justify-content-between">
                         <span>Totale (€)</span>
-                        <strong><%= carrello.prezzo %> €</strong> <!-- NON ESISTE AL MOMENTO -->
+                        <strong><%= carrello.totale %> €</strong>
                         </li>
                     </ul>
                 </div>
             </div>
+        <% } %> 
+        
     
             <hr />
     
             <h4>Metodo di pagamento*</h4>
     
             <form id="formCheckout" action="/orders/customer-orders" method="POST">
-                <input type="hidden" value="<%= user.id %>" name="userId" id="userId">
+                <input type="hidden" value="<%= utente.email %>" name="userId" id="userId">
                 <div class="my-3">
                     <div class="form-check">
                         <input id="credit-card" name="payment-method" type="radio" value="credit-card" class="form-check-input" checked required>
@@ -153,7 +156,7 @@
                 </button>
             </form>
       
-        <% } %>
+        
     </main>
         
     

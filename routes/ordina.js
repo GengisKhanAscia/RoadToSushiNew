@@ -85,25 +85,42 @@ router.post('/', [
   }),
   
   ], async function(req, res, next) {
-
-  console.log(req.body.piatto1);
-  console.log(req.body.piatto2);
-  console.log(req.body.piatto3);
-  console.log(req.body.piatto4);
-  console.log(req.body.piatto5);
-  console.log(req.body.email);
-  console.log(req.body.telefono);
-  console.log(req.body.dataOrdine);
-  console.log(req.body.oraOrdine);
   
   const errors = validationResult(req);
 
   if (errors.isEmpty()) {
 
+    const p1 = await piattoDao.findPiattoByNome(req.body.piatto1);
+    const p2 = req.body.piatto2 !== undefined ? await piattoDao.findPiattoByNome(req.body.piatto2) : undefined;
+    const p3 = req.body.piatto3 !== undefined ? await piattoDao.findPiattoByNome(req.body.piatto3) : undefined;
+    const p4 = req.body.piatto4 !== undefined ? await piattoDao.findPiattoByNome(req.body.piatto4) : undefined;
+    const p5 = req.body.piatto5 !== undefined ? await piattoDao.findPiattoByNome(req.body.piatto5) : undefined;
+
+    let totale = 0;
+    const piatti_appo = [p1, p2, p3, p4, p5];
+    let piatti = [];
+
+    for (let i = 0; i < piatti_appo.length; i++) {
+      if(piatti_appo[i] !== undefined) {
+        piatti.push(piatti_appo[i]);
+        totale += piatti_appo[i].prezzo;
+      }
+    }
+
+    const carrello = {
+      piatti: piatti,
+      totale: totale
+    };
+
+    console.log(piatti);
+    console.log(carrello);
+    console.log(carrello.totale);
+
     res.render('checkout', {
       utente: req.user,
       title: "Checkout",
       message:`Ordine trasmesso correttamente al checkout!`, 
+      carrello: carrello,
       styles: ['/stylesheets/custom.css'],
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js']
     });

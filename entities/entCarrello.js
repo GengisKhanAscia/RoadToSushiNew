@@ -11,7 +11,7 @@ const Piatto = require('./entPiatto');
      */
     constructor (piatto) {
         this.items = [{
-            piatto: piatto
+            piatto: piatto.nome
         }];
         this.totale = piatto.prezzo; // Superfluo?
     }
