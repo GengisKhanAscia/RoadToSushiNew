@@ -35,7 +35,7 @@ const scadenzaCarta = document.getElementById("scadenzaCarta");
 /**
  * @type {HTMLSpanElement}
  */
-const validazionescadenzaCarta = document.getElementById("validazione-scadenzaCarta");
+const validazioneScadenzaCarta = document.getElementById("validazione-scadenzaCarta");
 
 /**
  * @type {HTMLInputElement}
@@ -62,7 +62,7 @@ const formCheckout = document.getElementById("formCheckout");
 // Check Nome
 nome.addEventListener("input", () => {
     if (!validaNomeCognome(nome.value)) {
-        setValidationMessage(validazioneNome, "Inserisci un nome valido (max 50 caratteri)");
+        setValidationMessage(validazioneNome, "Inserisci un nome completo valido (max 50 caratteri)");
         disableBtn(pagaBtn);
         nome.classList.add('non-valido');
         valid = false;
@@ -97,13 +97,13 @@ numeroCarta.addEventListener("input", () => {
 
 // Check Scadenza della Carta
 scadenzaCarta.addEventListener("input", () => {
-    if (!validaNumeroCarta(scadenzaCarta.value)) {
-        setValidationMessage(validazionescadenzaCarta, "Inserisci una scadenza valida (dal mese corrente in avanti)");
+    if (!validaScadenzaCarta(scadenzaCarta.value)) {
+        setValidationMessage(validazioneScadenzaCarta, "Inserisci una scadenza valida (dal mese corrente in avanti)");
         disableBtn(pagaBtn);
-        numeroCarta.classList.add('non-valido');
+        scadenzaCarta.classList.add('non-valido');
         valid = false;
     } else {
-        clearValidationMsg(validazioneNumeroCarta);
+        clearValidationMsg(validazioneScadenzaCarta);
         scadenzaCarta.classList.remove('non-valido');
         const nonValidi = formCheckout.querySelectorAll('.non-valido');
         if(nonValidi.length === 0){
@@ -113,35 +113,29 @@ scadenzaCarta.addEventListener("input", () => {
     }
 });
 
-expirationDate.addEventListener("input", () => {
-    if (!validateExpirationDate(expirationDate.value)) {
-        setValidationMessage(expirationDateValidation, "Please enter a valid expiration date");
-        disableBtn(payBtn);
+// Check CVV Carta
+cvvCarta.addEventListener("input", () => {
+    if (!validaCVV(cvvCarta.value)) {
+        setValidationMessage(validazioneCvvCarta, "Inserisci un CVV valido (3 cifre)");
+        disableBtn(pagaBtn);
+        cvvCarta.classList.add('non-valido');
         valid = false;
     } else {
-        clearValidationMsg(expirationDateValidation);
-        enableBtn(payBtn);
-        valid = true;
+        clearValidationMsg(validazioneCvvCarta);
+        cvvCarta.classList.remove('non-valido');
+        const nonValidi = formCheckout.querySelectorAll('.non-valido');
+        if(nonValidi.length === 0){
+            enableBtn(pagaBtn);
+            valid = true;
+        }
     }
 });
 
-cvv.addEventListener("input", () => {
-    if (!validateCVV(cvv.value)) {
-        setValidationMessage(cvvValidation, "Please enter a valid CVV");
-        disableBtn(payBtn);
-        valid = false;
-    } else {
-        clearValidationMsg(cvvValidation);
-        enableBtn(payBtn);
-        valid = true;
-    }
-});
-
-payBtn.addEventListener("submit", (e) => {
+payBtn.addEventListener("click", (e) => {
     if (!valid) {
         e.preventDefault();
     }
-});
+  });
 
 /************************** VALIDATION *****************************/
 
@@ -160,33 +154,33 @@ payBtn.addEventListener("submit", (e) => {
  * @returns true Se il numero è valido, false altrimenti
  */
 function validaNumeroCarta(numeroCarta) {
-    return /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/.test(numeroCarta);
+    return /^[0-9]{16})$/.test(numeroCarta);
 }
 
 /**
- * Validates a card expiration date
- * @param {string} date date to be checked
- * @returns true if date is a valid card expiration date, false otherwise
+ * Valida la data di scadenza di una carta
+ * @param {date} date Data da controllare
+ * @returns vero se la data di scadenza della carta è corretta, false altrimenti 
  */
-function validateExpirationDate(date) {
+function validaScadenzaCarta(date) {
     const now = new Date();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
+    const mese = now.getMonth() + 1;
+    const anno = now.getFullYear();
 
     const exDate = new Date(date);
-    const exMonth = exDate.getMonth() + 1;
-    const exYear = exDate.getFullYear();
+    const exMese = exDate.getMonth() + 1;
+    const exAnno = exDate.getFullYear();
 
-    return /^\d{4}-\d{2}$/.test(date) && (exYear > year || (exYear === year && exMonth >= month));
+    return /^\d{4}-\d{2}$/.test(date) && (exAnno > anno || (exAnno === anno && exMese >= mese));
 }
 
 /**
- * Validates a cvv number
+ * Valida il CVV della carta
  * @param {string} cvv 
- * @returns true if cvv is a valid cvv, false otherwise
+ * @returns vero se il cvv è valido, false altrimenti
  */
-function validateCVV(cvv) {
-    return /^[0-9]{3,4}$/.test(cvv);
+function validaCVV(cvv) {
+    return /^[0-9]{3}$/.test(cvv);
 }
 
 /**

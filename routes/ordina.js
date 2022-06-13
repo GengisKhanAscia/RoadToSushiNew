@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
   });
 });
 
-// Aggiunta dell'ordine
+// Passaggio dell'ordine al checkout
 router.post('/', [
 
   body("piatto1") // NOT WORK .trim().escape().withMessage("Inserisci un piatto opzionale valido")
