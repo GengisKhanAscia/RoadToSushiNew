@@ -23,15 +23,55 @@ const EntOrdine = require('../entities/entOrdine');
             ordine.data,
             ordine.ora,
             ordine.stato,
-            ordine.totale,], function (err) {
+            ordine.totale,], async function (err) {
                 if (err) {
                     logger.logError(err);
                     reject(err);
                 } else {
+                    logger.logInfo(`Aggiunto ordine con l'id: ${this.lastID}`);
                     resolve(ordine.lastID); 
                 }
             });
     });
 }
 
-module.exports = {addOrdine};
+/**
+ * Trova tutti gli ordini di un cliente
+ * @param {string} email Email del cliente
+ * @returns {Promise<EntOrdine[]>} Array di Ordini
+ */
+ function findOrdiniByEmail(email) {
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Ordine WHERE Email = ? ORDER BY Data";
+
+        db.all(query, [email], function (err, rows) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else if (rows === undefined || rows.length === 0) {
+                logger.logWarn(`Nessun ordine per il Cliente: ${email}`);
+                resolve([]);
+                // resolve({error: `Nessun ordine trovato per il Cliente: ${email}`}); // O con "" ?
+            } else {
+                const ordini = [];
+
+                rows.forEach(function (row) {
+                    const ordine = new EntOrdine(
+                        row.Id,
+                        row.Email,
+                        row.Info,
+                        row.Telefono,
+                        row.Data,
+                        row.Ora,
+                        row.Stato,
+                        row.Totale);
+
+                    ordini.push(ordine);
+                });
+                resolve(ordini);
+            }
+        });
+    });
+}
+
+module.exports = {addOrdine, findOrdiniByEmail};

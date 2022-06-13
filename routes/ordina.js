@@ -5,7 +5,6 @@ const { body, validationResult } = require('express-validator');
 var router = express.Router();
 const logger = require('../util/logger');
 const piattoDao = require('../dao/piattoDao');
-const EntOrdine = require('../entities/entOrdine');
 
 /* GET Ordina page. */
 router.get('/', async function(req, res, next) {
@@ -118,9 +117,17 @@ router.post('/', [
 
     res.render('checkout', {
       utente: req.user,
+      carrello: carrello,
+      utileOrdine: {
+        telefono: req.body.telefono,
+        data: req.body.dataOrdine,
+        ora: req.body.oraOrdine
+      },
+      // telefono: req.body.telefono,
+      // data: req.body.dataOrdine,
+      // ora: req.body.oraOrdine,
       title: "Checkout",
       message:`Ordine trasmesso correttamente al checkout!`, 
-      carrello: carrello,
       styles: ['/stylesheets/custom.css'],
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js']
     });

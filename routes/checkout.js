@@ -2,9 +2,11 @@
 
 var express = require('express');
 const { body, validationResult } = require('express-validator');
-const EntOrdine = require('../entities/entOrdine');
 var router = express.Router();
 const logger = require('../util/logger');
+const EntOrdine = require('../entities/entOrdine');
+const orderStatus = require('../entities/enumeratives/statoOrderType');
+const ordineDao = require('../dao/ordineDao');
 
 /* GET Checkout page. */
 router.get('/', function(req, res, next) {
@@ -56,38 +58,51 @@ router.post('/', [
     if (req.body.piatto5) {
       infoOrdine += `, ${req.body.piatto5}`;
     }
-    
 
     //ti prendi gli altri hidden che devi aggiungere nell'ejs (con i nomi che vuoi tu)
 
-    const ordine = EntOrdine(req.user.email,
-      infoOrdine, req.body.telefono,
-      req.body.data, req.body.ora,
-      stato.INVIATO, req.body.totale);
+    const email = req.user.email;
+
+    const ordine = EntOrdine(
+      email,
+      infoOrdine, 
+      req.utileOrdine.telefono,
+      req.utileOrdine.data, 
+      req.utileOrdine.ora,
+      orderStatus.INVIATO, 
+      req.carrello.totale);
+
+    ordineDao.addOrdine(ordine)
+    .then(async (id) => {
+      logger.logInfo(`Nuovo ordine aggiunto con il codice: ${ordineId}`);
+
+      const ordini = await ordineDao.findOrdiniByEmail(email);
+    })
    
-    
-
-
+    // Dove mi reindirizzo?
     res.render('checkout', {
       styles: ['/stylesheets/custom.css'],
-      scripts: ['/javascripts/orario_negozio.js'        
-               ,'/javascripts/richiedimodals.js'       
-               ,'/javascripts/validazioneCheckout.js'], 
+      scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js'], 
       utente: req.user,
-      ordine: ordine
+      ordine: ordine //,
     });
       
-  } else {
-      logger.logError(JSON.stringify(errors));
+    } else {
+        logger.logError(JSON.stringify(errors));
 
-      res.render('checkout', {
-          user: req.user,
-          errors: errors.array(),
-          cart: req.session.cart,
-          styles: ['/stylesheets/checkout.css'],
-          scripts: ['/javascripts/checkout.js']
-      });
-  }
+        // carrello non glielo ripasso?  
+        res.render('checkout', {
+            errors: errors.array(),
+            styles: ['/stylesheets/custom.css'],
+            scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js'],
+            utente: req.user,
+            ordine: ordine,
+            carrello: req.carrello, //, 
+            // telefono: req.body.telefono,
+            // data: req.body.dataOrdine,
+            // ora: req.body.oraOrdine,
+        });
+      }
 });
 
 
