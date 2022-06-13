@@ -705,3 +705,11 @@ h5.modal-title{
     background-color: #FBFAF4;
 }
 */
+
+#carrelloCheckout {
+    align-self: center;
+}
+
+#testoDelCarrello {
+    color: #000; 
+}
