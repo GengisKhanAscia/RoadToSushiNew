@@ -10,12 +10,12 @@
 /**
  * @type {HTMLInputElement}
  */
-const nome = document.getElementById("nome");
+const nome = document.getElementById("nomeCompleto");
 
 /**
  * @type {HTMLSpanElement}
  */
-const validazioneNome = document.getElementById("validazione-nome");
+const validazioneNome = document.getElementById("validazione-nomeCompleto");
 
 /**
  * @type {HTMLInputElement}
@@ -131,11 +131,11 @@ cvvCarta.addEventListener("input", () => {
     }
 });
 
-payBtn.addEventListener("click", (e) => {
+pagaBtn.addEventListener("click", (e) => {
     if (!valid) {
         e.preventDefault();
     }
-  });
+});
 
 /************************** VALIDATION *****************************/
 
@@ -154,7 +154,7 @@ payBtn.addEventListener("click", (e) => {
  * @returns true Se il numero è valido, false altrimenti
  */
 function validaNumeroCarta(numeroCarta) {
-    return /^[0-9]{16})$/.test(numeroCarta);
+    return /^[0-9]{16}$/.test(numeroCarta);
 }
 
 /**
