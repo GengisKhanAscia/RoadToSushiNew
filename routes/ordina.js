@@ -111,9 +111,7 @@ router.post('/', [
       totale: totale
     };
 
-    console.log(piatti);
     console.log(carrello);
-    console.log(carrello.totale);
 
     res.render('checkout', {
       utente: req.user,
@@ -123,9 +121,6 @@ router.post('/', [
         data: req.body.dataOrdine,
         ora: req.body.oraOrdine
       },
-      // telefono: req.body.telefono,
-      // data: req.body.dataOrdine,
-      // ora: req.body.oraOrdine,
       title: "Checkout",
       message:`Ordine trasmesso correttamente al checkout!`, 
       styles: ['/stylesheets/custom.css'],

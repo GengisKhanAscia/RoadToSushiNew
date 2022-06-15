@@ -29,7 +29,7 @@ const EntOrdine = require('../entities/entOrdine');
                     reject(err);
                 } else {
                     logger.logInfo(`Aggiunto ordine con l'id: ${this.lastID}`);
-                    resolve(ordine.lastID); 
+                    resolve(this.lastID); 
                 }
             });
     });

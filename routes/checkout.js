@@ -59,48 +59,48 @@ router.post('/', [
       infoOrdine += `, ${req.body.piatto5}`;
     }
 
-    //ti prendi gli altri hidden che devi aggiungere nell'ejs (con i nomi che vuoi tu)
-
     const email = req.user.email;
+    const stato = orderStatus.INVIATO;
 
-    const ordine = EntOrdine(
+    const ordine = new EntOrdine(
+      undefined,
       email,
       infoOrdine, 
-      req.utileOrdine.telefono,
-      req.utileOrdine.data, 
-      req.utileOrdine.ora,
-      orderStatus.INVIATO, 
-      req.carrello.totale);
+      req.body.telefono,
+      req.body.data, 
+      req.body.ora,
+      stato, 
+      req.body.totale);
 
     ordineDao.addOrdine(ordine)
     .then(async (id) => {
-      logger.logInfo(`Nuovo ordine aggiunto con il codice: ${ordineId}`);
+      logger.logInfo(`Nuovo ordine aggiunto con il codice: ${id}`);
 
       const ordini = await ordineDao.findOrdiniByEmail(email);
+
+      res.render('iMieiOrdini', {
+        styles: ['/stylesheets/custom.css'],
+        scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
+        utente: req.user,
+        ordini: ordini
+      });
     })
-   
-    // Dove mi reindirizzo?
-    res.render('checkout', {
-      styles: ['/stylesheets/custom.css'],
-      scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js'], 
-      utente: req.user,
-      ordine: ordine //,
-    });
       
     } else {
         logger.logError(JSON.stringify(errors));
 
-        // carrello non glielo ripasso?  
         res.render('checkout', {
-            errors: errors.array(),
-            styles: ['/stylesheets/custom.css'],
-            scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js'],
-            utente: req.user,
-            ordine: ordine,
-            carrello: req.carrello, //, 
-            // telefono: req.body.telefono,
-            // data: req.body.dataOrdine,
-            // ora: req.body.oraOrdine,
+          utente: req.user,
+          carrello: carrello,
+          utileOrdine: {
+            telefono: req.body.telefono,
+            data: req.body.dataOrdine,
+            ora: req.body.oraOrdine
+          },
+          title: "Checkout",
+          message:`Ordine trasmesso correttamente al checkout!`, 
+          styles: ['/stylesheets/custom.css'],
+          scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js']
         });
       }
 });

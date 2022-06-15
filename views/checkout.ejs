@@ -165,32 +165,25 @@
                             </div>
                         </div>
 
-                        <!-- ERRORE: NON LEGGE LA PROPRIETA' carrello.piatti[i].nome XKE' 'undefined' -->
                         <% if (typeof carrello !== "undefined" && typeof utente !== "undefined") { %>
-                            <% for (let i = 1; i <= carrello.piatti.length; i++) { %>
+                            <% for (let i = 0; i < carrello.piatti.length; i++) { %>
                                 <% if (carrello.piatti[i] !== "undefined") { %> 
-                                    <input type="hidden" value="<%= carrello.piatti[i].nome %>" name="piatto<%=i%>" id="piatto<%=i%>">                   
+                                    <input type="hidden" value="<%= carrello.piatti[i].nome %>" name="piatto<%=i + 1%>" id="piatto<%=i + 1%>">                   
                                 <% } %> 
                             <% } %>
+                            <input type="hidden" value="<%= carrello.totale %>" name="totale" id="totale">  
                         <% } %>
 
-                        <!-- ERRORE: NON LEGGE LA PROPRIETA' 'telefono' XKE' 'undefined' -->
-                        <% if (utileOrdine !== "undefined") { %>
+                        <% if (utileOrdine !== "undefined" && typeof utente !== "undefined") { %>
                             <% if (utileOrdine.telefono !== "undefined") { %> 
                                 <input type="hidden" value="<%= utileOrdine.telefono %>" name="telefono" id="telefono">  
-                            <% } %>                  
-                        <% } %>
-
-                        <% if (utileOrdine !== "undefined") { %>
+                            <% } %> 
                             <% if (utileOrdine.data !== "undefined") { %> 
                                 <input type="hidden" value="<%= utileOrdine.data %>" name="data" id="data">  
-                            <% } %>                
-                        <% } %>
-
-                        <% if (utileOrdine !== "undefined") { %>
+                            <% } %>
                             <% if (utileOrdine.ora !== "undefined") { %> 
                                 <input type="hidden" value="<%= utileOrdine.ora %>" name="ora" id="ora">  
-                            <% } %>   
+                            <% } %>                  
                         <% } %>
                         
                     </form>

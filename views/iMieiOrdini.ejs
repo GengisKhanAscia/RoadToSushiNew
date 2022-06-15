@@ -18,13 +18,12 @@
 				</div>
 			<% } %>
 
-			<h5 class="hspace h_btm_spec"><cite title="Source Title">Vedrai esclusivamente gli ordini in preparazione/pronti dal nostro personale</cite></h5>
+			<h5><cite title="Source Title">Vedrai esclusivamente gli ordini in preparazione/pronti dal nostro personale</cite></h5>
 
 			<hr />
 		
 				<div class="row">
                     
-						<h1 id="title" class="hspace_minus"><cite title="Source Title">Tutti i tuoi ordini</cite></h1>
 						<br>
 						
 						<!-- Qui ci penserà JS
@@ -34,8 +33,6 @@
 						-->
 
 						<% if (typeof ordini !== "undefined" && ordini.length > 0) { %>
-							<h5>I tuoi ordini 2</h5>
-						<hr />
 
 						<table class="table text-center shadow-lg">
 							<thead>
@@ -74,11 +71,11 @@
 										<td><%= ordine.id %></td>
 										<td><%= utente.email %></td>
 										<td><%= ordine.info %></td>
-										<td><%= utileOrdine.telefono %></td>
-										<td><%= utileOrdine.data %></td>
-										<td><%= utileOrdine.ora %></td>
-										<td>Capire come impostarlo</td>						<!--  <p> ${servizio.stato==1 ? "statoOrderType.INVIATO":"statoOrderType.PRONTO"} </p> -->
-										<td><%= carrello.totale %></td>
+										<td><%= ordine.telefono %></td>
+										<td><%= ordine.data %></td>
+										<td><%= ordine.ora %></td>
+										<td><%= ordine.stato%></td>				
+										<td><%= ordine.totale %></td>
 									</tr>
 								<% }); %>
 							</tbody>

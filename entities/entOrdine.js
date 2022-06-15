@@ -6,7 +6,7 @@
 
     /**
      * Crea un nuovo ordine
-     * @param {number} id       Id dell'ordine (serve anche se ho auto-increment in DB?)
+     * @param {number} id       Id dell'ordine
      * @param {string} email    Email dell'ordine
      * @param {string} info     Contenuto dell'ordine
      * @param {number} telefono Telefono dell'ordine
@@ -15,8 +15,8 @@
      * @param {string} stato    Stato dell'ordine
      * @param {number} totale   Ammontare da pagare dell'ordine
      */
-    constructor (email, info, telefono, data, ora, stato, totale) {
-        // this.id = id;
+    constructor (id, email, info, telefono, data, ora, stato, totale) {
+        this.id = id;
         this.email = email;
         this.info = info;
         this.telefono = telefono;
