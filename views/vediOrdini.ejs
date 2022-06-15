@@ -18,5 +18,79 @@
 			<% } %>
 		</div>
 
+		<h5 class="hspace h_btm_spec"><cite title="Source Title">Vedrai tutti gli ordini</cite></h5>
+
+			<hr />
+		
+				<div class="row">
+                    
+						<h1 id="title" class="hspace_minus"><cite title="Source Title">Tutti gli ordini</cite></h1>
+						<br>
+						
+						<!-- Qui ci penserà JS
+						<ul class="list-group list-group-flush" id="servizi3-list">
+					   
+						</ul>
+						-->
+
+						<% if (typeof ordini !== "undefined" && ordini.length > 0) { %>
+							<h5>Tutti gli ordini 2</h5>
+						<hr />
+
+						<table class="table text-center shadow-lg">
+							<thead>
+								<tr class="table-primary">
+									<th>
+										Id
+									</th>
+									<th>
+										Email
+									</th>
+									<th>
+										Info
+									</th>
+									<th>
+										Telefono
+									</th>
+									<th>
+										Data
+									</th>
+									<th>
+										Ora
+									</th>
+									<th>
+										Stato
+									</th>
+									<th>
+										Totale
+									</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Id presente solo nel DB al momento -->
+								<% ordini.forEach((ordine) => { %>
+									<tr>
+										<td><%= ordine.id %></td>
+										<td><%= utente.email %></td>
+										<td><%= ordine.info %></td>
+										<td><%= utileOrdine.telefono %></td>
+										<td><%= utileOrdine.data %></td>
+										<td><%= utileOrdine.ora %></td>
+										<td>Capire come impostarlo</td>						<!--  <p> ${servizio.stato==1 ? "statoOrderType.INVIATO":"statoOrderType.PRONTO"} </p> -->
+										<td><%= carrello.totale %></td>
+									</tr>
+								<% }); %>
+							</tbody>
+						</table>
+					
+						<% } else { %>
+							<div class="alert alert-secondary" role="alert">
+								Non hai ancora ricevuto ordini.
+							</div>
+						<% } %>
+						
+				</div>
+
 	</main>
 <%- include('partials/footer'); -%>     
