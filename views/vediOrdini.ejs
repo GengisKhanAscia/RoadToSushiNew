@@ -6,6 +6,7 @@
 	<main>
 
 		<div class="container">
+
 			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">I nostri ordini</cite></h3>
 
 			<% if (message.length > 0) { %>
@@ -16,26 +17,16 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			<% } %>
-		</div>
 
-		<h5 class="hspace h_btm_spec"><cite title="Source Title">Vedrai tutti gli ordini</cite></h5>
+		<h5><cite title="Source Title">Vedrai tutti gli ordini</cite></h5>
 
 			<hr />
 		
 				<div class="row">
                     
-						<h1 id="title" class="hspace_minus"><cite title="Source Title">Tutti gli ordini</cite></h1>
 						<br>
-						
-						<!-- Qui ci penserà JS
-						<ul class="list-group list-group-flush" id="servizi3-list">
-					   
-						</ul>
-						-->
 
 						<% if (typeof ordini !== "undefined" && ordini.length > 0) { %>
-							<h5>Tutti gli ordini 2</h5>
-						<hr />
 
 						<table class="table text-center shadow-lg">
 							<thead>
@@ -91,6 +82,7 @@
 						<% } %>
 						
 				</div>
+		</div>
 
 	</main>
 <%- include('partials/footer'); -%>     

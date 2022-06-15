@@ -36,6 +36,43 @@ const EntOrdine = require('../entities/entOrdine');
 }
 
 /**
+ * Trova tutti gli ordini 
+ * @returns {Promise<EntOrdine[]>} Array di Ordini
+ */
+ function findAllOrdini() {
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM Ordine ORDER BY Data";
+
+        db.all(query, function (err, rows) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else if (rows === undefined || rows.length === 0) {
+                logger.logWarn(`Nessun ordine trovato.`);
+                resolve([]);
+            } else {
+                const ordini = [];
+
+                rows.forEach(function (row) {
+                    const ordine = new EntOrdine(
+                        row.Id,
+                        row.Email,
+                        row.Info,
+                        row.Telefono,
+                        row.Data,
+                        row.Ora,
+                        row.Stato,
+                        row.Totale);
+
+                    ordini.push(ordine);
+                });
+                resolve(ordini);
+            }
+        });
+    });
+}
+
+/**
  * Trova tutti gli ordini di un cliente
  * @param {string} email Email del cliente
  * @returns {Promise<EntOrdine[]>} Array di Ordini
@@ -74,4 +111,4 @@ const EntOrdine = require('../entities/entOrdine');
     });
 }
 
-module.exports = {addOrdine, findOrdiniByEmail};
+module.exports = {addOrdine, findOrdiniByEmail, findAllOrdini};
