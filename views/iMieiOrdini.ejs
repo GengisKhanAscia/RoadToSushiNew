@@ -18,7 +18,9 @@
 				</div>
 			<% } %>
 
-			<h5><cite title="Source Title">Vedrai esclusivamente gli ordini in preparazione/pronti dal nostro personale</cite></h5>
+			<br>
+			
+			<h5><cite title="Source Title">Vedrai tutti gli ordini che hai effettuato</cite></h5>
 
 			<hr />
 		
@@ -30,7 +32,7 @@
 
 						<table class="table text-center shadow-lg">
 							<thead>
-								<tr class="table-primary">
+								<tr id="tableimieiordini">
 									<th>
 										Id
 									</th>
@@ -62,14 +64,14 @@
 								<!-- Id presente solo nel DB al momento -->
 								<% ordini.forEach((ordine) => { %>
 									<tr>
-										<td><%= ordine.id %></td>
+										<td><strong><%= ordine.id %></strong></td>
 										<td><%= utente.email %></td>
 										<td><%= ordine.info %></td>
 										<td><%= ordine.telefono %></td>
 										<td><%= ordine.data %></td>
 										<td><%= ordine.ora %></td>
 										<td><%= ordine.stato%></td>				
-										<td><%= ordine.totale %></td>
+										<td><strong><%= ordine.totale %>€</strong></td>
 									</tr>
 								<% }); %>
 							</tbody>

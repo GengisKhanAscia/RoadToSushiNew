@@ -41,7 +41,7 @@ const EntOrdine = require('../entities/entOrdine');
  */
  function findAllOrdini() {
     return new Promise((resolve, reject) => {
-        const query = "SELECT * FROM Ordine ORDER BY Data";
+        const query = "SELECT * FROM Ordine ORDER BY Data DESC, Ora DESC";
 
         db.all(query, function (err, rows) {
             if (err) {
@@ -79,7 +79,7 @@ const EntOrdine = require('../entities/entOrdine');
  */
  function findOrdiniByEmail(email) {
     return new Promise((resolve, reject) => {
-        const query = "SELECT * FROM Ordine WHERE Email = ? ORDER BY Data";
+        const query = "SELECT * FROM Ordine WHERE Email = ? ORDER BY Data DESC, Ora DESC";
 
         db.all(query, [email], function (err, rows) {
             if (err) {

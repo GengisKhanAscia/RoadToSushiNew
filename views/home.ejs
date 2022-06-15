@@ -8,29 +8,22 @@
 <%- include('partials/navbar', { active: "home" }); -%>
 
   <body>
-    
-    <!-- <h3 class="hspace_mc">&nbsp;</h3> -->
-
-    <!-- DA SISTEMARE, TUTTO A SX-->
-    <!--
-    <div class="alert alert-warning alert-dismissible fade show alertResizing" role="alert">
-			<strong>Holy guacamole!</strong> You should check in on some of those fields below.
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-    -->
 
     <h3 class="spaziaturaTitolo" id="fond"> <strong> Road To Sushi </strong></h3>
-
-    <% if (message.length > 0) { %>
+    
+    <!-- DA SISTEMARE, TUTTO A SX (per il momento / se non sistemo tolgo) -->
+    <!--
+    < % if (message.length > 0) { %>
 			<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
 				<p>
 					<%= message %>
 				</p>
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
-		<% } %>
+		< % } %>
+    -->
 
-    <center><p id="titoletto"> <strong>&quot;</strong><cite title="Source Title">Il sushi più buono che c'è!</cite><strong>&quot;</strong> </p></center>
+    <center><p id="titoletto"><strong>&quot;</strong><cite title="Source Title">Il sushi più buono che c'è!</cite><strong>&quot;</strong> </p></center>
     
     <main> 
       <!-- Vedi sito https://www.html.it/articoli/un-menu-slider-con-immagini-e-css3/ -->
@@ -162,6 +155,9 @@
           </div>
 
           <div class="container">
+            <br>
+            <br>
+            <br>
             <!-- Covid card -->
             <div class="card" id="covid-card">
               <h5 class="card-header" id="covid19">Covid-19</h5>
@@ -175,84 +171,8 @@
             </div>
           </div>
           
-    
-          <!-- PERCHE' SCEGLIERCI -->
-          <!--
-                <h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title"> Ecco perch&eacute; scegliere noi per mangiare il pesce crudo </cite></h3>
-                <div class="row">
-                    <div class="col">
-                        <div class="card text-center spazio">
-                            <img src="/images/unused/sushiman.png" class="card-img-top padding_img">
-                            <div class="card-body">
-                              <p class="card-text">Abbiamo i migliori sushiman della zona!</p>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-center spazio">
-                            <img src="/images/unused/intime.png" class="card-img-top padding_img">
-                            <div class="card-body">
-                              <p class="card-text">La nostra puntualit&agrave; &eacute; sempre garantita</p>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-center spazio">
-                            <img src="/images/unused/bestprices.png" class="card-img-top padding_img">
-                            <div class="card-body">
-                              <p class="card-text">Ottimo rapporto qualit&aacute; - prezzo</p>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col">
-                        <div class="card text-center spazio">
-                            <img src="/images/unused/sust.png" class="card-img-top padding_img">
-                            <div class="card-body">
-                              <p class="card-text">100% prodotti sostenibili</p>
-                            </div>
-                          </div>
-                    </div>
-                </div><p>&nbsp;</p>
-          -->
-    
-          <!-- LA NOSTRA STORIA -->
-          <!--
-                <h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title"> La nostra storia</cite></h3>
-          <br>
-                <div class="row" id="storia">
-                    <blockquote class="blockquote">
-                        <p class="spazioUguale">
-                          L'azienda <span class="scrittaInRosso"><strong>RoadToSushi</strong></span> viene fondata a Febbraio 2020, poco dopo lo scoppio della pandemia COVID-19 in Italia, da Marco Ascia.
-                          L'idea è quella di dare la possibilità alle persone di poter uscire di casa e passare a ritirare il proprio ordine presso di noi.<br>
-                          Con il passare dei mesi, i clienti sono aumentati vertiginosamente grazie al <strong>rapporto qualità-prezzo</strong> che &eacute; alla base del nostro operato, 
-                          tanto da far incrementare in maniera considerevole la domanda. Cos&iacute; nel Luglio 2020 l'azienda &eacute; passata da avere qualche sushiman e un aiuto cuoco
-                          ad avere una dozzina di chef. Questo ha dato la possibilit&agrave; di tenere aperto il ristorante tutti i giorni e alternare giorni di lavoro e di pausa ai cuochi.
-                          Con dei semplici click si possono prenotare delle box di sushi e venirle a ritirare all'orario indicato durante la prenotazione.<br>
-                        </p>
-                    </blockquote>
-                </div>
-    
-          <h3 class="spaziaturaTitolo" id="fond"> <cite title="Source Title">Il nostro fondatore</cite> </h3>
-          <div clas="row">
-          <div class="col">
-            <div class="card text-center spazio">
-              <img src="/images/unused/marcoascia.jpeg" class="card-img-top padding_img">
-              </div>
-            <center> <label id="fond"><strong>MARCO ASCIA</strong></label></center> 
-          </div>
-        </div>
-    
-      -->
       </main>
       
-        <br>
-        <!--
-        <footer class="footer bg-dark text-center text-white" id="foot">
-          </footer> 
+      <br>
 
-  </body>
-  <div id="modals_uniformi">
-  </div>
-</html>
--->
 <%- include('partials/footer'); -%>

@@ -350,10 +350,11 @@ p.spazioUguale{
    color: white;
 }
 
-#btn_cerca:hover{
-   background-color: #FBFAF4;
-   color: #212529;
+#btn_cerca:hover {
+   background-color: green;
+   color: white;
    border-color: none;
+   font-weight: bold;
 }
 
 
@@ -639,6 +640,11 @@ h5.modal-title{
     background-color: red;
 }
 
+#regolamento:hover{
+    color: white;
+    font-weight: bold;
+}
+
 #covid19{
     color: red;
 }
@@ -708,4 +714,9 @@ h5.modal-title{
 
 #testoDelCarrello {
     color: #000;
+}
+
+#tableimieiordini {
+    background-color: green !important;
+    color: #212529;
 }
