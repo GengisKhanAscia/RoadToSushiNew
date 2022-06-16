@@ -99,25 +99,49 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const isLoggedIn = (req, res, next) => {
+// L'utente è loggato (Non può andare in Registrati - Login)
+const userLogged = (req, res, next) => {
   if (req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    return next();
+  }
+};
+
+// Il cliente è loggato (Può andare in Ordina - I Miei Ordini)
+const clienteLogged = (req, res, next) => {
+  if (req.isAuthenticated() && req.user.tipo_utente === 0) {
     return next();
   } else {
     res.redirect("/");
   }
 };
 
+// Il membro del personale è loggato (Può andare in Aggiungi Piatto - Vedi Ordini)
+const personaleLogged = (req, res, next) => {
+  if (req.isAuthenticated() && req.user.tipo_utente === 1) {
+    return next();
+  } else {
+    res.redirect("/");
+  }
+};
+
+// Nessun utente, loggato o meno, può andare al Checkout senza passare prima da Ordina
+const notToCheckout = (req, res, next) => {
+    res.redirect("/");
+};
+
 app.use('/', homeRouter);
 app.use('/contatti', contattiRouter);
-app.use('/regPersonale', regPersonaleRouter);
-app.use('/regCliente', regClienteRouter);
-app.use('/login', loginRouter);
+app.use('/regPersonale', userLogged, regPersonaleRouter);
+app.use('/regCliente', userLogged, regClienteRouter);
+app.use('/login', userLogged, loginRouter);
 app.use('/piatti', piattiRouter);
-app.use('/aggPiatto', aggPiattiRouter);
-app.use('/vediOrdini', vediOrdiniRouter);
-app.use('/ordina', ordinaRouter);
-app.use('/iMieiOrdini', iMieiOrdiniRouter);
-app.use('/checkout', checkoutRouter);
+app.use('/aggPiatto', personaleLogged, aggPiattiRouter);
+app.use('/vediOrdini', personaleLogged, vediOrdiniRouter);
+app.use('/ordina', clienteLogged, ordinaRouter);
+app.use('/iMieiOrdini', clienteLogged, iMieiOrdiniRouter);
+app.use('/checkout', notToCheckout, checkoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

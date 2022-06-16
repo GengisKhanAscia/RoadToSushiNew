@@ -544,7 +544,9 @@ h3{
 	font-style: none;
 }
 
+/*
 .dropdown-item.active,.dropdown-item:active{color:#fff;text-decoration:none;background-color:#4183D7}
+*/
 
 .hspace_minus{
 	margin-top: 15%;
@@ -719,4 +721,8 @@ h5.modal-title{
 #tableimieiordini {
     background-color: green !important;
     color: #212529;
+}
+
+.dropdown-item {
+    color: black !important;
 }
