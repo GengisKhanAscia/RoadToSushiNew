@@ -32,7 +32,7 @@
 
 						<table class="table text-center shadow-lg">
 							<thead>
-								<tr class="table-primary">
+								<tr id="tablevediordini">
 									<th>
 										Id
 									</th>
@@ -57,6 +57,9 @@
 									<th>
 										Totale
 									</th>
+									<th>
+										Pronto
+									</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -70,8 +73,11 @@
 										<td><%= ordine.telefono %></td>
 										<td><%= ordine.data %></td>
 										<td><%= ordine.ora %></td>
-										<td><%= ordine.stato%></td>				
+										<td><%= ordine.stato %></td>				
 										<td><strong><%= ordine.totale %>€</strong></td>
+										<% if (ordine.stato === 'In preparazione') { %>
+											<td>Bottone modifica stato</td>	
+										<% } %>	
 									</tr>
 								<% }); %>
 							</tbody>

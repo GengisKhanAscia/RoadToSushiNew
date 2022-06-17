@@ -36,15 +36,6 @@
 				<div class="col-md-6 mx-auto">
 
 					<form class="row g-3 needs-validation" id="formOrdinazione" action="/ordina" method="POST">
-						
-						<!-- ID come viene gestito? (auto-increment nel DB); NON E' QUI-->
-
-						<!-- NUMERO PIATTI (genera tanti form di inserimento piatto in base a quanti piatti metto)
-						<div>
-							<label for="numeroPiatti" class="form-label">Numero Piatti*</label>
-							<input type="number" class="form-control" id="numeroPiatti" name="numeroPiatti" min="1" max="5" placeholder="Inserisci il Numero di Piatti che vuoi ordinare" required>
-						</div>
-						-->
 
 						<!-- PIATTO 1 (contenuto nell'ordine) -->
 						<div>
@@ -115,10 +106,6 @@
 								Devi fornire un orario valido, compreso tra le 12:00 e le 22:00.
 							</div>
 						</div>
-
-						<!-- STATO (In preparazione/Pronto); NON E' QUI -->
-
-						<!-- TOTALE (€ cumulativi dalla scelta dei piatti); DOVREBBE VISUALIZZARMELO GIA' QUI IN BASE AL PREZZO DEI PIATTI SCELTI PRIMA -->
 		
 						<div class="col-12">
 							<button class="btn btn-lg ordina_btn" id="btn-ordina-vaicheckout">Vai al checkout</button>

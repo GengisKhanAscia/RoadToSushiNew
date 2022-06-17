@@ -57,11 +57,14 @@
 									<th>
 										Totale
 									</th>
+									<th>
+										Elimina
+									</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<!-- Id presente solo nel DB al momento -->
+								
 								<% ordini.forEach((ordine) => { %>
 									<tr>
 										<td><strong><%= ordine.id %></strong></td>
@@ -72,6 +75,9 @@
 										<td><%= ordine.ora %></td>
 										<td><%= ordine.stato%></td>				
 										<td><strong><%= ordine.totale %>€</strong></td>
+										<% if (ordine.stato === 'Pronto') { %>
+											<td>Bottone elimina ordine</td>	
+										<% } %>	
 									</tr>
 								<% }); %>
 							</tbody>
