@@ -726,3 +726,13 @@ h5.modal-title{
 .dropdown-item {
     color: black !important;
 }
+
+#piatto_noresult {
+    background-color: #FBFAF4;
+    border: none;
+}
+
+#testo_noresult {
+    color : red !important;
+    font-weight: bold;
+}

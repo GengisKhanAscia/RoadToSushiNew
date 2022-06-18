@@ -1,7 +1,6 @@
 "use strict";
 
 const db = require('../database');
-const crypt = require('bcrypt');
 const logger = require('../util/logger');
 const EntOrdine = require('../entities/entOrdine');
 
@@ -23,15 +22,45 @@ const EntOrdine = require('../entities/entOrdine');
             ordine.data,
             ordine.ora,
             ordine.stato,
-            ordine.totale,], async function (err) {
-                if (err) {
-                    logger.logError(err);
-                    reject(err);
-                } else {
-                    logger.logInfo(`Aggiunto ordine con l'id: ${this.lastID}`);
-                    resolve(this.lastID); 
-                }
-            });
+            ordine.totale
+        ], async function (err) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else {
+                logger.logInfo(`Aggiunto ordine con l'id: ${this.lastID}`);
+                resolve(this.lastID); 
+            }
+        });
+    });
+}
+
+/**
+ * Modifica Ordine nel database (Cambia lo Stato da [INVIATO] 'In preparazione' a [PRONTO] 'Pronto')
+ * @param {EntOrdine} ordine Ordine da aggiornare nel db
+ * @returns {Promise<Number>} Id dell'ordine aggiornato
+ */
+ function updateOrdine(ordine) {
+    return new Promise((resolve, reject) => {
+        const query = "UPDATE Ordine SET Email = ?, Info = ?, Telefono = ?, Data = ?, Ora = ?, Stato = ?, Totale = ?, WHERE id = ?";
+
+        db.run(query, [
+            ordine.email,
+            ordine.info,
+            ordine.telefono,
+            ordine.data,
+            ordine.ora,
+            ordine.stato,
+            ordine.totale
+        ], function (err) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else {
+                logger.logInfo(`Aggiornato ordine con l'id: ${this.lastID}`);
+                resolve(ordine.id); 
+            }
+        });
     });
 }
 
@@ -111,4 +140,4 @@ const EntOrdine = require('../entities/entOrdine');
     });
 }
 
-module.exports = {addOrdine, findOrdiniByEmail, findAllOrdini};
+module.exports = {addOrdine, updateOrdine, findOrdiniByEmail, findAllOrdini};
