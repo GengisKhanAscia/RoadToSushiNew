@@ -18,6 +18,19 @@
 				</div>
 			<% } %>
 
+			<% if (errors.length > 0) { %>
+				<div class="alert alert-danger" role="alert">
+					<% if (Array.isArray(errors)) { %>
+						<% errors.forEach((error) => { %>
+							<p> <%= error.msg %> </p>
+						<% }); %>
+					<% } else { %>
+						<p> <%= errors %> </p>
+					<% } %>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			<% } %>
+
 		<br>
 
 		<h5><cite title="Source Title">Vedrai tutti gli ordini della clientela</cite></h5>
@@ -66,7 +79,7 @@
 								<% ordini.forEach((ordine) => { %>
 									<tr>
 										<td><strong><%= ordine.id %></strong></td>
-										<td><%= utente.email %></td>
+										<td><%= ordine.email %></td>
 										<td><%= ordine.info %></td>
 										<td><%= ordine.telefono %></td>
 										<td><%= ordine.data %></td>
@@ -75,11 +88,13 @@
 										<td><strong><%= ordine.totale %>€</strong></td>
 										<td>
 											<% if (ordine.stato === 'In preparazione') { %>
-												<button class="btn btn-outline-success shadow rounded edit" data-bs-toggle="modal" data-bs-target="#edit-modal" title="modStato">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-														<path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-													</svg>
-												</button>
+												<form id="formModificaStato" action="vediOrdini/<%= ordine.id %>" method="POST">
+													<button class="btn btn-outline-success shadow rounded edit" data-bs-toggle="modal" data-bs-target="#edit-modal" title="modStato">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+															<path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+														</svg>
+													</button>
+												</form>
 											<% } %>
 										</td>
 									</tr>

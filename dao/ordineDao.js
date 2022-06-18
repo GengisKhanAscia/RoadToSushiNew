@@ -3,6 +3,7 @@
 const db = require('../database');
 const logger = require('../util/logger');
 const EntOrdine = require('../entities/entOrdine');
+const orderStatus = require('../entities/enumeratives/statoOrderType');
 
 /************************** ORDINE *****************************/
 
@@ -37,28 +38,43 @@ const EntOrdine = require('../entities/entOrdine');
 
 /**
  * Modifica Ordine nel database (Cambia lo Stato da [INVIATO] 'In preparazione' a [PRONTO] 'Pronto')
- * @param {EntOrdine} ordine Ordine da aggiornare nel db
+ * @param {Number} id Id dell'ordine da aggiornare nel db
  * @returns {Promise<Number>} Id dell'ordine aggiornato
  */
- function updateOrdine(ordine) {
+ function updateOrdine(id) {
     return new Promise((resolve, reject) => {
-        const query = "UPDATE Ordine SET Email = ?, Info = ?, Telefono = ?, Data = ?, Ora = ?, Stato = ?, Totale = ?, WHERE id = ?";
+        const query = "UPDATE Ordine SET Stato = ? WHERE id = ?";
 
         db.run(query, [
-            ordine.email,
-            ordine.info,
-            ordine.telefono,
-            ordine.data,
-            ordine.ora,
-            ordine.stato,
-            ordine.totale
+            orderStatus.PRONTO,
+            id
         ], function (err) {
             if (err) {
                 logger.logError(err);
                 reject(err);
             } else {
                 logger.logInfo(`Aggiornato ordine con l'id: ${this.lastID}`);
-                resolve(ordine.id); 
+                resolve(id); 
+            }
+        });
+    });
+}
+
+/**
+ * Cancella un ordine dal db
+ * @param {number} id Id dell'ordine da cancellare nel db
+ * @returns {Promise<Number>} Id dell'ordine da eliminare
+ */
+ function deleteOrdine(id) {
+    return new Promise((resolve, reject) => {
+        const query = "DELETE FROM Ordine WHERE id = ?";
+
+        db.run(query, [id], function (err) {
+            if (err) {
+                logger.logError(err);
+                reject(err);
+            } else {
+                resolve(id);
             }
         });
     });
@@ -140,4 +156,4 @@ const EntOrdine = require('../entities/entOrdine');
     });
 }
 
-module.exports = {addOrdine, updateOrdine, findOrdiniByEmail, findAllOrdini};
+module.exports = {addOrdine, updateOrdine, deleteOrdine, findOrdiniByEmail, findAllOrdini};
