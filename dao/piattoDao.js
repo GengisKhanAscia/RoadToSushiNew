@@ -109,7 +109,7 @@ const EntPiatto = require('../entities/entPiatto');
             piatto.nome,
             piatto.prezzo,
             piatto.ingredienti,
-            piatto.immagine,], function (err) {
+            piatto.immagine], function (err) {
                 if (err) {
                     logger.logError(err);
                     reject(err);

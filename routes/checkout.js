@@ -15,7 +15,8 @@ router.get('/', function(req, res, next) {
     scripts: ['/javascripts/orario_negozio.js'           // Orari
              ,'/javascripts/richiedimodals.js'           // Modals
              ,'/javascripts/validazioneCheckout.js'],    // Validazione pagamento ordine
-    utente: req.user
+    utente: req.user,
+    title: "Checkout"
   });
 });
 
@@ -82,7 +83,8 @@ router.post('/', [
         styles: ['/stylesheets/custom.css'],
         scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
         utente: req.user,
-        ordini: ordini
+        ordini: ordini,
+        title: "I Miei Ordini"
       });
     })
       

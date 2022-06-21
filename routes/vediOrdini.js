@@ -15,7 +15,8 @@ router.get('/', async function(req, res, next) {
     scripts: ['/javascripts/orario_negozio.js'     // Orari
              ,'/javascripts/richiedimodals.js'],   // Modals
     utente: req.user,
-    ordini: ordini
+    ordini: ordini,
+    title: "Vedi Ordini"
   });
 });
 
@@ -35,7 +36,8 @@ router.post('/:idOrdine', async function (req, res, next) {
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
       utente: req.user,
       ordini: ordini,
-      message:`L'ordine con id ${id} è pronto!`
+      message:`L'ordine con id ${id} è pronto!`,
+      title: "Vedi Ordini"
     });
 
   })
@@ -49,7 +51,8 @@ router.post('/:idOrdine', async function (req, res, next) {
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
       utente: req.user,
       ordini: ordini,
-      errors: err
+      errors: err,
+      title: "Vedi Ordini"
     })
   });
 

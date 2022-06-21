@@ -12,9 +12,10 @@ const EntCliente = require('../entities/entCliente');
 router.get('/', function(req, res, next) {
   res.render('regCliente', {
     styles: ['/stylesheets/custom.css'],
-    scripts: ['/javascripts/orario_negozio.js'            // Orari
-             ,'/javascripts/richiedimodals.js'            // Modals
-             ,'/javascripts/validazioneRegistrazione.js'] // Validazione form registrazione
+    scripts: ['/javascripts/orario_negozio.js'             // Orari
+             ,'/javascripts/richiedimodals.js'             // Modals
+             ,'/javascripts/validazioneRegistrazione.js'], // Validazione form registrazione
+    title: "Registrazione Cliente"
   });
 });
 

@@ -14,7 +14,8 @@ router.get('/', async function(req, res, next) {
     scripts: ['/javascripts/orario_negozio.js'     // Orari
              ,'/javascripts/richiedimodals.js'     // Modals
              ,'/javascripts/validazioneRicerca.js'],  
-    utente: req.user
+    utente: req.user,
+    title: "Piatti"
   });
 });
 

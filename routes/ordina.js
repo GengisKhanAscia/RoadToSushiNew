@@ -16,7 +16,8 @@ router.get('/', async function(req, res, next) {
     scripts: ['/javascripts/orario_negozio.js'       // Orari
              ,'/javascripts/richiedimodals.js'       // Modals
              ,'/javascripts/validazioneOrdine.js'],  // Validazione nuovo ordine
-    utente: req.user
+    utente: req.user,
+    title: "Ordina"
   });
 });
 

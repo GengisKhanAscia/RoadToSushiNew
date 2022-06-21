@@ -22,7 +22,8 @@ router.get('/', function(req, res, next) {
     scripts: ['/javascripts/orario_negozio.js'          // Orari
              ,'/javascripts/richiedimodals.js'          // Modals
              ,'/javascripts/validazioneAggPiatto.js'],  // Validazione aggiunta piatto
-    utente: req.user
+    utente: req.user,
+    title: "Aggiungi Piatto"
   });
 });
 

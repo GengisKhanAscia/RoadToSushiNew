@@ -9,14 +9,15 @@ const logger = require('../util/logger');
 router.get('/', function(req, res, next) {
   res.render('login', {
     styles: ['/stylesheets/custom.css'],
-    scripts: ['/javascripts/orario_negozio.js'            // Orari
-             ,'/javascripts/richiedimodals.js'            // Modals
-             ,'/javascripts/validazioneLogin.js']         // Validazione form login
+    scripts: ['/javascripts/orario_negozio.js'             // Orari
+             ,'/javascripts/richiedimodals.js'             // Modals
+             ,'/javascripts/validazioneLogin.js'],         // Validazione form login
+    title: "Login"
   });
 });
 
 // POST di un login
-router.post("/", (req, res, next) => {  // era /login
+router.post("/", (req, res, next) => {  
   console.log("Stampo email pre-autenticazione: " + req.body.email);
   console.log("Stampo password pre-autenticazione: " + req.body.password);
   passport.authenticate("local", (err, user, info) => {
@@ -27,9 +28,10 @@ router.post("/", (req, res, next) => {  // era /login
       if (!user) {
         logger.logError(info.message);
         return res.render("login", { 
-              errors: info.message,       // Che cosa stampa? Invalid email/pwd di app.js? [Missing credentials]
+              errors: info.message,      
               styles: ['/stylesheets/custom.css'],
-              scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js', '/javascripts/validazioneLogin.js']
+              scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js', '/javascripts/validazioneLogin.js'],
+              title: "Login"
           });
       }
 
@@ -44,7 +46,8 @@ router.post("/", (req, res, next) => {  // era /login
               utente: user,
               message:`${user.email} ti sei loggato con successo!`, 
               styles: ['/stylesheets/custom.css'],
-              scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js']
+              scripts: ['/javascripts/richiedimodals.js', '/javascripts/orario_negozio.js'],
+              title: "Home"
           });
 
           logger.logInfo("Utente loggato con successo!");

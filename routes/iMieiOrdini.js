@@ -15,7 +15,8 @@ router.get('/', async function(req, res, next) {
     scripts: ['/javascripts/orario_negozio.js'     // Orari
              ,'/javascripts/richiedimodals.js'],   // Modals
     utente: req.user,
-    ordini: ordini
+    ordini: ordini,
+    title: "I Miei Ordini"
   });
 });
 
@@ -36,7 +37,8 @@ router.post('/:idOrdine', async function (req, res, next) {
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
       utente: req.user,
       ordini: ordini,
-      message:`L'ordine con id ${id} è stato annullato. Presto riceverai un rimborso!`
+      message:`L'ordine con id ${id} è stato annullato. Presto riceverai un rimborso!`,
+      title: "I Miei Ordini"
     });
 
   })
@@ -50,7 +52,8 @@ router.post('/:idOrdine', async function (req, res, next) {
       scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
       utente: req.user,
       ordini: ordini,
-      errors: err
+      errors: err,
+      title: "I Miei Ordini"
     })
   });
 

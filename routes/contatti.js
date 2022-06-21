@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
     styles: ['/stylesheets/custom.css'],
     scripts: ['/javascripts/orario_negozio.js'     // Orari
              ,'/javascripts/richiedimodals.js'],   // Modals
-    utente: req.user  
+    utente: req.user,
+    title: "Contatti"  
   });
 });
 
