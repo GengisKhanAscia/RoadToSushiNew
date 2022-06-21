@@ -128,7 +128,12 @@ const personaleLogged = (req, res, next) => {
 
 // Nessun utente, loggato o meno, può andare al Checkout senza passare prima da Ordina
 const notToCheckout = (req, res, next) => {
+  if (!req.isAuthenticated() || (req.isAuthenticated() && req.user.tipo_utente === 1)) {
     res.redirect("/");
+  }
+  else{
+    res.redirect("/");
+  }
 };
 
 app.use('/', homeRouter);
