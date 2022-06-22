@@ -13,7 +13,7 @@ const EntPiatto = require('../entities/entPiatto');
  */
  function findAllPiatti(){
     return new Promise((resolve, reject) => {
-        const query = "SELECT * FROM Piatti";
+        const query = "SELECT * FROM Piatti ORDER BY Nome ASC";
 
         db.all(query, function (err, rows) {
             if(err){

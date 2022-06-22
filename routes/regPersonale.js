@@ -62,13 +62,13 @@ router.post("/", upload.single('imgPersonale'), [
         req.body.password,
         req.body.tipo_utente,
     );
-
+    
     const personale = new EntPersonale(
         req.body.email,
         req.body.nome,
         req.body.cognome,
         req.body.telefono,
-        req.file.buffer
+        req.file === undefined ? null : req.file.buffer
     );
 
     // Aggiungo Utente

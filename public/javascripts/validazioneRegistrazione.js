@@ -75,7 +75,7 @@ const imgPersonale = document.getElementById("imgPersonale");
 /**
 * @type {HTMLSpanElement}
 */
-const validazioneImgPersonale = document.getElementById("validazione-imgPersonale");
+// const validazioneImgPersonale = document.getElementById("validazione-imgPersonale");
 
 /************************** INIZIALIZZAZIONE *****************************/
 
@@ -85,9 +85,11 @@ email.classList.add('non-valido');
 password.classList.add('non-valido');
 telefono.classList.add('non-valido');
 invalidCheck.classList.add('non-valido');
+/*
 if(imgPersonale){
     imgPersonale.classList.add('non-valido');
 }
+*/
 disableBtn(signupBtn);
 let valid = true;
 const formRegistrazione = document.getElementById("formRegistrazione");
@@ -207,6 +209,8 @@ invalidCheck.addEventListener("input", () => {
 // Check Immagine del Personale
 imgPersonale.addEventListener("input", () => {
     const filePath = imgPersonale.value;
+    validaFormatoImmagine(filePath);
+    /*
     if(!validaFormatoImmagine(filePath)){
         setValidationMessage(validazioneImgPersonale, "Si accettano solo .jpg, .jpeg o .png!");
         disableBtn(signupBtn);
@@ -222,6 +226,7 @@ imgPersonale.addEventListener("input", () => {
             valid = true;
         }
     }
+    */
 });
 
 signupBtn.addEventListener("click", (e) => {

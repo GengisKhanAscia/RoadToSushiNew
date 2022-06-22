@@ -57,22 +57,26 @@ router.post("/", upload.single('imgPiatto'), [
     let piattoId = await piattoDao.addPiatto(piatto);
     logger.logInfo(`Nuovo piatto aggiunto con il nome: ${piattoId}`);
 
+    const piatti = await piattoDao.findAllPiatti();
+
     res.render("piatti", {
-        utente: req.user,
-        title: "Piatti",
-        message:`${piatto.nome} aggiunto correttamente!`, 
-        styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
+      piatti: piatti,
+      utente: req.user,
+      title: "Piatti",
+      message:`${piatto.nome} aggiunto correttamente!`, 
+      styles: ['/stylesheets/custom.css'],
+      scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
     });
+    
   } else {
     logger.logError(JSON.stringify(errors));
 
     res.render("aggPiatto", {
-        utente: req.user,
-        title: "Aggiungi Piatto",
-        errors: errors.array(),
-        styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneAggPiatto.js']
+      utente: req.user,
+      title: "Aggiungi Piatto",
+      errors: errors.array(),
+      styles: ['/stylesheets/custom.css'],
+      scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneAggPiatto.js']
     });
   }
 });
