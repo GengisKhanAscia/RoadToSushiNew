@@ -88,15 +88,11 @@ dataOrdine.addEventListener("input", () => {
     }
 });
 
-// PROVO TOGLIENDO COMMENTO (prima non c'era)
-/*
 aggiungiOrdineBtn.addEventListener("click", (e) => {
     if (!valid) {
         e.preventDefault();
     }
 });
-*/
-
 
 /************************** VALIDATION *****************************/
 

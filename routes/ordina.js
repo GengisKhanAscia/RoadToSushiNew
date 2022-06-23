@@ -75,12 +75,12 @@ router.post('/', [
 
   body("oraOrdine").trim().matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/).escape().withMessage("L'ora deve essere di formato HH:mm")  
   .custom(async function (oraOrdine) {
-    if(oraOrdine <= "12:00" || oraOrdine >= "22:00"){
-      logger.logDebug(`Orario che NON va bene`);
-      throw new Error("Devi fornire un orario valido, compreso tra le 12:00 e le 22:00.");
+    if((oraOrdine >= "12:00" && oraOrdine <= "15:00") || (oraOrdine >= "19:00" && oraOrdine <= "22:00")){
+      logger.logDebug(`Orario che va bene`);
     }
     else{
-      logger.logDebug(`Orario che va bene`);
+      logger.logDebug(`Orario che NON va bene`);
+      throw new Error("Devi fornire un orario valido, compreso tra le 12:00 e le 22:00.");
     }
   }),
   

@@ -1,5 +1,3 @@
-// Sarebbe server.js
-
 "use strict";
 
 // ----------------------- IMPORT -----------------------
@@ -132,7 +130,7 @@ const notToCheckout = (req, res, next) => {
     res.redirect("/");
   }
   else{
-    res.redirect("/");
+    return next();
   }
 };
 

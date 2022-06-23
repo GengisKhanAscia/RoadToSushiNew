@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
 });
 
 // Update dell'ordine nel DB
-router.post('/:idOrdine', async function (req, res, next) {
+router.post('/Modifica/:idOrdine', async function (req, res, next) {
 
   const idOrdine = req.params.idOrdine;
 
@@ -56,6 +56,36 @@ router.post('/:idOrdine', async function (req, res, next) {
     })
   });
 
+});
+
+// Filtra gli ordini 'In preparazione' di tutti i Clienti
+router.post('/InPreparazione', async function(req, res, next) {
+
+  const ordini = await ordineDao.findAllOrdiniInPreparazione();
+
+  res.render('vediOrdini', {
+    styles: ['/stylesheets/custom.css'],
+    scripts: ['/javascripts/orario_negozio.js'     // Orari
+             ,'/javascripts/richiedimodals.js'],   // Modals
+    utente: req.user,
+    ordini: ordini,
+    title: "Vedi Ordini"
+  });
+});
+
+// Filtra gli ordini 'Pronto' di tutti i Clienti
+router.post('/Pronto', async function(req, res, next) {
+
+  const ordini = await ordineDao.findAllOrdiniPronto();
+
+  res.render('vediOrdini', {
+    styles: ['/stylesheets/custom.css'],
+    scripts: ['/javascripts/orario_negozio.js'     // Orari
+             ,'/javascripts/richiedimodals.js'],   // Modals
+    utente: req.user,
+    ordini: ordini,
+    title: "Vedi Ordini"
+  });
 });
 
 module.exports = router;

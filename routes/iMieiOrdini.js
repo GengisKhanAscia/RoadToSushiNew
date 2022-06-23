@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
 });
 
 // Delete dell'ordine nel DB
-router.post('/:idOrdine', async function (req, res, next) {
+router.post('/Elimina/:idOrdine', async function (req, res, next) {
 
   const idOrdine = req.params.idOrdine;
   const email = req.user.email;
@@ -57,6 +57,36 @@ router.post('/:idOrdine', async function (req, res, next) {
     })
   });
 
+});
+
+// Filtra gli ordini 'In preparazione' del Cliente
+router.post('/InPreparazione', async function(req, res, next) {
+
+  const ordini = await ordineDao.findOrdiniClienteInPreparazioneByEmail(req.user.email);
+
+  res.render('iMieiOrdini', {
+    styles: ['/stylesheets/custom.css'],
+    scripts: ['/javascripts/orario_negozio.js'     // Orari
+             ,'/javascripts/richiedimodals.js'],   // Modals
+    utente: req.user,
+    ordini: ordini,
+    title: "I Miei Ordini"
+  });
+});
+
+// Filtra gli ordini 'Pronto' del Cliente
+router.post('/Pronto', async function(req, res, next) {
+
+  const ordini = await ordineDao.findOrdiniClienteProntoByEmail(req.user.email);
+
+  res.render('iMieiOrdini', {
+    styles: ['/stylesheets/custom.css'],
+    scripts: ['/javascripts/orario_negozio.js'     // Orari
+             ,'/javascripts/richiedimodals.js'],   // Modals
+    utente: req.user,
+    ordini: ordini,
+    title: "I Miei Ordini"
+  });
 });
 
 module.exports = router;

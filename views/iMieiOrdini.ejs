@@ -7,7 +7,15 @@
 
 		<div class="container">
 
-			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">I miei ordini</cite></h3>
+			<h3 class="spaziaturaTitolo" id="fond"><cite title="Source Title">I miei ordini</cite>
+
+				<button id="filter-collapse-btn" class="btn btn-info shadow-lg" type="button" data-bs-toggle="collapse" data-bs-target="#filter-collapse" aria-expanded="false" aria-controls="filter-collapse">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+						<path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+					</svg>
+				</button>
+
+			</h3>
 
 			<% if (message.length > 0) { %>
 				<div class="alert alert-warning alert-dismissible fade show alertResizing" align="center" role="alert">
@@ -32,6 +40,58 @@
 			<% } %>
 
 			<br>
+			
+			<div class="container">
+				<div id="filter-collapse" class="collapse">
+					<div class="card card-body" id="filter-collapse-body">
+						<div class="row justify-content-center">
+						
+							<div class="col">
+								<form id="formFiltraInPreparazione" action="/iMieiOrdini/InPreparazione" method="POST">
+										<button type="submit" class="btn btn-danger">
+											In preparazione
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
+												<rect width="256" height="256" fill="none"></rect>
+												<line x1="128" y1="32" x2="128" y2="64" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="195.9" y1="60.1" x2="173.3" y2="82.7" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="224" y1="128" x2="192" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="195.9" y1="195.9" x2="173.3" y2="173.3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="128" y1="224" x2="128" y2="192" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="60.1" y1="195.9" x2="82.7" y2="173.3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="32" y1="128" x2="64" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+												<line x1="60.1" y1="60.1" x2="82.7" y2="82.7" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+											</svg>
+										</button>
+								</form>
+							</div>
+
+							<div class="col">
+								<form id="formFiltraPronto" action="/iMieiOrdini/Pronto" method="POST">
+									<button type="submit" class="btn btn-success">
+										Pronto
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+											<path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+											<path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+										</svg>
+									</button>
+								</form>
+							</div>
+
+							<div class="col">
+								<form id="formRicaricaPagina" action="/iMieiOrdini" method="GET">
+									<button type="submit" class="btn btn-warning">
+										Reset
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline>
+											<path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+										</svg> 
+									</button>
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<h5><cite title="Source Title">Vedrai tutti gli ordini che hai effettuato</cite></h5>
 
@@ -88,7 +148,7 @@
 										<td><strong><%= ordine.totale %>€</strong></td>
 										<td>
 											<% if (ordine.stato === 'In preparazione') { %>
-												<form id="formEliminaOrdine" action="iMieiOrdini/<%= ordine.id %>" method="POST">
+												<form id="formEliminaOrdine" action="/iMieiOrdini/Elimina/<%= ordine.id %>" method="POST">
 													<button class="btn btn-outline-danger shadow rounded remove" data-id="<%= ordine.id %>">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
 															<path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
