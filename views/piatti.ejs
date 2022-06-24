@@ -30,7 +30,7 @@
 					<% if(piatti.length > 0) { %>
 						<% piatti.forEach((piatto) => { %>
 							<div class="card piatto mb-3">
-								<img src="data:image/bmp;base64,<%= piatto.immagine.toString('base64')%>" class="card-img-top img-fluid rounded-start resizingPiatti"> <!-- height="30" width="30"> IMMAGINE PIATTO class = img-fluid rounded-start img-struttur.. -->
+								<img src="data:image/bmp;base64,<%= piatto.immagine.toString('base64')%>" class="card-img-top img-fluid rounded-start resizingPiatti">
 								<div class="card-body">
 									<h3 class="card-title nome">
 										<%= piatto.nome %>

@@ -14,7 +14,7 @@ function giorno_ora(){
     
    const giorno = moment().day();
    const ora = moment().hours();
-   const minuti = moment().minutes();
+
    switch(giorno){
        // Moment.js conta da 0 (Domenica) a 6 (Sabato)
         case 0:
@@ -24,7 +24,7 @@ function giorno_ora(){
         case 4:
         case 5:
         case 6:
-            if((ora>=12&&ora<=15) || (ora>=19&&ora<=22))
+            if((ora >= 12 && ora <= 15) || (ora >= 19 && ora <= 22))
                 open_close.innerHTML = "APERTO";
             else
                 open_close.innerHTML = "CHIUSO";

@@ -162,7 +162,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-//Attivo definitivamente il server --> Ora accetto richieste
+// Attivo definitivamente il server --> Ora accetto richieste
 app.listen(port, () => console.log(`Il server di RoadToSushi è attivo all'indirizzo http://localhost:${port}`));
 
 module.exports = app;

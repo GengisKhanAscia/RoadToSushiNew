@@ -2,10 +2,6 @@
 
 /************************** CONSTANTS *****************************/
 
-// const numeroPiatti = document.getElementById("numeroPiatti");
-
-// const formEsternoJs = document.getElementById("formjs");
-
 /**
 * @type {HTMLButtonElement}
 */
@@ -42,15 +38,6 @@ const today = new Date();
 
 /************************** EVENT LISTENERS *****************************/
 
-/*
-generaFormPiatti();
-
-// Check Numero Piatti
-numeroPiatti.addEventListener("input", () => {
-    generaFormPiatti();
-});
-*/
-
 // Check Telefono
 telefono.addEventListener("input", () => {
     if (!validaTelefono(telefono.value)) {
@@ -68,7 +55,6 @@ telefono.addEventListener("input", () => {
         }
     }
 });
-
 
 // Check Data Ordine
 dataOrdine.addEventListener("input", () => {
@@ -105,7 +91,6 @@ aggiungiOrdineBtn.addEventListener("click", (e) => {
  function validaTelefono(telefono) {
     return /^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{7}$/.test(telefono);
 }
-
 
 /**
  * Valida data dell'ordine
@@ -149,41 +134,3 @@ function enableBtn(btn) {
 function disableBtn(btn) {
     btn.setAttribute("disabled", "true");
 }
-
-/************************** EXTRA-FUNCTION *****************************/
-
-/**
- * Genera il numero di form per l'inserimento del piatto
- */
-/*
-function generaFormPiatti() {
-    // Rimuovo i form con classe 'div-paittiejs'
-    const divPiatti = document.getElementsByClassName('div-piattijs');
-    while (divPiatti.length > 0) {
-        divPiatti[0].parentNode.removeChild(divPiatti[0]); // Continua a rimuovere partendo dal primo in alto
-    }
-
-    // creo e aggiungo tanti div-campi quanti ne richiede l'utente
-    const inputNumeroPiatti = parseInt(numeroPiatti.value);
-    for (let i = 1; i <= inputNumeroPiatti; i++) {
-        const div = document.createElement('div');
-        div.className = 'form-group mb-3 div-piattijs';
-        div.innerHTML = `<select class="form-select"
-                        name="lista-piatti"
-                        id="lista-piatti"
-                        required>
-                        <option value="" disabled selected>Seleziona il piatto ${i}</option>
-                        
-                        <% if (typeof piatti !== "undefined") { %> 
-                            <% if(piatti.length > 0) { %>
-                                <% piatti.forEach((piatto) => { %>
-                                    <option value="<%= piatto.nome %>"><%= piatto.nome + " " + piatto.prezzo %> €</option> 
-                                <% }); %>
-                            <% } %>
-                        <% } %>
-
-                        </select>`;
-        formEsternoJs.appendChild(div);
-    }
-}
-*/

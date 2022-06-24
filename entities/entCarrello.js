@@ -13,7 +13,7 @@ const Piatto = require('./entPiatto');
         this.items = [{
             piatto: piatto.nome
         }];
-        this.totale = piatto.prezzo; // Superfluo?
+        this.totale = piatto.prezzo;
     }
 }
 

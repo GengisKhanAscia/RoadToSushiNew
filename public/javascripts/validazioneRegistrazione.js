@@ -72,11 +72,6 @@ const validazioneInvalidCheck = document.getElementById("validazione-invalidChec
  */
 const imgPersonale = document.getElementById("imgPersonale");
 
-/**
-* @type {HTMLSpanElement}
-*/
-// const validazioneImgPersonale = document.getElementById("validazione-imgPersonale");
-
 /************************** INIZIALIZZAZIONE *****************************/
 
 nome.classList.add('non-valido');
@@ -85,11 +80,6 @@ email.classList.add('non-valido');
 password.classList.add('non-valido');
 telefono.classList.add('non-valido');
 invalidCheck.classList.add('non-valido');
-/*
-if(imgPersonale){
-    imgPersonale.classList.add('non-valido');
-}
-*/
 disableBtn(signupBtn);
 let valid = true;
 const formRegistrazione = document.getElementById("formRegistrazione");
@@ -210,23 +200,6 @@ invalidCheck.addEventListener("input", () => {
 imgPersonale.addEventListener("input", () => {
     const filePath = imgPersonale.value;
     validaFormatoImmagine(filePath);
-    /*
-    if(!validaFormatoImmagine(filePath)){
-        setValidationMessage(validazioneImgPersonale, "Si accettano solo .jpg, .jpeg o .png!");
-        disableBtn(signupBtn);
-        imgPersonale.classList.add('non-valido');
-        valid = false;
-    }
-    else{
-        clearValidationMsg(validazioneImgPersonale);
-        imgPersonale.classList.remove('non-valido');
-        const nonValidi = formRegistrazione.querySelectorAll('.non-valido');
-        if(nonValidi.length === 0){
-            enableBtn(signupBtn);
-            valid = true;
-        }
-    }
-    */
 });
 
 signupBtn.addEventListener("click", (e) => {

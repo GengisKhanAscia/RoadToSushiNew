@@ -1,6 +1,5 @@
 <%- include('partials/head', { active: "home" }); -%>
 <%- include('partials/navbar'); -%>
-    <!-- <meta name="format-detection" content="telephone=no"> --> 
 
 <body>
 
@@ -29,7 +28,7 @@
 
 			<div class="row">
 
-				<form encType="multipart/form-data" class="row g-3 needs-validation" id="formRegistrazione" action="regPersonale" method="POST"> <!-- lasciare encType="multipart/form-data" se c'è immagine -->
+				<form encType="multipart/form-data" class="row g-3 needs-validation" id="formRegistrazione" action="regPersonale" method="POST"> <!-- Lasciare encType="multipart/form-data" se c'è immagine -->
 				
 					<!-- NOME -->
 					<div class="col-md-4">
@@ -88,12 +87,6 @@
                             <a href="pdf/GDPR.pdf" id="termcondiz" style="color: black;" target="_blank">Termini &amp; Condizioni</a>
                             - Accettazione consenso sui dati GDPR della privacy
                             </label>
-							<!--
-							<div class="invalid-feedback">
-								<br>
-								<p style="text-align:center">Non hai spuntato la checkbox della privacy</p>
-							</div>
-							-->
                         </div>
                         </div>
 					<div class="col-12">
@@ -104,7 +97,7 @@
 			</div>
 		
 		</div>
-        <!-- UTILE? -->
+
 		<h3 class="hspace_mc_btm">&nbsp;</h3>
 	</main>
 <%- include('partials/footer'); -%>

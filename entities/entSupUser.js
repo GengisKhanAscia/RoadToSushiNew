@@ -1,6 +1,6 @@
 
 /**
- * @class User rappresenta un utente
+ * @class EntSupUser rappresenta una superclasse da appoggio 
  */
  class EntSupUser{
 
