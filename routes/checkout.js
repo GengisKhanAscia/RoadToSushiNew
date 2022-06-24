@@ -84,7 +84,8 @@ router.post('/', [
         scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js'], 
         utente: req.user,
         ordini: ordini,
-        title: "I Miei Ordini"
+        title: "I Miei Ordini",
+        message:`Ordine ${id} aggiunto con successo!`, 
       });
     })
       

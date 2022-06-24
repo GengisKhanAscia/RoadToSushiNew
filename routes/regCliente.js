@@ -26,10 +26,15 @@ router.post("/", [
   body("email").trim().isEmail().withMessage("Inserisci un'email valida").escape()
       .custom(async function (email) {
           const cliente = await utenteDao.findClienteByEmailAndTipo_utente(email);
+          const personale = await utenteDao.findUtenteByEmail(email);
 
-          if(!cliente.hasOwnProperty("error")) { // Se findClienteByEmailAndTipo_utente trova un cliente e non l'errore "Cliente non trovato"
+          if(!cliente.hasOwnProperty("error")) {        // Se findClienteByEmailAndTipo_utente trova un cliente e non l'errore "Cliente non trovato"
               logger.logDebug(`Esiste già un cliente con l'email ${email}`);
               throw new Error("L'email inserita è già in uso.");
+          }
+          else if(!personale.hasOwnProperty("error")) { // Se findUtenteByEmail trova un membro del personale e non l'errore "Utente non trovato"
+            logger.logDebug(`Esiste già un membro del personale con l'email ${email}`);
+            throw new Error("L'email inserita è già in uso.");
           }
       }),
   body("telefono").trim().matches(/^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{7}$/).escape().withMessage("Il numero di telefono deve essere di 10 numeri e può contenere il prefisso italiano (+39)"),
@@ -74,7 +79,7 @@ router.post("/", [
         title: "Login",
         message:`${cliente.nome} ${cliente.cognome} ti sei registrato con successo!`, 
         styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/validazioneLogin.js']
+        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js','/javascripts/validazioneLogin.js']
     });
   } else {
     logger.logError(JSON.stringify(errors));

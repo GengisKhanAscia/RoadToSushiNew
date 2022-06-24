@@ -29,15 +29,20 @@ router.get('/', function(req, res, next) {
 
 // Server side validation
 router.post("/", upload.single('imgPersonale'), [
-  body("nome").trim().matches(/^[a-zA-Z]{1,50}$/).escape().withMessage("Inserisci un nome valido"),
-  body("cognome").trim().matches(/^[a-zA-Z]{1,50}$/).escape().withMessage("Inserisci un cognome valido"),
+  body("nome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un nome valido"),
+  body("cognome").trim().matches(/^[a-zA-Z ]{1,50}$/).escape().withMessage("Inserisci un cognome valido"),
   body("email").trim().isEmail().withMessage("Inserisci un'email valida").escape()
       .custom(async function (email) {
           const personale = await utenteDao.findPersonaleByEmailAndTipo_utente(email);
+          const cliente = await utenteDao.findUtenteByEmail(email);
 
-          if(!personale.hasOwnProperty("error")) { // Se findPersonaleByEmailAndTipo_utente trova un membro del personale e non l'errore "Membro del personale non trovato"
-              logger.logDebug(`Esiste già un membro del personale con l'email ${email}`);
-              throw new Error("L'email inserita è già in uso.");
+          if(!personale.hasOwnProperty("error")) {    // Se findPersonaleByEmailAndTipo_utente trova un membro del personale e non l'errore "Membro del personale non trovato"
+            logger.logDebug(`Esiste già un membro del personale con l'email ${email}`);
+            throw new Error("L'email inserita è già in uso.");
+          }
+          else if(!cliente.hasOwnProperty("error")){  // Se findUtenteByEmail trova un cliente e non l'errore "Utente non trovato"
+            logger.logDebug(`Esiste già un cliente con l'email ${email}`);
+            throw new Error("L'email inserita è già in uso.");
           }
       }),
   body("telefono").trim().matches(/^((00|\+)39[\. ]??)??3\d{2}[\. ]??\d{7}$/).escape().withMessage("Il numero di telefono deve essere di 10 numeri e può contenere il prefisso italiano (+39)"),
@@ -83,7 +88,7 @@ router.post("/", upload.single('imgPersonale'), [
         title: "Login",
         message:`${personale.nome} ${personale.cognome} benvenuto nel personale!`, 
         styles: ['/stylesheets/custom.css'],
-        scripts: ['/javascripts/validazioneLogin.js','/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
+        scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js', '/javascripts/validazioneLogin.js']
     });
   } else {
     logger.logError(JSON.stringify(errors));
