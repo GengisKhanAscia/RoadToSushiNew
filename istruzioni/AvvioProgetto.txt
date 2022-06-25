@@ -1,0 +1,19 @@
+Step per eseguire correttamente il progetto:
+
+1 - Scaricare la cartella .zip da DIR
+2 - Estrarre la cartella del progetto dal .zip
+3 - Avviare Visual Studio Code (VSC) e aprire la cartella "RoadToSushiNew"
+4 - Posizionarsi sul terminale dell'IDE e spostarsi all'interno della cartella "RoadToSushiNew"
+5 - Digitare il comando "npm install" il quale servirà a installare tutti i moduli e le dipendenze che non sono stati caricati all'interno della cartella (scaricherà la cartella "node_modules"
+6 - Al termine dell'esecuzione, digitare "node ./bin/www" per avviare il progetto
+7 - A questo punto compaiono, salvo errori, le scritte "Il server di RoadToSushi è attivo all'indirizzo http://localhost:3003", "Il Database RoadToSushi è stato aperto con successo"
+8 - Si può cliccare direttamente sul collegamento ipertestuale, altrimenti digitale il seguente URL su browser per accedere alla homepage del progetto "http://localhost:3003"
+
+Alternativamente, è possibile effettuare la clonazione del repository Github che ho usato come appoggio durante lo sviluppo:
+
+1 - Andare al link "https://github.com/GengisKhanAscia/RoadToSushiNew"
+2 - Cliccare su "Code" e nel dropdown che compare cliccare il path HTTPS
+3 - Andare sul terminale del proprio computer e spostarsi in una cartella a piacimento
+4 - Digitare il comando "git clone" seguito dal link copiato al punto 1
+5 - Verrà scaricata la cartella "RoadToSushiNew" del progetto
+6 - A questo punto basterà seguire gli step dal punto 3 in avanti descritti qui sopra

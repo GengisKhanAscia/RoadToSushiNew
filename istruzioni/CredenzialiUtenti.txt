@@ -1,0 +1,30 @@
+
+Il file "database.db" è presente all'interno del progetto all'interno della cartella RoadToSushiNew.
+
+Attualmente gli UTENTI registrati sono i seguenti:
+
+CLIENTI:
+	- Email: 		ascia.marco@virgilio.it
+	- Password:		Marco1!
+
+	- Email: 		tommaso.miana@gmail.com (Cliente senza ordini)
+	- Password:		Marco1!
+
+	- Email: 		mattia.castellano@outlook.it
+	- Password:		Marco1!
+
+E' possibile registrare nuovi CLIENTI direttamente sul sito cliccando su "Registrati" > "CLIENTE"
+
+
+MEMBRI DEL PERSONALE:
+
+	- Email: 		andrea.marmili.sushi@gmail.com
+	- Password:		Marco1!
+
+	- Email: 		mario.rossi@gmail.com
+	- Password:		Marco1!
+
+	- Email: 		giulia.lila.sushi@libero.it
+	- Password:		Marco1!
+
+E' possibile registrare nuovi MEMBRI DEL PERSONALE direttamente sul sito cliccando su "Registrati" > "PERSONALE"
