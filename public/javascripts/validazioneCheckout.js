@@ -177,7 +177,7 @@ function validaScadenzaCarta(date) {
 /**
  * Valida il CVV della carta
  * @param {string} cvv 
- * @returns vero se il cvv è valido, false altrimenti
+ * @returns vero se il CVV è valido, false altrimenti
  */
 function validaCVV(cvv) {
     return /^[0-9]{3}$/.test(cvv);

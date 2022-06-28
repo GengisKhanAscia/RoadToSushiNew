@@ -1,6 +1,7 @@
+"use strict";
 
 /**
- * @class Ordine rappresenta un ordine
+ * @class EntOrdine Rappresenta un ordine
  */
  class EntOrdine{
 

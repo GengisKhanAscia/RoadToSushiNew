@@ -1,3 +1,5 @@
+"use strict";
+
 const EntSupUser = require('./entSupUser');
 
 /**
@@ -8,9 +10,9 @@ const EntSupUser = require('./entSupUser');
 
     /**
      * Crea un nuovo membro del personale
-     * @param {string} email Email del membro del personale
-     * @param {string} nome  Nome del membro del personale
-     * @param {string} cognome Cognome del membro del personale
+     * @param {string} email    Email del membro del personale
+     * @param {string} nome     Nome del membro del personale
+     * @param {string} cognome  Cognome del membro del personale
      * @param {number} telefono Telefono del membro del personale
      * @param {blob}   immagine Immagine (opzionale) del membro del personale
      */

@@ -1,7 +1,9 @@
+"use strict";
+
 const Piatto = require('./entPiatto');
 
 /**
- * @class Carrello rappresenta un carrello
+ * @class EntCarrello Rappresenta un carrello
  */
  class EntCarrello{
 

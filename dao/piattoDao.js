@@ -1,7 +1,6 @@
 "use strict";
 
 const db = require('../database');
-const crypt = require('bcrypt');
 const logger = require('../util/logger');
 const EntPiatto = require('../entities/entPiatto');
 
@@ -97,8 +96,8 @@ const EntPiatto = require('../entities/entPiatto');
 }
 
 /**
- * Aggiunge Piatto al database.
- * @param {EntPiatto} piatto Piatto da aggiungere al db
+ * Aggiunge Piatto al database
+ * @param {EntPiatto} piatto Piatto da aggiungere al DB
  * @returns {Promise<String>} Nome del Piatto inserito
  */
  function addPiatto(piatto) {

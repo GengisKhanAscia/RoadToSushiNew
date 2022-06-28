@@ -1,6 +1,7 @@
+"use strict";
 
 /**
- * @class EntSupUser rappresenta una superclasse da appoggio 
+ * @class EntSupUser Rappresenta una superclasse da appoggio 
  */
  class EntSupUser{
 

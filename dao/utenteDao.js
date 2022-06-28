@@ -10,10 +10,10 @@ const EntPersonale = require('../entities/entPersonale');
 /************************** UTENTE *****************************/
 
 /**
- * Ottieni l'utente tramite email e password
+ * Ottieni l'Utente tramite email e password
  * @param {string} email Email dell'utente
  * @param {string} password Password dell'utente
- * @returns {Promise<EntUtente>} Utente.
+ * @returns {Promise<EntUtente>} Utente
  */
  function findUtenteByEmailAndPassword(email, password) { 
     return new Promise((resolve, reject) => {
@@ -125,8 +125,8 @@ const EntPersonale = require('../entities/entPersonale');
 }
 
 /**
- * Aggiunge Utente {Cliente{0}} al database.
- * @param {EntUtente} utente Utente da aggiungere al db
+ * Aggiunge Utente {Cliente{0}} al DB
+ * @param {EntUtente} utente Utente da aggiungere al DB
  * @returns {Promise<String>} Email dell'Utente inserito
  */
  function addClienteComeUtente(utente) {
@@ -151,7 +151,7 @@ const EntPersonale = require('../entities/entPersonale');
 
 /**
  * Aggiunge Utente {Membro del Personale{1}} al database.
- * @param {EntUtente} utente Utente da aggiungere al db
+ * @param {EntUtente} utente Utente da aggiungere al DB
  * @returns {Promise<String>} Email dell'Utente inserito
  */
  function addPersonaleComeUtente(utente) {
@@ -177,8 +177,8 @@ const EntPersonale = require('../entities/entPersonale');
 /************************** CLIENTE *****************************/
 
 /**
- * Aggiunge Cliente al database.
- * @param {EntCliente} cliente Cliente da aggiungere al db
+ * Aggiunge Cliente al DB
+ * @param {EntCliente} cliente Cliente da aggiungere al DB
  * @returns {Promise<String>} Email del Cliente inserito
  */
  function addCliente(cliente) {
@@ -203,8 +203,8 @@ const EntPersonale = require('../entities/entPersonale');
 /************************** PERSONALE *****************************/
 
 /**
- * Aggiunge Membro del Personale al database.
- * @param {EntPersonale} personale Personale da aggiungere al db
+ * Aggiunge Membro del Personale al DB
+ * @param {EntPersonale} personale Personale da aggiungere al DB
  * @returns {Promise<String>} Email del Membro del Personale inserito
  */
  function addPersonale(personale) {

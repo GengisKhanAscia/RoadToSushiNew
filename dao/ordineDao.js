@@ -8,8 +8,8 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
 /************************** ORDINE *****************************/
 
 /**
- * Aggiunge Ordine al database.
- * @param {EntOrdine} ordine Ordine da aggiungere al db
+ * Aggiunge Ordine al DB
+ * @param {EntOrdine} ordine Ordine da aggiungere al DB
  * @returns {Promise<Number>} Id dell'ordine inserito
  */
  function addOrdine(ordine) {
@@ -37,8 +37,8 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
 }
 
 /**
- * Modifica Ordine nel database (Cambia lo Stato da [INVIATO] 'In preparazione' a [PRONTO] 'Pronto')
- * @param {Number} id Id dell'ordine da aggiornare nel db
+ * Modifica Ordine nel DB (Cambia lo Stato da [INVIATO] 'In preparazione' a [PRONTO] 'Pronto')
+ * @param {Number} id Id dell'ordine da aggiornare nel DB
  * @returns {Promise<Number>} Id dell'ordine aggiornato
  */
  function updateOrdine(id) {
@@ -61,8 +61,8 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
 }
 
 /**
- * Cancella un ordine dal db
- * @param {number} id Id dell'ordine da cancellare nel db
+ * Cancella un ordine dal DB
+ * @param {number} id Id dell'ordine da cancellare nel DB
  * @returns {Promise<Number>} Id dell'ordine da eliminare
  */
  function deleteOrdine(id) {
@@ -81,7 +81,7 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
 }
 
 /**
- * Trova tutti gli ordini 
+ * Trova tutti gli ordini presenti nel DB
  * @returns {Promise<EntOrdine[]>} Array di Ordini
  */
  function findAllOrdini() {
@@ -118,7 +118,7 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
 }
 
 /**
- * Trova tutti gli ordini 'In preparazione'
+ * Trova tutti gli ordini 'In preparazione' nel DB
  * @returns {Promise<EntOrdine[]>} Array di Ordini
  */
  function findAllOrdiniInPreparazione() {
@@ -155,7 +155,7 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
 }
 
 /**
- * Trova tutti gli ordini 'Pronto'
+ * Trova tutti gli ordini 'Pronto' nel DB
  * @returns {Promise<EntOrdine[]>} Array di Ordini
  */
  function findAllOrdiniPronto() {
@@ -207,7 +207,6 @@ const orderStatus = require('../entities/enumeratives/statoOrderType');
             } else if (rows === undefined || rows.length === 0) {
                 logger.logWarn(`Nessun ordine per il Cliente: ${email}`);
                 resolve([]);
-                // resolve({error: `Nessun ordine trovato per il Cliente: ${email}`}); // O con "" ?
             } else {
                 const ordini = [];
 

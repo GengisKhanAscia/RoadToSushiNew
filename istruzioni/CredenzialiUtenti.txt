@@ -4,6 +4,7 @@ Il file "database.db" è presente all'interno del progetto all'interno della car
 Attualmente gli UTENTI registrati sono i seguenti:
 
 CLIENTI:
+
 	- Email: 		ascia.marco@virgilio.it
 	- Password:		Marco1!
 

@@ -3,14 +3,14 @@
 function giorno_ora(){
     moment.locale('it');
     const qui_moment = document.getElementById("qui_moment");
-    qui_moment.innerHTML = ''; // per resettarlo
+    qui_moment.innerHTML = ''; // Per resettarlo
     qui_moment.innerHTML += 'Oggi &egrave; ';
     qui_moment.innerHTML += moment().format("dddd");
     qui_moment.innerHTML += ' e sono le ore ';
     qui_moment.innerHTML += moment().format("H:mm");
 
     const open_close = document.getElementById("open_close");
-    open_close.innerHTML = ''; // per resettarlo
+    open_close.innerHTML = ''; // Per resettarlo
     
    const giorno = moment().day();
    const ora = moment().hours();
