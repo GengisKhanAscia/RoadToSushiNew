@@ -65,7 +65,7 @@ router.post("/", upload.single('imgPiatto'), [
       title: "Piatti",
       message:`${piatto.nome} aggiunto correttamente!`, 
       styles: ['/stylesheets/custom.css'],
-      scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js']
+      scripts: ['/javascripts/orario_negozio.js', '/javascripts/richiedimodals.js','/javascripts/validazioneRicerca.js']
     });
     
   } else {
