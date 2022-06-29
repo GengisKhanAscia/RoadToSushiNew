@@ -1,6 +1,7 @@
 "use strict";
 
 const now = require('./time');
+const colors = require('colors');
 
 /**
  * Debug message
