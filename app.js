@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 // Variabili di default per la cartella "views"
 app.use((_req, _res, next) => {
   app.locals.moment = moment;
-  app.locals.title = '';   // Titolo della pagina of page
+  app.locals.title = '';   // Titolo della pagina 
   app.locals.message = ''; // Messaggi utili
   app.locals.errors = [];  // Messaggi d'errore
   app.locals.active = '';  // "Sezione" attiva della navbar

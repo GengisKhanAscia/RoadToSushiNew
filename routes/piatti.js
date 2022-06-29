@@ -11,9 +11,9 @@ router.get('/', async function(req, res, next) {
   res.render('piatti', {
     piatti: piatti,
     styles: ['/stylesheets/custom.css'],
-    scripts: ['/javascripts/orario_negozio.js'     // Orari
-             ,'/javascripts/richiedimodals.js'     // Modals
-             ,'/javascripts/validazioneRicerca.js'],  
+    scripts: ['/javascripts/orario_negozio.js'        // Orari
+             ,'/javascripts/richiedimodals.js'        // Modals
+             ,'/javascripts/validazioneRicerca.js'],  // Validazione ricerca dei piatti (no invio, solo bottone)
     utente: req.user,
     title: "Piatti"
   });

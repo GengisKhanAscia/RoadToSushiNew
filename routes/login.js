@@ -18,8 +18,8 @@ router.get('/', function(req, res, next) {
 
 // POST di un login
 router.post("/", (req, res, next) => {  
-  console.log("Stampo email pre-autenticazione: " + req.body.email);
-  console.log("Stampo password pre-autenticazione: " + req.body.password);
+  // console.log("Stampo email pre-autenticazione: " + req.body.email);
+  // console.log("Stampo password pre-autenticazione: " + req.body.password);
   passport.authenticate("local", (err, user, info) => {
       if (err) {
         logger.logError(err);

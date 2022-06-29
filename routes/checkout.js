@@ -101,7 +101,7 @@ router.post('/', [
             ora: req.body.oraOrdine
           },
           title: "Checkout",
-          message:`Ordine trasmesso correttamente al checkout!`, 
+          errors: errors.array(),
           styles: ['/stylesheets/custom.css'],
           scripts: ['/javascripts/orario_negozio.js','/javascripts/richiedimodals.js','/javascripts/validazioneCheckout.js']
         });
